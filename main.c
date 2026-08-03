@@ -8,12 +8,38 @@
 #define WINDOW_HEIGHT 480
 #define FPS 165
 
+void main_menu(SDL_Window* window, SDL_Renderer* renderer)
+{
+    int running = 1;
+    SDL_Event event;
+
+    while (running)
+    {
+        while (SDL_PollEvent(&event))
+        {
+            if (event.type == SDL_QUIT)
+                running = 0;
+        }
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        // Dessiner le menu ici
+
+        SDL_RenderPresent(renderer);
+    }
+
+    TTF_Quit();
+}
+
 int main(int argc, char* argv[]) {
 
     SDL_Window* window = SDL_CreateWindow("Roguelike",
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                           WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    
+    main_menu(window, renderer);
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
