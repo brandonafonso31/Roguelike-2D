@@ -1,0 +1,2 @@
+write function to write/draw on screen
+add delta time
