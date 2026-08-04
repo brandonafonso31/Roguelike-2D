@@ -1,2 +1,4 @@
-write function to write/draw on screen
-add delta time
+add path to settings
+migrate function to src/
+migrate font to asset/font
+write function to draw on screen
