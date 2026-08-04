@@ -33,6 +33,18 @@ int FPSCounter_Update(FPSCounter* counter, double deltaTime) {
     return (int)(0.5 + 1.0 / averageDelta);
 }
 
+//-------------------- Settings -----------------------//
+typedef struct
+{
+    int width;
+    int height;
+    int fullscreen;
+    int fps_limit;
+    int vsync;
+    int volume;
+
+} GameSettings;
+
 //---------------------- Dessin -----------------------//
 void main_menu(SDL_Window* window, SDL_Renderer* renderer){
 
@@ -79,9 +91,18 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer){
 
 int main(int argc, char* argv[]) {
 
-    SDL_Window* window = SDL_CreateWindow("Roguelike",
-                                          SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                          WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    GameSettings settings;
+    loadSettings(&settings);
+    
+    
+    SDL_Window* window = SDL_CreateWindow(
+        "Roguelike",
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        settings.width,
+        settings.height,
+        0
+    );
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
     main_menu(window, renderer);
