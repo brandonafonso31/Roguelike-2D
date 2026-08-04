@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "drawing_function.c"
-
+#include "settings.h"
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
@@ -31,26 +31,14 @@ int FPSCounter_Update(FPSCounter* counter, double deltaTime) {
     double averageDelta = sum / FPS_HISTORY;
 
     return (int)(0.5 + 1.0 / averageDelta);
-}
-
-//-------------------- Settings -----------------------//
-typedef struct
-{
-    int width;
-    int height;
-    int fullscreen;
-    int fps_limit;
-    int vsync;
-    int volume;
-
-} GameSettings;
+};
 
 //---------------------- Dessin -----------------------//
 void main_menu(SDL_Window* window, SDL_Renderer* renderer){
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         printf("Erreur SDL: %s\n", SDL_GetError());
-        return 1;
+        return;
     }
     TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
     if (!font) {
