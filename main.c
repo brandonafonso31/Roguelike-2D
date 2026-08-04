@@ -7,11 +7,14 @@
 #include "drawing_function.h"
 #include "settings.h"
 #include "fps_utils.h"
+#include "paths.h"
 
 
 //---------------------- Boucle jeu -----------------------//
 
 void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings) {
+
+
     int running = 1;
     SDL_Event event;
     TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
@@ -64,8 +67,14 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
 
 //---------------------- MAIN -----------------------//
 int main(int argc, char* argv[]) {
+
+    InitPaths();
+    char font_path[2048];
+    snprintf(font_path, sizeof(font_path), "%s/fonts/pokemon_BW2.otf", GetAssetsPath());
+
     GameSettings settings;
-    loadSettings(&settings);
+    loadSettings(&settings);        
+
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         printf("Erreur SDL : %s\n", SDL_GetError());
