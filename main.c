@@ -48,6 +48,18 @@ typedef struct
 //---------------------- Dessin -----------------------//
 void main_menu(SDL_Window* window, SDL_Renderer* renderer){
 
+    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+        printf("Erreur SDL: %s\n", SDL_GetError());
+        return 1;
+    }
+    TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
+    if (!font) {
+        printf("Erreur chargement police: %s\n", TTF_GetError());
+        TTF_Quit();
+        return;
+    }
+
+
     int running = 1;
     Uint64 lastCounter = SDL_GetPerformanceCounter(), currentCounter;
     double delta_time;
@@ -56,13 +68,6 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer){
     FPSCounter fpsCounter;
     FPSCounter_Init(&fpsCounter);
     char fpsText[50];
-
-    TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
-    if (!font) {
-        printf("Erreur chargement police: %s\n", TTF_GetError());
-        TTF_Quit();
-        return;
-    }
 
     while (running){
 
