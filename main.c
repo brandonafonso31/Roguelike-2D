@@ -36,17 +36,12 @@ int FPSCounter_Update(FPSCounter* counter, double deltaTime) {
 //---------------------- Dessin -----------------------//
 void main_menu(SDL_Window* window, SDL_Renderer* renderer){
 
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        printf("Erreur SDL: %s\n", SDL_GetError());
-        return;
-    }
     TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
     if (!font) {
         printf("Erreur chargement police: %s\n", TTF_GetError());
         TTF_Quit();
         return;
     }
-
 
     int running = 1;
     Uint64 lastCounter = SDL_GetPerformanceCounter(), currentCounter;
@@ -87,6 +82,16 @@ int main(int argc, char* argv[]) {
     GameSettings settings;
     loadSettings(&settings);
     
+
+    if (SDL_Init(SDL_INIT_VIDEO) != 0){
+        printf("Erreur SDL: %s\n", SDL_GetError());
+        return 1;
+    }
+    if (TTF_Init() == -1){
+        printf("Erreur TTF: %s\n", TTF_GetError());
+        SDL_Quit();
+        return 1;
+    }
     
     SDL_Window* window = SDL_CreateWindow(
         "Roguelike",
