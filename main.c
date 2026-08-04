@@ -6,25 +6,28 @@
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
-#define FPS 165
+#define FPS 30
 
-void main_menu(SDL_Window* window, SDL_Renderer* renderer)
-{
-    int running = 1;
+void main_menu(SDL_Window* window, SDL_Renderer* renderer){
+
+    int running = 1, current_time = 0;
+    Uint64 lastCounter = SDL_GetPerformanceCounter(), currentCounter;
+    double delta_time;
     SDL_Event event;
 
-    while (running)
-    {
-        while (SDL_PollEvent(&event))
-        {
+    while (running){
+
+        currentCounter = SDL_GetPerformanceCounter();
+        delta_time =(double)(currentCounter - lastCounter) /  SDL_GetPerformanceFrequency();
+        lastCounter = currentCounter;
+
+        while (SDL_PollEvent(&event)){
             if (event.type == SDL_QUIT)
                 running = 0;
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-
-        // Dessiner le menu ici
 
         SDL_RenderPresent(renderer);
     }
