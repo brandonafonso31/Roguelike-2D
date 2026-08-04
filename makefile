@@ -11,7 +11,7 @@ CFLAGS = -Wall -O2
 LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 
 # Fichiers sources
-SRC = main.c drawing_function.c settings.c
+SRC = main.c drawing_function.c settings.c fps_utils.c
 
 # Règle par défaut : compile tout
 all: $(TARGET).exe
