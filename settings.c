@@ -28,6 +28,9 @@ void loadSettings(GameSettings* settings)
 
         else if(strcmp(key,"VOLUME")==0)
             settings->volume = value;
+
+        else if(strcmp(key,"FULLSCREEN")==0)
+            settings->fullscreen = value;
     }
     fclose(file);
     printf("Settings loaded\n");

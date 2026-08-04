@@ -7,6 +7,7 @@ typedef struct{
     int fps_limit;
     int vsync;
     int volume;
+    int fullscreen;
 
 } GameSettings;
 
