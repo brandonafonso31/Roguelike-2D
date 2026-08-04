@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include "drawing_function.h"
 
 void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
     SDL_Color color = {255, 255, 255, 255};

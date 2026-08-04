@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "drawing_function.c"
+#include "drawing_function.h"
 #include "settings.h"
 
 #define WINDOW_WIDTH 640
