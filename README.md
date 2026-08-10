@@ -55,13 +55,12 @@ make run
 
 ## 📝 Roadmap
 
-✅ Structure de base
-
-✅ Gestion des FPS
-✅ Chargement des configurations
-⬜ Effets graphiques
-⬜ Génération de donjons
-⬜ Système de combat
-⬜ Inventaire
-⬜ Sauvegarde
-⬜ Effets sonores
+✅ Structure de base  
+✅ Gestion des FPS  
+✅ Chargement des configurations  
+⬜ Effets graphiques  
+⬜ Génération de donjons  
+⬜ Système de combat  
+⬜ Inventaire  
+⬜ Sauvegarde  
+⬜ Effets sonores  
