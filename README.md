@@ -40,17 +40,19 @@ sudo apt-get install libsdl2-dev libsdl2-ttf-dev
 brew install sdl2 sdl2_ttf
 ```
 
-### 🚀 Installation
+## 🚀 Installation
 
-# Cloner le projet
+### Cloner le projet
+```bash
 git clone https://github.com/votre-nom/roguelike.git
 cd roguelike
-
-# Compiler et lancer le jeu
-
+```
+### Compiler et lancer le jeu
+```bash
 make run
+```
 
-### 📝 Roadmap
+## 📝 Roadmap
 
 ☑ Structure de base
 ☑ Gestion des FPS
