@@ -55,7 +55,8 @@ make run
 
 ## 📝 Roadmap
 
-✅ Structure de base \n
+✅ Structure de base
+
 ✅ Gestion des FPS
 ✅ Chargement des configurations
 ⬜ Effets graphiques
