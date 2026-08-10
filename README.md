@@ -44,7 +44,7 @@ brew install sdl2 sdl2_ttf
 
 ### Cloner le projet
 ```bash
-git clone https://github.com/votre-nom/roguelike.git
+git clone https://github.com/brandonafonso31/Roquelike-2D.git
 cd roguelike
 ```
 ### Compiler et lancer le jeu
@@ -54,11 +54,12 @@ make run
 
 ## 📝 Roadmap
 
-☑ Structure de base
-☑ Gestion des FPS
-☑ Chargement des configurations
-□ Génération de donjons
-□ Système de combat
-□ Inventaire
-□ Sauvegarde
-□ Effets sonores
+✅ Structure de base
+✅ Gestion des FPS
+✅ Chargement des configurations
+⬜ Effets graphiques
+⬜ Génération de donjons
+⬜ Système de combat
+⬜ Inventaire
+⬜ Sauvegarde
+⬜ Effets sonores
