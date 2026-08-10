@@ -1,4 +1,0 @@
-add path to settings
-migrate function to src/
-migrate font to asset/font
-write function to draw on screen
