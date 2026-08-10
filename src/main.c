@@ -17,7 +17,9 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
 
     int running = 1;
     SDL_Event event;
-    TTF_Font* font = TTF_OpenFont("pokemon_BW2.otf", 24);
+    char font_full_path[2048];
+    snprintf(font_full_path, sizeof(font_full_path), "%s/pokemon_BW2.otf", GetFontPath());
+    TTF_Font* font = TTF_OpenFont(font_full_path, 24);
     if (!font) {
         printf("Erreur chargement police : %s\n", TTF_GetError());
         return;

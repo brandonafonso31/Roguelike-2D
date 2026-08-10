@@ -5,25 +5,61 @@ TARGET = roguelike
 CC = gcc
 
 # Options de compilation
-CFLAGS = -Wall -O2
+CFLAGS = -Wall -O2 -Iinclude
 
-# Librairies à lier (ordre important pour MinGW)
+# Librairies à lier
 LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf
 
-# Fichiers sources
-SRC = main.c drawing_function.c settings.c fps_utils.c paths.c
+# Dossiers
+SRC_DIR = src
+BUILD_DIR = build
+BIN_DIR = .
+
+# Executables à compiler
+SRC = $(SRC_DIR)/main.c \
+      $(SRC_DIR)/drawing_function.c \
+      $(SRC_DIR)/settings.c \
+      $(SRC_DIR)/fps_utils.c \
+      $(SRC_DIR)/paths.c
+
+# Fichiers objets (dans le dossier build)
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRC))
 
 # Règle par défaut : compile tout
-all: $(TARGET).exe
+all: $(BIN_DIR)/$(TARGET).exe
 
-# Compilation
-$(TARGET).exe: $(SRC)
-	$(CC) $(CFLAGS) -o $@ $(SRC) $(LIBS)
+# Créer le dossier build s'il n'existe pas
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Compilation des fichiers objets
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Link de l'exécutable
+$(BIN_DIR)/$(TARGET).exe: $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
 # Nettoyage des fichiers générés
 clean:
-	rm -f $(TARGET).exe
+	rm -f $(BIN_DIR)/$(TARGET).exe
+	rm -rf $(BUILD_DIR)
+
+# Nettoyage + recompilation
+rebuild: clean all
 
 # Compilation + exécution
-run: $(TARGET).exe
-	./$(TARGET).exe
+run: $(BIN_DIR)/$(TARGET).exe
+	./$(BIN_DIR)/$(TARGET).exe
+
+# Afficher les fichiers .o
+show:
+	@echo "Sources: $(SRC)"
+	@echo "Objets: $(OBJ)"
+
+
+# Pour Windows
+run-win: $(BIN_DIR)/$(TARGET).exe
+	$(BIN_DIR)/$(TARGET).exe
+
+.PHONY: all clean rebuild run show run-win
