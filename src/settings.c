@@ -18,6 +18,7 @@ void loadSettings(GameSettings* settings) {
         settings->vsync = 0;
         settings->volume = 80;
         settings->fullscreen = 0;
+        strcpy(settings->font, "pokemon_BW2.otf");
         return;
     }
     
@@ -37,6 +38,11 @@ void loadSettings(GameSettings* settings) {
             sscanf(line, "VOLUME=%d", &settings->volume);
         } else if (strstr(line, "FULLSCREEN=")) {
             sscanf(line, "FULLSCREEN=%d", &settings->fullscreen);
+        } else if (strstr(line, "FONT=")) {
+            char temp[1024];
+            if (sscanf(line, "FONT=%s", temp) == 1) {
+                strcpy(settings->font, temp);
+            }
         }
     }
     
@@ -49,4 +55,6 @@ void loadSettings(GameSettings* settings) {
     printf("  VSYNC = %d\n", settings->vsync);
     printf("  VOLUME = %d\n", settings->volume);
     printf("  FULLSCREEN = %d\n", settings->fullscreen);
+    printf("  FONT = %s\n", settings->font);
+
 }

@@ -18,7 +18,7 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
     int running = 1;
     SDL_Event event;
     char font_full_path[2048];
-    snprintf(font_full_path, sizeof(font_full_path), "%s/pokemon_BW2.otf", GetFontPath());
+    snprintf(font_full_path, sizeof(font_full_path), "%s/%s", GetFontPath(), settings->font);
     TTF_Font* font = TTF_OpenFont(font_full_path, 24);
     if (!font) {
         printf("Erreur chargement police : %s\n", TTF_GetError());
@@ -71,8 +71,6 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
 int main(int argc, char* argv[]) {
 
     InitPaths();
-    char font_path[2048];
-    snprintf(font_path, sizeof(font_path), "%s/fonts/pokemon_BW2.otf", GetAssetsPath());
 
     GameSettings settings;
     loadSettings(&settings);        

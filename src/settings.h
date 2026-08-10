@@ -1,3 +1,5 @@
+#include <string.h>
+
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
@@ -8,6 +10,7 @@ typedef struct{
     int vsync;
     int volume;
     int fullscreen;
+    char font[1024];
 
 } GameSettings;
 
