@@ -1,6 +1,7 @@
 # 🎮 Roguelike - Aventure en 2D
 
 Un jeu roguelike en 2D développé en C avec SDL2. Plongez dans des donjons générés procéduralement, affrontez des monstres et collectez des trésors !
+A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
 ## 📸 Aperçu
 
@@ -9,7 +10,7 @@ Un jeu roguelike en 2D développé en C avec SDL2. Plongez dans des donjons gén
 ## ✨ Fonctionnalités
 
 - 🗺️ **Génération procédurale** - Des donjons uniques à chaque partie
-- ⚔️ **Combat tour par tour** - Stratégie et réflexion
+- ⚔️ **Combat en temps réel** - Stratégie et réflexion
 - 📦 **Inventaire** - Collectez et utilisez des objets
 - 🎨 **Graphismes rétro** - Style pixel art
 - 🔊 **Effets sonores** - Ambiance immersive
@@ -54,7 +55,7 @@ make run
 
 ## 📝 Roadmap
 
-✅ Structure de base
+✅ Structure de base \n
 ✅ Gestion des FPS
 ✅ Chargement des configurations
 ⬜ Effets graphiques
