@@ -1,3 +1,12 @@
+# Fichiers compilés
+*.o
 *.exe
-*exe.
-.vscode
+*.out
+
+# Dossier de build
+build/
+bin/
+obj/
+
+# Dossier de l'IDE
+.vscode/
