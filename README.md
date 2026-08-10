@@ -28,16 +28,19 @@ Un jeu roguelike en 2D développé en C avec SDL2. Plongez dans des donjons gén
 ```bash
 # Installer MinGW ou MSYS2
 # Télécharger SDL2 et SDL2_ttf
+```
 
 ### Linux
-
+```bash
 sudo apt-get install libsdl2-dev libsdl2-ttf-dev
+```
 
 ### macOS
-
+```bash
 brew install sdl2 sdl2_ttf
+```
 
-🚀 Installation
+### 🚀 Installation
 
 # Cloner le projet
 git clone https://github.com/votre-nom/roguelike.git
