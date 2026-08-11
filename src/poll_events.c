@@ -9,5 +9,6 @@ int poll_events(SDL_Event* event){
             if (event->type == SDL_QUIT)
                 running = 0;
         }
+    printf("running: %d\n", running);
     return running;
 }
