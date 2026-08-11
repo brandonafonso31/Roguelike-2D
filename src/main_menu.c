@@ -9,7 +9,7 @@
 #include "fps_utils.h"
 #include "paths.h"
 #include "poll_events.h"
-
+#include "ui.h"
 
 //---------------------- Boucle jeu -----------------------//
 
@@ -26,33 +26,20 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
         return;
     }
 
-    FPSCounter fpsCounter;
-    FPSCounter_Init(&fpsCounter, settings->fps_limit);
-    char fpsText[50];
+    FPSCounter fps_counter;
+    FPSCounter_Init(&fps_counter, settings->fps_limit);
     double delta_time;
 
     while (running) {
         //---------------- INPUT ----------------//
         running = poll_events(&event);
-        printf("Running: %d\n", running);
-
-
-        //---------------- UPDATE ----------------//
-        delta_time = FPSCounter_GetDeltaTime(&fpsCounter);
-
-        //---------------- RENDER ----------------//
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
-        int fpsAverage = FPSCounter_Update(&fpsCounter, delta_time);
-        snprintf(fpsText, sizeof(fpsText), "FPS: %d (target: %d)", fpsAverage, (!settings->vsync)? settings->fps_limit : GetMonitorRefreshRate());
-        drawText(renderer, font, fpsText, 10, 10);
-
-        SDL_RenderPresent(renderer);
-
+        //---------------- Delta ----------------//
+        delta_time = FPSCounter_GetDeltaTime(&fps_counter);
+        //---------------- RENDER ---------------//
+        render_ui(&fps_counter, renderer, delta_time, font, settings);
         //---------------- FPS LIMIT ----------------//
         if (!settings->vsync) {
-            FPSCounter_WaitForNextFrame(&fpsCounter);
+            FPSCounter_WaitForNextFrame(&fps_counter);
         } else {
             SDL_Delay(1); // Petit délai pour éviter de surcharger le CPU
         }
