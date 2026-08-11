@@ -20,7 +20,8 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/drawing_function.c \
       $(SRC_DIR)/settings.c \
       $(SRC_DIR)/fps_utils.c \
-      $(SRC_DIR)/paths.c
+      $(SRC_DIR)/paths.c \
+	  $(SRC_DIR)/main_menu.c
 
 # Fichiers objets (dans le dossier build)
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRC))
