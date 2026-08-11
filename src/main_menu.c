@@ -2,12 +2,13 @@
 #include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
+#include "main_menu.h"
 #include "drawing_function.h"
 #include "settings.h"
 #include "fps_utils.h"
 #include "paths.h"
+#include "poll_events.h"
 
 
 //---------------------- Boucle jeu -----------------------//
@@ -32,13 +33,11 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
 
     while (running) {
         //---------------- INPUT ----------------//
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT)
-                running = 0;
-        }
+        running = poll_events(&event);
+        printf("Running: %d\n", running);
+
 
         //---------------- UPDATE ----------------//
-        // Récupérer le delta_time ici pour l'utiliser dans les updates
         delta_time = FPSCounter_GetDeltaTime(&fpsCounter);
 
         //---------------- RENDER ----------------//
@@ -48,9 +47,6 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
         int fpsAverage = FPSCounter_Update(&fpsCounter, delta_time);
         snprintf(fpsText, sizeof(fpsText), "FPS: %d (target: %d)", fpsAverage, (!settings->vsync)? settings->fps_limit : GetMonitorRefreshRate());
         drawText(renderer, font, fpsText, 10, 10);
-
-        /*printf("delta : %f FPS : %f\n", delta_time, 1.0 / delta_time);
-        printf("frequency : %llu\n", SDL_GetPerformanceFrequency());*/
 
         SDL_RenderPresent(renderer);
 
