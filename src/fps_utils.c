@@ -62,3 +62,11 @@ int GetMonitorRefreshRate() {
     }
     return -1; // Valeur par défaut si on ne peut pas récupérer
 }
+
+void wait_or_not(FPSCounter* fps_counter, GameSettings* settings){
+    if (!settings->vsync) {
+        FPSCounter_WaitForNextFrame(fps_counter);
+    } else {
+        SDL_Delay(1); // Petit délai pour éviter de surcharger le CPU
+    }
+}

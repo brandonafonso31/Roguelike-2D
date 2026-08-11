@@ -24,11 +24,7 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
         //---------------- RENDER ---------------//
         render_ui(&fps_counter, renderer, delta_time, font, settings);
         //---------------- FPS LIMIT ----------------//
-        if (!settings->vsync) {
-            FPSCounter_WaitForNextFrame(&fps_counter);
-        } else {
-            SDL_Delay(1); // Petit délai pour éviter de surcharger le CPU
-        }
+        wait_or_not(&fps_counter, settings);
     }
 
     TTF_CloseFont(font);
