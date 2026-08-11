@@ -61,6 +61,9 @@ show:
 	@echo "Objets: $(OBJ)"
 
 
+test:
+	make clean run
+
 # Pour Windows
 run-win: $(BIN_DIR)/$(TARGET).exe
 	$(BIN_DIR)/$(TARGET).exe
