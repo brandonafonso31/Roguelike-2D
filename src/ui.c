@@ -1,7 +1,4 @@
 #include "ui.h"
-#include "drawing_function.h"
-#include "fps_utils.h"
-#include "settings.h"
 
 static void render_fps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double delta_time) {
     char fpsText[50];

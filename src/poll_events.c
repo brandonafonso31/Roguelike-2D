@@ -1,7 +1,4 @@
 #include "poll_events.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <SDL2/SDL.h>
 
 int poll_events(SDL_Event* event){
     int running = 1;

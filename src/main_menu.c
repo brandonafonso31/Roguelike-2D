@@ -1,20 +1,6 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "main_menu.h"
-#include "drawing_function.h"
-#include "settings.h"
-#include "fps_utils.h"
-#include "paths.h"
-#include "poll_events.h"
-#include "ui.h"
-
-//---------------------- Boucle jeu -----------------------//
 
 void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings) {
-
 
     int running = 1;
     SDL_Event event;

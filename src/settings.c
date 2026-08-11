@@ -1,7 +1,4 @@
-#include "paths.h"
 #include "settings.h"
-#include <stdio.h>
-#include <string.h>
 
 void loadSettings(GameSettings* settings) {
     char config_file[2048];

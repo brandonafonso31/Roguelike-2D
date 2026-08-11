@@ -1,14 +1,4 @@
 #include "paths.h"
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-
-#ifdef _WIN32
-    #include <direct.h>
-    #define getcwd _getcwd
-#endif
-
-#define MAX_PATH_LENGTH 1024
 
 static char assets_path[MAX_PATH_LENGTH] = {0};
 static char src_path[MAX_PATH_LENGTH] = {0};
@@ -78,7 +68,6 @@ const char* GetConfigPath(void) {
     return config_path;
 }
 
-// Ajoute cette fonction pour la police
 const char* GetFontPath(void) {
     if (!initialized) InitPaths();
     return font_path;
