@@ -57,6 +57,15 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    char icon_path[2048];
+    snprintf(icon_path, sizeof(icon_path), "%s/%s", getSystemPath(), "icon.png");
+    SDL_Surface* icon = IMG_Load(icon_path);
+    if (!icon) {
+        printf("Erreur chargement icône: %s\n", IMG_GetError());
+    } else {
+        SDL_SetWindowIcon(window, icon);
+        SDL_FreeSurface(icon);
+    }
     mainMenu(window, renderer, &settings);
 
     SDL_DestroyRenderer(renderer);
