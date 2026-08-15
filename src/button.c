@@ -1,0 +1,20 @@
+#include "button.h"
+
+Button* createButton(Image* normal_image, Image* click_image, char* text, int x, int y, int w, int h) {
+    Button* button = (Button*)malloc(sizeof(Button));
+    if (!button) {
+        printf("Erreur: allocation mémoire pour Button échouée\n");
+        return NULL;
+    }
+    
+    button->rect.x = x;
+    button->rect.y = y;
+    button->rect.w = w;
+    button->rect.h = h;
+
+    button->normal_image = normal_image;
+    button->click_image = click_image;
+    button->text = text;
+
+    return button;
+}
