@@ -14,7 +14,9 @@ void InitPaths(void);
 const char* GetAssetsPath(void);
 const char* GetSrcPath(void);
 const char* GetConfigPath(void);
-const char* GetFontPath(void);
+const char* GetFontsPath(void);
+const char* GetImagesPath(void);
+const char* GetSoundsPath(void);
 
 extern const char* list_subfolders[];
 extern const char* list_subsubfolders[];

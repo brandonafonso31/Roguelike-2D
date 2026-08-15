@@ -5,7 +5,7 @@ static char src_path[MAX_PATH_LENGTH] = {0};
 static char config_path[MAX_PATH_LENGTH] = {0};
 static char sounds_path[MAX_PATH_LENGTH] = {0};
 static char images_path[MAX_PATH_LENGTH] = {0};
-static char font_path[MAX_PATH_LENGTH] = {0};
+static char fonts_path[MAX_PATH_LENGTH] = {0};
 static int initialized = 0;
 
 const char* list_subfolders[] = {
@@ -20,8 +20,8 @@ const char* list_subsubfolders[] = {
     "/fonts"
 };
 
-const int list_subfolders_count = sizeof(list_subfolders) / sizeof(list_subfolders[0]);
-const int list_subsubfolders_count = sizeof(list_subsubfolders) / sizeof(list_subsubfolders[0]);
+const int listSubfoldersCount = sizeof(list_subfolders) / sizeof(list_subfolders[0]);
+const int listSubsubfoldersCount = sizeof(list_subsubfolders) / sizeof(list_subsubfolders[0]);
 
 void InitPaths(void) {
     if (initialized) return;
@@ -38,7 +38,7 @@ void InitPaths(void) {
     snprintf(config_path, sizeof(config_path), "%s%s", assets_path, list_subsubfolders[0]);
     snprintf(sounds_path, sizeof(sounds_path), "%s%s", assets_path, list_subsubfolders[1]);
     snprintf(images_path, sizeof(images_path), "%s%s", assets_path, list_subsubfolders[2]);
-    snprintf(font_path, sizeof(font_path), "%s%s", assets_path, list_subsubfolders[3]);
+    snprintf(fonts_path, sizeof(fonts_path), "%s%s", assets_path, list_subsubfolders[3]);
 
 
     printf("Cur rep: %s\n", cwd);
@@ -48,7 +48,7 @@ void InitPaths(void) {
     printf("Config path: %s\n", config_path);
     printf("Sounds path: %s\n", sounds_path);
     printf("Images path: %s\n", images_path);
-    printf("Font path: %s\n", font_path);
+    printf("Font path: %s\n", fonts_path);
     
     initialized = 1;
 }
@@ -68,7 +68,17 @@ const char* GetConfigPath(void) {
     return config_path;
 }
 
-const char* GetFontPath(void) {
+const char* GetFontsPath(void) {
     if (!initialized) InitPaths();
-    return font_path;
+    return fonts_path;
+}
+
+const char* GetImagesPath(void) {
+    if (!initialized) InitPaths();
+    return images_path;
+}
+
+const char* GetSoundsPath(void) {
+    if (!initialized) InitPaths();
+    return sounds_path;
 }

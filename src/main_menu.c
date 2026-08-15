@@ -5,7 +5,7 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
     int running = 1;
     SDL_Event event;
     char font_full_path[2048];
-    snprintf(font_full_path, sizeof(font_full_path), "%s/%s", GetFontPath(), settings->font);
+    snprintf(font_full_path, sizeof(font_full_path), "%s/%s", GetFontsPath(), settings->font);
     TTF_Font* font = TTF_OpenFont(font_full_path, 24);
     if (!font) {
         printf("Erreur chargement police : %s\n", TTF_GetError());
