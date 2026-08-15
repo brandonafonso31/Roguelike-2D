@@ -5,6 +5,7 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     if (!menu) return NULL;
 
     menu->background = loadImageMenu(renderer, "background.jpg");
+    menu->cursor = loadImageMenu(renderer, "cursor.png");
     
     menu->selected_index = -1;
     menu->button_count = MAX_BUTTONS;
@@ -18,4 +19,15 @@ void destroyMenu(MainMenu* menu) {
     destroyImage(menu->background);
     
     free(menu);
+}
+
+MenuAction getSelectedActionMenu(MainMenu* menu) {
+    if (!menu) return MENU_QUIT;
+    
+    switch(menu->selected_index) {
+        case 0: return MENU_PLAY;
+        case 1: return MENU_SETTINGS;
+        case 2: return MENU_QUIT;
+        default: return NULL;
+    }
 }
