@@ -24,6 +24,7 @@ void Menu_Destroy(MainMenu* menu) {
     if (!menu) return;
     
     Image_Destroy(menu->background);
+    
     /*Image_Destroy(menu->title);
     Image_Destroy(menu->play_button);
     Image_Destroy(menu->settings_button);

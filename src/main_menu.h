@@ -24,6 +24,7 @@ typedef struct {
     Image* play_button_hover;
     Image* settings_button_hover;
     Image* quit_button_hover;*/
+    
     int selected_index;
     int button_count;
 } MainMenu;
