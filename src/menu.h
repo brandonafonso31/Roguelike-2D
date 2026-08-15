@@ -15,6 +15,7 @@ typedef enum {
 
 typedef struct {
     Image* background;
+    Image* cursor;
     /*Image* title;
     Image* play_button;
     Image* settings_button;
