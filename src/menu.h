@@ -28,7 +28,6 @@ typedef struct {
 } MainMenu;
 
 MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings);
-void menuDestroy(MainMenu* menu);
-void menuRender(SDL_Renderer* renderer, MainMenu* menu);
+void destroyMenu(MainMenu* menu);
 
 #endif
