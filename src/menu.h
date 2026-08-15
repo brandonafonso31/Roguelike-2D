@@ -5,10 +5,11 @@
 #include "settings.h"
 #include "image_loader.h"
 
-#define MAX_BUTTONS 3
+#define MAX_BUTTONS 4
 
 typedef enum {
-    MENU_PLAY,
+    MENU_NEW_GAME,
+    MENU_LOAD_GAME,
     MENU_SETTINGS,
     MENU_QUIT
 } MenuAction;

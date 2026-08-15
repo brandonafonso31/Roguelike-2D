@@ -21,13 +21,13 @@ void destroyMenu(MainMenu* menu) {
     free(menu);
 }
 
-MenuAction getSelectedActionMenu(MainMenu* menu) {
-    if (!menu) return MENU_QUIT;
-    
-    switch(menu->selected_index) {
-        case 0: return MENU_PLAY;
-        case 1: return MENU_SETTINGS;
-        case 2: return MENU_QUIT;
-        default: return NULL;
+    MenuAction getSelectedActionMenu(MainMenu* menu) {
+        if (!menu) return MENU_QUIT;
+        
+        switch(menu->selected_index) {
+            case 0: return MENU_NEW_GAME;
+            case 1: return MENU_SETTINGS;
+            case 2: return MENU_QUIT;
+            default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
+        }
     }
-}
