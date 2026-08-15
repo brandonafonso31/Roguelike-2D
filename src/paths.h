@@ -18,6 +18,7 @@ const char* getFontsPath(void);
 const char* getImagesPath(void);
 const char* getSoundsPath(void);
 const char* getMenuPath(void);
+const char* getSystemPath(void);
 
 extern const char* lis_subfolders[];
 extern const char* list_subsubfolders[];
