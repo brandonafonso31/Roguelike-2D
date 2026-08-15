@@ -39,6 +39,12 @@ Image* loadImageMenu(SDL_Renderer* renderer, const char* path) {
     return loadImage(renderer, full_path);
 }
 
+Image* loadImageSystem(SDL_Renderer* renderer, const char* path) {
+    char full_path[1024];
+    snprintf(full_path, 1024, "system/%s", path);
+    return loadImage(renderer, full_path);
+}
+
 void destroyImage(Image* image) {
     if (image) {
         if (image->texture) {
