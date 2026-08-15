@@ -60,6 +60,7 @@ make test
 ✅ Gestion des FPS  
 ✅ Chargement des configurations  
 ✅ Main Menu  
+🔄 Menu in Game (avant de rentrer dans les donjons)     
 ⬜ MC, Armes, Ennemis, Loot    
 ⬜ Système de combat  
 ⬜ Effets graphiques  
