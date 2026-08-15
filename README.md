@@ -60,7 +60,8 @@ make test
 ✅ Structure de base  
 ✅ Gestion des FPS  
 ✅ Chargement des configurations  
-🔄 Main Menu    
+🔄 Main Menu [80%]  
+⬜ MC, Armes, Ennemis, Loot    
 ⬜ Système de combat  
 ⬜ Effets graphiques  
 ⬜ Effets sonores  
