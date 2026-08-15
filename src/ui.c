@@ -22,12 +22,15 @@ void render_main_menu_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double
     int height = settings->height;
     int width = settings->width;
 
+    Image* backgound = LoadImage(renderer,"chamber.jpg");
+    RenderScaledImageOrigin(renderer, backgound, width, height);
+
     render_fps(fps_counter, renderer, font, settings, dt);
 
     int i = 0;
     while(i++, i <= nb_options){
         drawText(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
-    }
+    }  
     
     SDL_RenderPresent(renderer);
 }

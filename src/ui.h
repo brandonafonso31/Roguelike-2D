@@ -7,6 +7,7 @@
 #include "fps_utils.h"
 #include "drawing_function.h"
 #include "fps_utils.h"
+#include "image_loader.h"
 
 extern const char* txt_main_menu[];
 
