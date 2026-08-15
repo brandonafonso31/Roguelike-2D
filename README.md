@@ -51,7 +51,7 @@ cd roguelike
 ### Compiler et lancer le jeu
 ```bash
 make clean run
-//or
+#or
 make test
 ```
 
@@ -59,11 +59,11 @@ make test
 
 ✅ Structure de base  
 ✅ Gestion des FPS  
-✅ Chargement des configurations
+✅ Chargement des configurations  
 🔄 Main Menu    
-⬜ Système de combat 
+⬜ Système de combat  
 ⬜ Effets graphiques  
-⬜ Effets sonores 
-⬜ Génération de donjons 
+⬜ Effets sonores  
+⬜ Génération de donjons  
 ⬜ Inventaire  
-⬜ Sauvegarde 
+⬜ Sauvegarde  
