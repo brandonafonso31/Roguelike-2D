@@ -5,17 +5,22 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
     while (SDL_PollEvent(event)) {
         if (event->type == SDL_QUIT) {
             running = 0;  
-            *state = 2;
+            *state = 3;
         }
-        
+
         if (event->type == SDL_KEYDOWN){
             if (event->key.keysym.sym == SDLK_RETURN) {
                 MenuAction action = getSelectedActionMenu(menu);
                 switch(action) {
-                    case MENU_PLAY:
+                    case MENU_NEW_GAME:
                         printf("Lancement du jeu !\n");
                         running = 0;
                         *state = 1;
+                        break;
+                    case MENU_LOAD_GAME:
+                        printf("Chargement du jeu !\n");
+                        running = 0;
+                        *state = 2;
                         break;
                     case MENU_SETTINGS:
                         printf("Ouverture des settings\n");
@@ -23,7 +28,7 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
                     case MENU_QUIT:
                         printf("Fermeture du jeu !\n");
                         running = 0;
-                        *state = 2;
+                        *state = 3;
                         break;
                 }
             }
