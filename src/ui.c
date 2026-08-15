@@ -30,6 +30,8 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     while(i++, i <= nb_options){
         drawText(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
     }  
+
+    //rendu d'un curseur sur le choix ou je suis : menu->selected_index
     
     SDL_RenderPresent(renderer);
 }
