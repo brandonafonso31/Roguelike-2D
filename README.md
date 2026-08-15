@@ -50,7 +50,9 @@ cd roguelike
 ```
 ### Compiler et lancer le jeu
 ```bash
-make run
+make clean run
+//or
+make test
 ```
 
 ## 📝 Roadmap
