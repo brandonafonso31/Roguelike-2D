@@ -17,17 +17,19 @@ void destroyMenu(MainMenu* menu) {
     if (!menu) return;
     
     destroyImage(menu->background);
+    destroyImage(menu->cursor);
+    menu->selected_index = -1;
     
     free(menu);
 }
 
-    MenuAction getSelectedActionMenu(MainMenu* menu) {
-        if (!menu) return MENU_QUIT;
+MenuAction getSelectedActionMenu(MainMenu* menu) {
+    if (!menu) return MENU_QUIT;
         
-        switch(menu->selected_index) {
-            case 0: return MENU_NEW_GAME;
-            case 1: return MENU_SETTINGS;
-            case 2: return MENU_QUIT;
-            default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
-        }
+    switch(menu->selected_index) {
+        case 0: return MENU_NEW_GAME;
+        case 1: return MENU_SETTINGS;
+        case 2: return MENU_QUIT;
+        default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
     }
+}
