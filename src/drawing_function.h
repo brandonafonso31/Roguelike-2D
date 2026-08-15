@@ -3,7 +3,10 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include "paths.h"
 
-void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
+void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y, SDL_Color color);
+void drawTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
+SDL_Color readColor(const char* color_name);
 
 #endif

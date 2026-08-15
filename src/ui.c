@@ -12,7 +12,7 @@ static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font*
     int average_fps = fpsCounterUpdate(fps_counter, dt);
     int target_fps = settings->vsync ? getMonitorRefreshRate() : settings->fps_limit;
     snprintf(fps_text, sizeof(fps_text), "FPS: %d (target: %d)", average_fps, target_fps);
-    drawText(renderer, font, fps_text, 10, 10);
+    drawTextWhite(renderer, font, fps_text, 10, 10);
 }
 
 void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
@@ -28,7 +28,7 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
 
     int i = 0;
     while(i++, i <= nb_options){
-        drawText(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
+        drawTextWhite(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
     }  
 
     if (menu->selected_index != -1)
