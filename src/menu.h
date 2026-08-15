@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include "settings.h"
 #include "image_loader.h"
+#include "button.h"
 
 #define MAX_BUTTONS 4
 
@@ -33,4 +34,18 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyMenu(MainMenu* menu);
 MenuAction getSelectedActionMenu(MainMenu* menu);
 
+typedef struct {
+    Image* background;
+    Button* Dungeon;
+    Button* play;
+    Button* pp;
+    Button* donjon;
+    Button* quest;
+    Button* shop;
+    Button* options;
+    Button* Upgrades;
+} InGameMenu;
+
+InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
+void destroyInGameMenu(InGameMenu* menu);
 #endif

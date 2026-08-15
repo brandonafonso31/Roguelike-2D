@@ -33,3 +33,29 @@ MenuAction getSelectedActionMenu(MainMenu* menu) {
         default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
     }
 }
+
+InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
+    InGameMenu* menu = (InGameMenu*)malloc(sizeof(InGameMenu));
+    if (!menu) return NULL;
+
+    menu->background = loadImageMenu(renderer, "background.jpg");
+    
+    Button* Dungeon = NULL;
+    Button* play = NULL;
+    Button* pp = NULL;
+    Button* donjon = NULL;
+    Button* quest = NULL;
+    Button* shop = NULL;
+    Button* options = NULL;
+    Button* Upgrades = NULL;
+    
+    return menu;
+}
+
+void destroyInGameMenu(InGameMenu* menu) {
+    if (!menu) return;
+    
+    destroyImage(menu->background);
+    
+    free(menu);
+}

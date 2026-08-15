@@ -50,3 +50,14 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
     //printf("running: %d\n", running);
     return running;
 }
+
+int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, int* state){
+    int running = 1;
+    while (SDL_PollEvent(event)) {
+        if (event->type == SDL_QUIT) {
+            running = 0;  
+            *state = 3;
+        }
+    }
+    return running;
+}

@@ -49,3 +49,6 @@ void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Fo
     // Présenter le rendu
     SDL_RenderPresent(renderer);
 }
+
+void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+}
