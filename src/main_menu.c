@@ -21,16 +21,23 @@ void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings
     FPSCounter fps_counter;
     fpsCounterInit(&fps_counter, settings->fps_limit);
     double dt;
-
+    int state = 0;
     while (running) {
         //---------------- INPUT ----------------//
-        running = pollEvents(&event);
+        running = pollEvents(menu, &event, &state); 
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
         renderMainMenuUI(menu, &fps_counter, renderer, dt, font, settings);
         //---------------- FPS LIMIT ----------------//
         waitOrNot(&fps_counter, settings);
+    }
+
+    if (state == 1){
+        printf("Lancement du menu du jeu !\n");
+        // lancement du nouveau menu
+    } else if (state == 2){
+        printf("Fermeture du jeu !\n");
     }
 
     TTF_CloseFont(font);
