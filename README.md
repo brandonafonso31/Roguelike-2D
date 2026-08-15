@@ -25,12 +25,6 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
 ## 📋 Prérequis
 
-### Windows
-```bash
-# Installer MinGW ou MSYS2
-# Télécharger SDL2, SDL2_ttf, SDL2_image
-```
-
 ### MingW64 (MSYS2)
 ```bash
 pacman -S mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_ttf mingw-w64-x86_64-SDL2_image
