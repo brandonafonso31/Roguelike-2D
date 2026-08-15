@@ -7,20 +7,11 @@
 #include "image_loader.h"
 #include "button.h"
 #include "drawing_function.h"
+#include "menu.h"
+#include "fps_utils.h"
 
-typedef struct {
-    Image* background;
-    Image* Dungeon;
-    Image* play;
-    Image* pp;
-    Image* donjon;
-    Image* quest;
-    Image* shop;
-
-    int selected_index;
-    int button_count;
-} InGameMenu;
 
 void ingameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
+int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, int* state);
 
 #endif
