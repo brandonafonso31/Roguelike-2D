@@ -8,7 +8,7 @@ int pollEvents(MainMenu* menu, SDL_Event* event, int* state){
             *state = 2;
 
         if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_RETURN) {
-                MenuAction action = Menu_GetSelectedAction(menu);
+                MenuAction action = getSelectedActionMenu(menu);
                 switch(action) {
                     case MENU_PLAY:
                         printf("Lancement du jeu !\n");
@@ -27,5 +27,5 @@ int pollEvents(MainMenu* menu, SDL_Event* event, int* state){
             }
     }
     //printf("running: %d\n", running);
-    return running, state;
+    return running;
 }
