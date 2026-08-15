@@ -35,6 +35,7 @@ void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings
 
     if (state == 1){
         printf("Lancement du menu du jeu (new save) !\n");
+        //ingameMenu(window, renderer, settings);
     } else if (state == 2){
         printf("Lancement du menu du jeu (load save) !\n");    
     } else if (state == 3){

@@ -9,6 +9,7 @@
 #include "poll_events.h"
 #include "ui.h"
 #include "menu.h"
+#include "ingame_menu.h"
 
 void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
     
