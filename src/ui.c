@@ -31,7 +31,8 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
         drawText(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
     }  
 
-    renderScaledImage(renderer,menu->cursor, (width-210), height-50*(nb_options+1-menu->selected_index), 50, 50);
+    if (menu->selected_index != -1)
+        renderImage(renderer,menu->cursor, (width-210), height-50*(nb_options-menu->selected_index));
 
     SDL_RenderPresent(renderer);
 }
