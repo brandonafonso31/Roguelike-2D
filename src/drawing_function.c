@@ -4,8 +4,8 @@ void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, i
     SDL_Color color = {255, 255, 255, 255};
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_Rect dstRect = {x, y, surface->w, surface->h};
-    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+    SDL_Rect dst_rect = {x, y, surface->w, surface->h};
+    SDL_RenderCopy(renderer, texture, NULL, &dst_rect);
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(texture);
 }
