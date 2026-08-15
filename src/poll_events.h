@@ -2,7 +2,8 @@
 #define POLLEVENTS_H
 
 #include <SDL2/SDL.h>
+#include "menu.h"
 
-int pollEvents(SDL_Event* event);
+int pollEvents(MainMenu* menu,SDL_Event* event, int* state);
 
 #endif
