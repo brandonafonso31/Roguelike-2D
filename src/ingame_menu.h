@@ -5,8 +5,8 @@
 #include<SDL2/SDL_ttf.h>
 #include "settings.h"
 #include "image_loader.h"
-#include "fps_utils.h"
 #include "button.h"
+#include "drawing_function.h"
 
 typedef struct {
     Image* background;
@@ -20,5 +20,7 @@ typedef struct {
     int selected_index;
     int button_count;
 } InGameMenu;
+
+void ingameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
 
 #endif
