@@ -19,7 +19,7 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 ## 🛠️ Technologies
 
 - **Langage** : C
-- **Bibliothèques** : SDL2, SDL2_ttf
+- **Bibliothèques** : SDL2
 - **Compilateur** : GCC
 - **Build** : Make
 
@@ -28,7 +28,12 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 ### Windows
 ```bash
 # Installer MinGW ou MSYS2
-# Télécharger SDL2 et SDL2_ttf
+# Télécharger SDL2, SDL2_ttf, SDL2_image
+```
+
+### MingW64 (MSYS2)
+```bash
+pacman -S mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_ttf mingw-w64-x86_64-SDL2_image
 ```
 
 ### Linux
@@ -51,7 +56,7 @@ cd roguelike
 ### Compiler et lancer le jeu
 ```bash
 make clean run
-#or
+# or
 make test
 ```
 
@@ -60,7 +65,7 @@ make test
 ✅ Structure de base  
 ✅ Gestion des FPS  
 ✅ Chargement des configurations  
-🔄 Main Menu [80%]  
+✅ Main Menu  
 ⬜ MC, Armes, Ennemis, Loot    
 ⬜ Système de combat  
 ⬜ Effets graphiques  
