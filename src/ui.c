@@ -7,7 +7,7 @@ const char* txt_main_menu[nb_options] = {"New Game",
                             "Options",
                             "Quit"};
 
-static void render_fps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double dt) {
+static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double dt) {
     char fps_text[50];
     int average_fps = FPSCounter_Update(fps_counter, dt);
     int target_fps = settings->vsync ? GetMonitorRefreshRate() : settings->fps_limit;
@@ -15,7 +15,7 @@ static void render_fps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font
     drawText(renderer, font, fps_text, 10, 10);
 }
 
-void render_main_menu_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+void renderMainMenuUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     
@@ -25,7 +25,7 @@ void render_main_menu_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double
     Image* backgound = LoadImage(renderer,"chamber.jpg");
     RenderScaledImageOrigin(renderer, backgound, width, height);
 
-    render_fps(fps_counter, renderer, font, settings, dt);
+    renderFps(fps_counter, renderer, font, settings, dt);
 
     int i = 0;
     while(i++, i <= nb_options){
@@ -35,12 +35,12 @@ void render_main_menu_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double
     SDL_RenderPresent(renderer);
 }
 
-void render_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     
     // Afficher les FPS
-    render_fps(fps_counter, renderer, font, settings, dt);
+    renderFps(fps_counter, renderer, font, settings, dt);
     //render_hp
     //render_mana
     //render_inventorys
