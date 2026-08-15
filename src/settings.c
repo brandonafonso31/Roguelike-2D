@@ -2,7 +2,7 @@
 
 void loadSettings(GameSettings* settings) {
     char config_file[2048];
-    snprintf(config_file, sizeof(config_file), "%s/settings.cfg", GetConfigPath());
+    snprintf(config_file, sizeof(config_file), "%s/settings.cfg", getConfigPath());
     
     printf("Tentative de chargement: %s\n", config_file);
     

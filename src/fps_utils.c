@@ -1,6 +1,6 @@
 #include "fps_utils.h"
 
-void FPSCounter_Init(FPSCounter* counter, int fps_limit) {
+void fpsCounterInit(FPSCounter* counter, int fps_limit) {
     counter->target_frame_time = 1.0 / fps_limit;
     for (int i = 0; i < FPS_HISTORY; i++)
         counter->history[i] = counter->target_frame_time;
@@ -8,7 +8,7 @@ void FPSCounter_Init(FPSCounter* counter, int fps_limit) {
     counter->last_frame_time = 0;
 }
 
-double FPSCounter_GetDeltaTime(FPSCounter* counter) {
+double fpsCounterGetDeltaTime(FPSCounter* counter) {
     Uint64 currentTime = SDL_GetPerformanceCounter();
     double dt;
     
@@ -24,7 +24,7 @@ double FPSCounter_GetDeltaTime(FPSCounter* counter) {
     return dt;
 }
 
-int FPSCounter_Update(FPSCounter* counter, double dt) {
+int fpsCounterUpdate(FPSCounter* counter, double dt) {
     counter->history[counter->index] = dt;
     counter->index = (counter->index + 1) % FPS_HISTORY;
     
@@ -36,7 +36,7 @@ int FPSCounter_Update(FPSCounter* counter, double dt) {
     return (int)(0.5 + 1.0 / average_dt);
 }
 
-void FPSCounter_WaitForNextFrame(FPSCounter* counter) {
+void fpsCounterWaitForNextFrame(FPSCounter* counter) {
     if (counter->target_frame_time <= 0) return;
     
     Uint64 current_time = SDL_GetPerformanceCounter();
@@ -55,7 +55,7 @@ void FPSCounter_WaitForNextFrame(FPSCounter* counter) {
     }
 }
 
-int GetMonitorRefreshRate() {
+int getMonitorRefreshRate() {
     SDL_DisplayMode mode;
     if (SDL_GetCurrentDisplayMode(0, &mode) == 0) {
         return mode.refresh_rate;
@@ -63,9 +63,9 @@ int GetMonitorRefreshRate() {
     return -1; // Valeur par défaut si on ne peut pas récupérer
 }
 
-void wait_or_not(FPSCounter* fps_counter, GameSettings* settings){
+void waitOrNot(FPSCounter* fps_counter, GameSettings* settings){
     if (!settings->vsync) {
-        FPSCounter_WaitForNextFrame(fps_counter);
+        fpsCounterWaitForNextFrame(fps_counter);
     } else {
         SDL_Delay(1); // Petit délai pour éviter de surcharger le CPU
     }

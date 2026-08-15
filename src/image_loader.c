@@ -1,13 +1,13 @@
 #include "image_loader.h"
 
-Image* LoadImage(SDL_Renderer* renderer, const char* path) {
+Image* loadImage(SDL_Renderer* renderer, const char* path) {
     if (!renderer) {
         printf("Erreur: renderer NULL\n");
         return NULL;
     }
     
     char full_path[2048];
-    snprintf(full_path, sizeof(full_path), "%s/%s", GetImagesPath(), path);
+    snprintf(full_path, sizeof(full_path), "%s/%s", getImagesPath(), path);
     
     SDL_Surface* surface = IMG_Load(full_path);
     if (!surface) {
@@ -33,7 +33,13 @@ Image* LoadImage(SDL_Renderer* renderer, const char* path) {
     return image;
 }
 
-void DestroyImage(Image* image) {
+Image* loadImageMenu(SDL_Renderer* renderer, const char* path) {
+    char full_path[1024];
+    snprintf(full_path, 1024, "menu/%s", path);
+    return loadImage(renderer, full_path);
+}
+
+void destroyImage(Image* image) {
     if (image) {
         if (image->texture) {
             SDL_DestroyTexture(image->texture);
@@ -42,49 +48,49 @@ void DestroyImage(Image* image) {
     }
 }
 
-void RenderImage(SDL_Renderer* renderer, Image* image, int x, int y) {
+void renderImage(SDL_Renderer* renderer, Image* image, int x, int y) {
     if (!image || !image->texture) return;
     
     SDL_Rect dest = {x, y, image->width, image->height};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
-void RenderImageOrigin(SDL_Renderer* renderer, Image* image) {
-    RenderImage(renderer, image, 0, 0);
+void renderImageOrigin(SDL_Renderer* renderer, Image* image) {
+    renderImage(renderer, image, 0, 0);
 }
 
-void RenderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w, int h) {
+void renderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w, int h) {
     if (!image || !image->texture) return;
     
     SDL_Rect dest = {x, y, w, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
-void RenderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h) {
+void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h) {
     if (!image || !image->texture) return;
     
     SDL_Rect dest = {0, 0, w, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
-void RenderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w) {
+void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w) {
     if (!image || !image->texture) return;
     
     SDL_Rect dest = {x, y, w, w * image->height / image->width};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
-void RenderScaledWidthImageOrigin(SDL_Renderer* renderer, Image* image,  int w) {
-    RenderScaledWidthImage(renderer, image, 0, 0, w) ;
+void renderScaledWidthImageOrigin(SDL_Renderer* renderer, Image* image,  int w) {
+    renderScaledWidthImage(renderer, image, 0, 0, w) ;
 }
 
-void RenderScaleHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, int h) {
+void renderScaleHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, int h) {
     if (!image || !image->texture) return;
 
     SDL_Rect dest = {x, y, h * image->width / image->height, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
-void RenderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h) {
-    RenderScaleHeightImage(renderer, image, 0, 0, h) ;
+void renderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h) {
+    renderScaleHeightImage(renderer, image, 0, 0, h) ;
 }

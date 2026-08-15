@@ -6,6 +6,7 @@ static char config_path[MAX_PATH_LENGTH] = {0};
 static char sounds_path[MAX_PATH_LENGTH] = {0};
 static char images_path[MAX_PATH_LENGTH] = {0};
 static char fonts_path[MAX_PATH_LENGTH] = {0};
+static char menu_path[MAX_PATH_LENGTH] = {0};
 static int initialized = 0;
 
 const char* list_subfolders[] = {
@@ -39,7 +40,7 @@ void InitPaths(void) {
     snprintf(sounds_path, sizeof(sounds_path), "%s%s", assets_path, list_subsubfolders[1]);
     snprintf(images_path, sizeof(images_path), "%s%s", assets_path, list_subsubfolders[2]);
     snprintf(fonts_path, sizeof(fonts_path), "%s%s", assets_path, list_subsubfolders[3]);
-
+    snprintf(menu_path, sizeof(menu_path)+sizeof("/menu"), "%s%s", images_path, "/menu");
 
     printf("Cur rep: %s\n", cwd);
     printf("Assets path: %s\n", assets_path);
@@ -49,36 +50,43 @@ void InitPaths(void) {
     printf("Sounds path: %s\n", sounds_path);
     printf("Images path: %s\n", images_path);
     printf("Font path: %s\n", fonts_path);
+
+    printf("Menu path: %s\n", menu_path);
     
     initialized = 1;
 }
 
-const char* GetAssetsPath(void) {
+const char* getAssetsPath(void) {
     if (!initialized) InitPaths();
     return assets_path;
 }
 
-const char* GetSrcPath(void) {
+const char* getSrcPath(void) {
     if (!initialized) InitPaths();
     return src_path;
 }
 
-const char* GetConfigPath(void) {
+const char* getConfigPath(void) {
     if (!initialized) InitPaths();
     return config_path;
 }
 
-const char* GetFontsPath(void) {
+const char* getFontsPath(void) {
     if (!initialized) InitPaths();
     return fonts_path;
 }
 
-const char* GetImagesPath(void) {
+const char* getImagesPath(void) {
     if (!initialized) InitPaths();
     return images_path;
 }
 
-const char* GetSoundsPath(void) {
+const char* getSoundsPath(void) {
     if (!initialized) InitPaths();
     return sounds_path;
+}
+
+const char* getMenuPath(void) {
+    if (!initialized) InitPaths();
+    return menu_path;
 }

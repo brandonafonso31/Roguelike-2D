@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    main_menu(window, renderer, &settings);
+    mainMenu(window, renderer, &settings);
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

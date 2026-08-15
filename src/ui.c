@@ -9,21 +9,20 @@ const char* txt_main_menu[nb_options] = {"New Game",
 
 static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double dt) {
     char fps_text[50];
-    int average_fps = FPSCounter_Update(fps_counter, dt);
-    int target_fps = settings->vsync ? GetMonitorRefreshRate() : settings->fps_limit;
+    int average_fps = fpsCounterUpdate(fps_counter, dt);
+    int target_fps = settings->vsync ? getMonitorRefreshRate() : settings->fps_limit;
     snprintf(fps_text, sizeof(fps_text), "FPS: %d (target: %d)", average_fps, target_fps);
     drawText(renderer, font, fps_text, 10, 10);
 }
 
-void renderMainMenuUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     
     int height = settings->height;
     int width = settings->width;
 
-    Image* backgound = LoadImage(renderer,"chamber.jpg");
-    RenderScaledImageOrigin(renderer, backgound, width, height);
+    renderScaledImageOrigin(renderer, menu->background, width, height);
 
     renderFps(fps_counter, renderer, font, settings, dt);
 

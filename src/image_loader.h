@@ -15,16 +15,17 @@ typedef struct {
 } Image;
 
 // Charger une image depuis le dossier assets/images/
-Image* LoadImage(SDL_Renderer* renderer, const char* path);
-void DestroyImage(Image* image);
-void RenderImage(SDL_Renderer* renderer, Image* image, int x, int y);
-void RenderImageOrigin(SDL_Renderer* renderer, Image* image);
-void RenderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w, int h);
-void RenderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h);
+Image* loadImage(SDL_Renderer* renderer, const char* path);
+Image* loadImageMenu(SDL_Renderer* renderer, const char* path);
+void destroyImage(Image* image);
+void renderImage(SDL_Renderer* renderer, Image* image, int x, int y);
+void renderImageOrigin(SDL_Renderer* renderer, Image* image);
+void renderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w, int h);
+void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h);
 
-void RenderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w);
-void RenderScaledHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, int h);
-void RenderScaledWidthImageOrigin(SDL_Renderer* renderer, Image* image,  int w);
-void RenderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h);
+void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w);
+void renderScaledHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, int h);
+void renderScaledWidthImageOrigin(SDL_Renderer* renderer, Image* image,  int w);
+void renderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h);
 
 #endif

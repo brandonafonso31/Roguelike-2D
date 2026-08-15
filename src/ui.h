@@ -8,10 +8,11 @@
 #include "drawing_function.h"
 #include "fps_utils.h"
 #include "image_loader.h"
+#include "menu.h"
 
 extern const char* txt_main_menu[];
 
-void renderMainMenuUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
+void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
 void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
     
 #endif

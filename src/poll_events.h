@@ -3,6 +3,6 @@
 
 #include <SDL2/SDL.h>
 
-int poll_events(SDL_Event* event);
+int pollEvents(SDL_Event* event);
 
 #endif

@@ -11,12 +11,13 @@
 #define MAX_PATH_LENGTH 1024
 
 void InitPaths(void);
-const char* GetAssetsPath(void);
-const char* GetSrcPath(void);
-const char* GetConfigPath(void);
-const char* GetFontsPath(void);
-const char* GetImagesPath(void);
-const char* GetSoundsPath(void);
+const char* getAssetsPath(void);
+const char* getSrcPath(void);
+const char* getConfigPath(void);
+const char* getFontsPath(void);
+const char* getImagesPath(void);
+const char* getSoundsPath(void);
+const char* getMenuPath(void);
 
 extern const char* lis_subfolders[];
 extern const char* list_subsubfolders[];
