@@ -36,13 +36,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Uint32 rendererFlags = SDL_RENDERER_ACCELERATED;
+    Uint32 renderer_flags = SDL_RENDERER_ACCELERATED;
     if (settings.vsync) {
-        rendererFlags |= SDL_RENDERER_PRESENTVSYNC;
+        renderer_flags |= SDL_RENDERER_PRESENTVSYNC;
         printf("VSYNC active\n");
     }
     
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, rendererFlags);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, renderer_flags);
 
     if (!renderer) {
         printf("Erreur renderer : %s\n", SDL_GetError());

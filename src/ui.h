@@ -8,6 +8,6 @@
 #include "drawing_function.h"
 #include "fps_utils.h"
 
-void render_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double delta_time, TTF_Font* font, GameSettings* settings);
+void render_ui(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
     
 #endif

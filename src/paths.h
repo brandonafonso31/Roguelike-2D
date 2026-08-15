@@ -18,9 +18,9 @@ const char* GetFontsPath(void);
 const char* GetImagesPath(void);
 const char* GetSoundsPath(void);
 
-extern const char* list_subfolders[];
+extern const char* lis_subfolders[];
 extern const char* list_subsubfolders[];
-extern const int list_subfolders_count;
-extern const int list_subsubfolders_count;
+extern const int listSubfoldersCount;
+extern const int listSubsubfoldersCount;
     
 #endif
