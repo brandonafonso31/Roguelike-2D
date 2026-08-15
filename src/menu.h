@@ -29,5 +29,6 @@ typedef struct {
 
 MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyMenu(MainMenu* menu);
+MenuAction getSelectedActionMenu(MainMenu* menu);
 
 #endif
