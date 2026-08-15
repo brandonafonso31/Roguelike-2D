@@ -57,10 +57,11 @@ make run
 
 ✅ Structure de base  
 ✅ Gestion des FPS  
-✅ Chargement des configurations  
+✅ Chargement des configurations
+🔄 Main Menu    
+⬜ Système de combat 
 ⬜ Effets graphiques  
-⬜ Génération de donjons  
-⬜ Système de combat  
+⬜ Effets sonores 
+⬜ Génération de donjons 
 ⬜ Inventaire  
-⬜ Sauvegarde  
-⬜ Effets sonores  
+⬜ Sauvegarde 
