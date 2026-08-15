@@ -5,7 +5,7 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     if (!menu) return NULL;
 
     menu->background = loadImageMenu(renderer, "background.jpg");
-    menu->cursor = loadImageMenu(renderer, "cursor.png");
+    menu->cursor = loadImageSystem(renderer, "cursor.png");
     
     menu->selected_index = -1;
     menu->button_count = MAX_BUTTONS;
