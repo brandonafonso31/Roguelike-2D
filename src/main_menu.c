@@ -22,7 +22,7 @@ void main_menu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* setting
         //---------------- Delta ----------------//
         delta_time = FPSCounter_GetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
-        render_ui(&fps_counter, renderer, delta_time, font, settings);
+        render_main_menu_ui(&fps_counter, renderer, delta_time, font, settings);
         //---------------- FPS LIMIT ----------------//
         wait_or_not(&fps_counter, settings);
     }
