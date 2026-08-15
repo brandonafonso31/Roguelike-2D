@@ -20,6 +20,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (IMG_Init(IMG_INIT_PNG) == 0) {
+        printf("Erreur IMG_Init: %s\n", IMG_GetError());
+        return 1;
+    }
+
     SDL_Window* window = SDL_CreateWindow(
         "Roguelike",
         SDL_WINDOWPOS_CENTERED,

@@ -11,11 +11,6 @@ void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings
         printf("Erreur chargement police : %s\n", TTF_GetError());
         return;
     }
-
-    if (IMG_Init(IMG_INIT_PNG) == 0) {
-        printf("Erreur IMG_Init: %s\n", IMG_GetError());
-        return;
-    }
     
     MainMenu* menu = menuCreate(renderer, settings);
     if (!menu) {
