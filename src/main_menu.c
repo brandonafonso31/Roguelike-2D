@@ -24,7 +24,7 @@ void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings
     int state = 0;
     while (running) {
         //---------------- INPUT ----------------//
-        running = pollEvents(menu, &event, &state); 
+        running = pollEventsMenu(menu, &event, &state); 
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//

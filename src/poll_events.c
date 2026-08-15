@@ -1,13 +1,14 @@
 #include "poll_events.h"
 
-int pollEvents(MainMenu* menu, SDL_Event* event, int* state){
+int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
     int running = 1;
     while (SDL_PollEvent(event)) {
         if (event->type == SDL_QUIT)
             running = 0;  
             *state = 2;
 
-        if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_RETURN) {
+        if (event->type == SDL_KEYDOWN){
+            if (event->key.keysym.sym == SDLK_RETURN) {
                 MenuAction action = getSelectedActionMenu(menu);
                 switch(action) {
                     case MENU_PLAY:
@@ -25,6 +26,20 @@ int pollEvents(MainMenu* menu, SDL_Event* event, int* state){
                         break;
                 }
             }
+
+            switch(event->key.keysym.sym) {
+                case SDLK_UP:
+                    menu->selected_index = (menu->selected_index - 1 + menu->button_count) % menu->button_count;
+                    break;
+                case SDLK_DOWN:
+                    menu->selected_index = (menu->selected_index + 1) % menu->button_count;
+                    break;
+                case SDLK_RETURN:
+                case SDLK_SPACE:
+                    menu->selected_index = 1;
+                    break;
+            }
+        }
     }
     //printf("running: %d\n", running);
     return running;
