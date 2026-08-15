@@ -3,10 +3,11 @@
 int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
     int running = 1;
     while (SDL_PollEvent(event)) {
-        if (event->type == SDL_QUIT)
+        if (event->type == SDL_QUIT) {
             running = 0;  
             *state = 2;
-
+        }
+        
         if (event->type == SDL_KEYDOWN){
             if (event->key.keysym.sym == SDLK_RETURN) {
                 MenuAction action = getSelectedActionMenu(menu);
