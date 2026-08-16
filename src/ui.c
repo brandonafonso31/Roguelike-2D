@@ -87,9 +87,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         int x = i * tab_width;
         SDL_Rect tab_rect = {x, y_offset, tab_width, tab_height};
         
-        // Fond de l'onglet
         if (i == menu->selected_tab) {
-            // Animation de pulsation pour l'onglet selectionne
             float pulse = 0.8 + 0.2 * sin(dt * 2.0);
             SDL_SetRenderDrawColor(renderer, 
                 60 * pulse, 60 * pulse, 120 * pulse, 255);
@@ -98,14 +96,11 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         }
         SDL_RenderFillRect(renderer, &tab_rect);
         
-        // Bordure superieure de l'onglet
         SDL_SetRenderDrawColor(renderer, 80, 80, 120, 255);
         SDL_RenderDrawLine(renderer, x, y_offset, x + tab_width, y_offset);
         
-        // Bordure complete
         SDL_RenderDrawRect(renderer, &tab_rect);
         
-        // Petit indicateur pour l'onglet selectionne (triangle en haut)
         if (i == menu->selected_tab) {
             drawColoredTriangle(x,y_offset,renderer,tab_width,"BLACK");
         }
@@ -122,24 +117,36 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         }
     }
     
-    // === FPS en haut à droite ===
     renderFps(fps_counter, renderer, font, settings, dt);
     
-    // === BOUTON RETOUR en haut à droite ===
+    // Play
     int btn_w = 100;
     int btn_h = 35;
-    int btn_x = width - btn_w - 20;
-    int btn_y = 20;
-    
+    int btn_x = width/2 - btn_w/2;
+    int btn_y = height/2 - btn_h/2;
     float pulse = 0.9 + 0.1 * sin(dt * 1.5);
     SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
     SDL_Rect btn_rect = {btn_x, btn_y, btn_w, btn_h};
     SDL_RenderFillRect(renderer, &btn_rect);
     SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
     SDL_RenderDrawRect(renderer, &btn_rect);
-    if (menu->selected_tab == 6)
+    if (menu->selected_tab == menu->nb_tabs)
         drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+    drawTextWhite(renderer, font, "Play", btn_x + 15, btn_y + 8);
 
+    // Retour
+    btn_w = 100;
+    btn_h = 35;
+    btn_x = width - btn_w - 20;
+    btn_y = 20;    
+    pulse = 0.9 + 0.1 * sin(dt * 1.5);
+    SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
+    btn_rect = (SDL_Rect){btn_x, btn_y, btn_w, btn_h};
+    SDL_RenderFillRect(renderer, &btn_rect);
+    SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
+    SDL_RenderDrawRect(renderer, &btn_rect);
+    if (menu->selected_tab == menu->nb_tabs+1)
+        drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
     drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
     
     SDL_RenderPresent(renderer);
