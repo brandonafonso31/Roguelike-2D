@@ -51,7 +51,8 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     Button* Upgrades = NULL;*/
     
     menu->selected_tab = 2;
-    menu->button_count = 5;
+    menu->last_tab_id = 2;
+    menu->nb_tabs = 5;
     
     return menu;
 }

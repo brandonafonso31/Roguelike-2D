@@ -57,7 +57,8 @@ typedef struct {
     Button* Upgrades;*/
 
     int selected_tab;
-    int button_count;
+    int last_tab_id;
+    int nb_tabs;
 } InGameMenu;
 
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
