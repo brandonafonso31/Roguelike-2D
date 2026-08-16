@@ -62,7 +62,7 @@ make test
 ✅ Chargement des configurations  
 ✅ Main Menu  
 🔄 Menu in Game (avant de rentrer dans les donjons)  
-    |-----> utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)
+⬜ Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
 ⬜ MC, Armes, Ennemis, Loot    
 ⬜ Système de combat  
 ⬜ Effets graphiques  
