@@ -6,6 +6,7 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 ## 📸 Aperçu
 
 ![Gameplay Screenshot](screenshot.PNG)
+![Gameplay Screenshot](screenshot_ingame_menu.PNG)
 
 ## ✨ Fonctionnalités
 
@@ -60,7 +61,8 @@ make test
 ✅ Gestion des FPS  
 ✅ Chargement des configurations  
 ✅ Main Menu  
-🔄 Menu in Game (avant de rentrer dans les donjons)     
+🔄 Menu in Game (avant de rentrer dans les donjons)  
+    |-----> utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)
 ⬜ MC, Armes, Ennemis, Loot    
 ⬜ Système de combat  
 ⬜ Effets graphiques  
