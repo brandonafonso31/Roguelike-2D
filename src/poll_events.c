@@ -15,12 +15,12 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, GameState* state){
                     case MENU_NEW_GAME:
                         printf("Lancement du jeu !\n");
                         running = 0;
-                        *state = STATE_IN_GAME_MENU;
+                        *state = STATE_INGAME_MENU;
                         break;
                     case MENU_LOAD_GAME:
                         printf("Chargement du jeu !\n");
                         running = 0;
-                        *state = STATE_IN_GAME_MENU;
+                        *state = STATE_INGAME_MENU;
                         break;
                     case MENU_SETTINGS:
                         printf("Ouverture des settings\n");
