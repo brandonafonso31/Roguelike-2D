@@ -10,7 +10,12 @@ void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, i
 }
 
 void drawTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
-    SDL_Color color = {255, 255, 255, 255};
+    SDL_Color color = readColor("WHITE");
+    drawText(renderer, font, text, x, y, color);
+}
+
+void drawTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+    SDL_Color color = readColor("GRAY");
     drawText(renderer, font, text, x, y, color);
 }
 
@@ -32,7 +37,7 @@ SDL_Color readColor(const char* color_name) {
         
         if (sscanf(line, " %63[^=] = %d , %d , %d , %d", name, &r, &g, &b, &a) >= 4) {
 
-            printf("%s and %s : %d\n",color_name,name,strcmp(name, color_name));
+            //printf("%s and %s : %d\n",color_name,name,strcmp(name, color_name));
             if (strcmp(name, color_name) == 0) {
                 fclose(file);
                 return (SDL_Color){r, g, b, a};

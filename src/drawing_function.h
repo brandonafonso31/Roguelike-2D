@@ -7,6 +7,7 @@
 
 void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y, SDL_Color color);
 void drawTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
+void drawTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
 SDL_Color readColor(const char* color_name);
 
 #endif
