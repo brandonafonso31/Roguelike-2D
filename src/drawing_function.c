@@ -19,6 +19,11 @@ void drawTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int 
     drawText(renderer, font, text, x, y, color);
 }
 
+void drawTextBlack(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+    SDL_Color color = readColor("BLACK");
+    drawText(renderer, font, text, x, y, color);
+}
+
 SDL_Color readColor(const char* color_name) {
     SDL_Color default_color = {255, 255, 255, 255};
     
