@@ -50,6 +50,9 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     Button* options = NULL;
     Button* Upgrades = NULL;*/
     
+    menu->selected_tab = 2;
+    menu->button_count = 5;
+    
     return menu;
 }
 
@@ -65,9 +68,15 @@ InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
     if (!menu) return MENU_QUIT;
         
     switch(menu->selected_tab) {
-        case 0: return INGAME_PLAY;
-        case 1: return INGAME_BACK;
-        case 2: return INGAME_QUIT;
-        default: return INGAME_PLAY;
+        case 0: return SHOP;
+        case 1: return INVENTORY;
+        case 2: return WORLD;
+        case 3: return UPGRADES;
+        case 4: return WIP;
+
+        case 5: return INGAME_PLAY;
+        case 6: return INGAME_BACK;
+        case 7: return INGAME_QUIT;
+        default: return WORLD;
     }
 }

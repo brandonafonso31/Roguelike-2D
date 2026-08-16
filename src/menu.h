@@ -35,6 +35,11 @@ void destroyMenu(MainMenu* menu);
 MainMenuAction getSelectedActionMenu(MainMenu* menu);
 
 typedef enum {
+    SHOP,
+    INVENTORY,
+    WORLD,
+    UPGRADES,
+    WIP,
     INGAME_PLAY,
     INGAME_BACK,
     INGAME_QUIT,
@@ -52,9 +57,11 @@ typedef struct {
     Button* Upgrades;*/
 
     int selected_tab;
+    int button_count;
 } InGameMenu;
 
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyInGameMenu(InGameMenu* menu);
 InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu);
+
 #endif
