@@ -22,7 +22,7 @@ GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* s
     double dt;
     
     int running = 1;
-    GameState state = STATE_MAIN_MENU;
+    GameState state = STATE_INGAME_MENU;
     while (running) {
         //---------------- INPUT ----------------//
         running = pollEventsInGameMenu(menu, &event, &state); 
