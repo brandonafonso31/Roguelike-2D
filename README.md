@@ -48,11 +48,22 @@ brew install sdl2 sdl2_ttf sld2_image
 git clone https://github.com/brandonafonso31/Roquelike-2D.git
 cd roguelike
 ```
-### Compiler et lancer le jeu
+### Compiler et lancer le jeu la première fois
 ```bash
 make clean run
 # or
 make test
+```
+### Nettoyer et Rebuild les compilations (fichiers .o) 
+```bash
+make rebuild
+```
+
+### Lancer le jeu si déjà compilé
+```bash
+make run
+# or
+./roguelike.exe
 ```
 
 ## 📝 Roadmap
