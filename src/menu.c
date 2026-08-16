@@ -39,7 +39,7 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     InGameMenu* menu = (InGameMenu*)malloc(sizeof(InGameMenu));
     if (!menu) return NULL;
 
-    menu->background = loadImageMenu(renderer, "background.jpg");
+    menu->background = loadImageMenu(renderer, "world1.png");
     
     /*Button* Dungeon = NULL;
     Button* play = NULL;
