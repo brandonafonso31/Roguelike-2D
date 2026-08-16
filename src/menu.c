@@ -7,7 +7,7 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     menu->background = loadImageMenu(renderer, "background.jpg");
     menu->cursor = loadImageSystem(renderer, "cursor.png");
     
-    menu->selected_index = -1;
+    menu->selected_index = 0;
     menu->button_count = MAX_BUTTONS;
     
     return menu;
@@ -28,8 +28,9 @@ MainMenuAction getSelectedActionMenu(MainMenu* menu) {
         
     switch(menu->selected_index) {
         case 0: return MENU_NEW_GAME;
-        case 1: return MENU_SETTINGS;
-        case 2: return MENU_QUIT;
+        case 1: return MENU_LOAD_GAME;
+        case 2: return MENU_SETTINGS;
+        case 3: return MENU_QUIT;
         default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
     }
 }
@@ -63,7 +64,7 @@ void destroyInGameMenu(InGameMenu* menu) {
 InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
     if (!menu) return MENU_QUIT;
         
-    switch(menu->selected_index) {
+    switch(menu->selected_tab) {
         case 0: return INGAME_PLAY;
         case 1: return INGAME_BACK;
         case 2: return INGAME_QUIT;

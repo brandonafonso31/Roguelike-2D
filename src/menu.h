@@ -51,7 +51,7 @@ typedef struct {
     Button* options;
     Button* Upgrades;*/
 
-    int selected_index;
+    int selected_tab;
 } InGameMenu;
 
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
