@@ -69,15 +69,15 @@ int main(int argc, char* argv[]) {
 
 
     GameState current_state = STATE_MAIN_MENU;
-    int game_running = 1;
+    int running = 1;
     
-    while (game_running) {
+    while (running) {
         switch (current_state) {
             case STATE_MAIN_MENU:
                 current_state = mainMenu(window, renderer, &settings);
                 break;
                 
-            case STATE_IN_GAME_MENU:
+            case STATE_INGAME_MENU:
                 current_state = inGameMenu(window, renderer, &settings);
                 break;
                 
@@ -85,22 +85,18 @@ int main(int argc, char* argv[]) {
                 //current_state = gamePlay(window, renderer, &settings);
                 break;
                 
-            case STATE_GAME_PAUSE:
-                //current_state = gamePause(window, renderer, &settings);
-                break;
-                
-            case STATE_GAME_OVER:
-                //current_state = gameOver(window, renderer, &settings);
+            case STATE_SETTINGS:
+                //current_state = settingsMenu(window, renderer, &settings);
                 break;
                 
             case STATE_QUIT:
                 printf("Fermeture du jeu !\n");
-                game_running = 0;
+                running = 0;    
                 break;
                 
-            default:
+            default:    
                 printf("État inconnu !\n");
-                game_running = 0;
+                running = 0;
                 break;
         }
     }
