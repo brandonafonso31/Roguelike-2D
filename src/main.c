@@ -83,6 +83,7 @@ int main(int argc, char* argv[]) {
                 
             case STATE_GAME_PLAY:
                 //current_state = gamePlay(window, renderer, &settings);
+                current_state = STATE_MAIN_MENU;
                 break;
                 
             case STATE_SETTINGS:
