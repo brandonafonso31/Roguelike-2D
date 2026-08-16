@@ -53,3 +53,25 @@ SDL_Color readColor(const char* color_name) {
     fclose(file);
     return default_color;
 }
+
+void drawTriangle(int x, int y, SDL_Renderer* renderer, int width) {
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    int tri_x = x + width / 2;
+    int tri_y = y;
+    for (int j = 0; j < 8; j++) {
+        SDL_RenderDrawPoint(renderer, tri_x - j, tri_y - j);
+        SDL_RenderDrawPoint(renderer, tri_x + j, tri_y - j);
+    }
+}
+
+void drawColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, const char* color_name) {
+    SDL_Color color = readColor(color_name);
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+    int tri_x = x + width / 2;
+    int tri_y = y;
+    for (int j = 0; j < 8; j++) {
+        SDL_RenderDrawPoint(renderer, tri_x - j, tri_y - j);
+        SDL_RenderDrawPoint(renderer, tri_x + j, tri_y - j);
+    }
+}

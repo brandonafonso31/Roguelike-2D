@@ -10,5 +10,7 @@ void drawTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int
 void drawTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
 void drawTextBlack(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y);
 SDL_Color readColor(const char* color_name);
+void drawTriangle(int x, int y, SDL_Renderer* renderer, int width);
+void drawColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, const char* color_name);
 
 #endif
