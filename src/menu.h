@@ -13,7 +13,7 @@ typedef enum {
     MENU_LOAD_GAME,
     MENU_SETTINGS,
     MENU_QUIT
-} MenuAction;
+} MainMenuAction;
 
 typedef struct {
     Image* background;
@@ -32,20 +32,29 @@ typedef struct {
 
 MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyMenu(MainMenu* menu);
-MenuAction getSelectedActionMenu(MainMenu* menu);
+MainMenuAction getSelectedActionMenu(MainMenu* menu);
+
+typedef enum {
+    INGAME_PLAY,
+    INGAME_BACK,
+    INGAME_QUIT,
+} InGameMenuAction;
 
 typedef struct {
     Image* background;
-    Button* Dungeon;
+    /*Button* Dungeon;
     Button* play;
     Button* pp;
     Button* donjon;
     Button* quest;
     Button* shop;
     Button* options;
-    Button* Upgrades;
+    Button* Upgrades;*/
+
+    int selected_index;
 } InGameMenu;
 
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyInGameMenu(InGameMenu* menu);
+InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu);
 #endif

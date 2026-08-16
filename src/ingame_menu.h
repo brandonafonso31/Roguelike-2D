@@ -4,14 +4,13 @@
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_ttf.h>
 #include "settings.h"
-#include "image_loader.h"
-#include "button.h"
-#include "drawing_function.h"
-#include "menu.h"
 #include "fps_utils.h"
+#include "paths.h"
+#include "poll_events.h"
+#include "ui.h"
+#include "menu.h"
+#include "game_state.h"
 
-
-void ingameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
-int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, int* state);
+GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
 
 #endif

@@ -1,6 +1,6 @@
 #include "poll_events.h"
 
-int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
+int pollEventsMenu(MainMenu* menu, SDL_Event* event, GameState* state){
     int running = 1;
     while (SDL_PollEvent(event)) {
         if (event->type == SDL_QUIT) {
@@ -10,17 +10,17 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
 
         if (event->type == SDL_KEYDOWN){
             if (event->key.keysym.sym == SDLK_RETURN) {
-                MenuAction action = getSelectedActionMenu(menu);
+                MainMenuAction action = getSelectedActionMenu(menu);
                 switch(action) {
                     case MENU_NEW_GAME:
                         printf("Lancement du jeu !\n");
                         running = 0;
-                        *state = 1;
+                        *state = STATE_IN_GAME_MENU;
                         break;
                     case MENU_LOAD_GAME:
                         printf("Chargement du jeu !\n");
                         running = 0;
-                        *state = 2;
+                        *state = STATE_IN_GAME_MENU;
                         break;
                     case MENU_SETTINGS:
                         printf("Ouverture des settings\n");
@@ -28,7 +28,7 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
                     case MENU_QUIT:
                         printf("Fermeture du jeu !\n");
                         running = 0;
-                        *state = 3;
+                        *state = STATE_QUIT;
                         break;
                 }
             }
@@ -51,13 +51,41 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, int* state){
     return running;
 }
 
-int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, int* state){
+int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, GameState* state) {
     int running = 1;
+    
     while (SDL_PollEvent(event)) {
         if (event->type == SDL_QUIT) {
-            running = 0;  
-            *state = 3;
+            running = 0;
+            *state = STATE_QUIT;
         }
-    }
+        
+        if (event->type == SDL_KEYDOWN) {
+            switch(event->key.keysym.sym) {
+                case SDLK_RETURN:
+                    InGameMenuAction action = getSelectedActionInGameMenu(menu);
+                    switch(action) {
+                        case INGAME_PLAY:
+                            running = 0;
+                            *state = STATE_GAME_PLAY;
+                            break;
+                        case INGAME_BACK:
+                            running = 0;
+                            *state = STATE_MAIN_MENU;
+                            break;
+                        case INGAME_QUIT:
+                            running = 0;
+                            *state = STATE_QUIT;
+                            break;
+                    }
+                    break;
+                    
+                case SDLK_ESCAPE:
+                    running = 0;
+                    *state = STATE_MAIN_MENU;
+                    break;
+            }
+        }
+    }    
     return running;
 }

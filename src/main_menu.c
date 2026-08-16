@@ -1,27 +1,28 @@
 #include "main_menu.h"
 
-void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings) {
+GameState mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings) {
 
-    int running = 1;
     SDL_Event event;
     char font_full_path[2048];
     snprintf(font_full_path, sizeof(font_full_path), "%s/%s", getFontsPath(), settings->font);
     TTF_Font* font = TTF_OpenFont(font_full_path, 24);
     if (!font) {
         printf("Erreur chargement police : %s\n", TTF_GetError());
-        return;
+        return MENU_QUIT;
     }
     
     MainMenu* menu = menuCreate(renderer, settings);
     if (!menu) {
         printf("Erreur création du menu\n");
-        return;
+        return MENU_QUIT;
     }
 
     FPSCounter fps_counter;
     fpsCounterInit(&fps_counter, settings->fps_limit);
     double dt;
-    int state = 0;
+    
+    int running = 1;
+    GameState state = STATE_MAIN_MENU;
     while (running) {
         //---------------- INPUT ----------------//
         running = pollEventsMenu(menu, &event, &state); 
@@ -33,14 +34,7 @@ void mainMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings
         waitOrNot(&fps_counter, settings);
     }
 
-    if (state == 1){
-        printf("Lancement du menu du jeu (new save) !\n");
-        //ingameMenu(window, renderer, settings);
-    } else if (state == 2){
-        printf("Lancement du menu du jeu (load save) !\n");    
-    } else if (state == 3){
-        printf("Fermeture du jeu !\n");
-    }
-
     TTF_CloseFont(font);
+    destroyMenu(menu);
+    return state;
 }

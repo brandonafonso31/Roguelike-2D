@@ -23,7 +23,7 @@ void destroyMenu(MainMenu* menu) {
     free(menu);
 }
 
-MenuAction getSelectedActionMenu(MainMenu* menu) {
+MainMenuAction getSelectedActionMenu(MainMenu* menu) {
     if (!menu) return MENU_QUIT;
         
     switch(menu->selected_index) {
@@ -40,14 +40,14 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
 
     menu->background = loadImageMenu(renderer, "background.jpg");
     
-    Button* Dungeon = NULL;
+    /*Button* Dungeon = NULL;
     Button* play = NULL;
     Button* pp = NULL;
     Button* donjon = NULL;
     Button* quest = NULL;
     Button* shop = NULL;
     Button* options = NULL;
-    Button* Upgrades = NULL;
+    Button* Upgrades = NULL;*/
     
     return menu;
 }
@@ -58,4 +58,15 @@ void destroyInGameMenu(InGameMenu* menu) {
     destroyImage(menu->background);
     
     free(menu);
+}
+
+InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
+    if (!menu) return MENU_QUIT;
+        
+    switch(menu->selected_index) {
+        case 0: return INGAME_PLAY;
+        case 1: return INGAME_BACK;
+        case 2: return INGAME_QUIT;
+        default: return INGAME_PLAY;
+    }
 }

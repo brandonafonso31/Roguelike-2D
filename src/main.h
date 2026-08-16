@@ -9,6 +9,7 @@
 #include "paths.h"
 #include "settings.h"
 #include "main_menu.h"
+#include "ingame_menu.h"
 
 int main(int argc, char *argv[]);
 
