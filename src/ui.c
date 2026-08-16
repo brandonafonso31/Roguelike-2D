@@ -107,13 +107,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         
         // Petit indicateur pour l'onglet selectionne (triangle en haut)
         if (i == menu->selected_tab) {
-            SDL_SetRenderDrawColor(renderer, 100, 150, 255, 255);
-            int tri_x = x + tab_width / 2;
-            int tri_y = y_offset;
-            for (int j = 0; j < 8; j++) {
-                SDL_RenderDrawPoint(renderer, tri_x - j, tri_y - j);
-                SDL_RenderDrawPoint(renderer, tri_x + j, tri_y - j);
-            }
+            drawColoredTriangle(x,y_offset,renderer,tab_width,"BLACK");
         }
         
         // Texte de l'onglet (centre)
@@ -138,13 +132,14 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int btn_y = 20;
     
     float pulse = 0.9 + 0.1 * sin(dt * 1.5);
-    SDL_SetRenderDrawColor(renderer, 
-        60 * pulse, 50 * pulse, 50 * pulse, 255);
+    SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
     SDL_Rect btn_rect = {btn_x, btn_y, btn_w, btn_h};
     SDL_RenderFillRect(renderer, &btn_rect);
     SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
     SDL_RenderDrawRect(renderer, &btn_rect);
-    
+    if (menu->selected_tab == 6)
+        drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+
     drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
     
     SDL_RenderPresent(renderer);
