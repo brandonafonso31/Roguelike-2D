@@ -16,4 +16,10 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
 void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
 
+void renderWorldTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt);
+void renderInventoryTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt);
+void renderShopTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt);
+void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt);
+void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt);
+
 #endif
