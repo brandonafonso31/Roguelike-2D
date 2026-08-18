@@ -1,6 +1,6 @@
 #include "button.h"
 
-Button* createButton(Image* normal_image, Image* click_image, char* text, int x, int y, int w, int h) {
+Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hover_image, char* text, int x, int y, int w, int h) {
     Button* button = (Button*)malloc(sizeof(Button));
     if (!button) {
         printf("Erreur: allocation mémoire pour Button échouée\n");
@@ -14,7 +14,20 @@ Button* createButton(Image* normal_image, Image* click_image, char* text, int x,
 
     button->normal_image = normal_image;
     button->click_image = click_image;
+    button->hover_image = hover_image;
+
     button->text = text;
 
     return button;
+}
+
+Button* createButton(Image* normal_image, Image* click_image, Image* hover_image, int x, int y, int w, int h){
+    return createButtonWithText(normal_image, click_image, hover_image, NULL, x, y, w, h);
+}
+
+void destroyButton(Button* button) {
+    if (!button) return;    
+    destroyImage(button->normal_image);
+    destroyImage(button->click_image);
+    free(button);
 }
