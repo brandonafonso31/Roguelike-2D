@@ -65,4 +65,13 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyInGameMenu(InGameMenu* menu);
 InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu);
 
+typedef struct {
+    Button* newgame;
+    Button* continue_game;
+    Button* settings;
+    Button* exit;
+} MainMenuButtons;
+
+MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings);
+
 #endif

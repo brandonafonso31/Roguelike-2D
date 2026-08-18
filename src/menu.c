@@ -81,3 +81,45 @@ InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
         default: return WORLD;
     }
 }
+
+MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings) {
+    MainMenuButtons* buttons = (MainMenuButtons*)malloc(sizeof(MainMenuButtons));
+    if (!buttons) return NULL;
+    
+    int width = 370, height = 200;
+    int screen_w = settings->width;
+    int screen_h = settings->height;
+    int center_x = (screen_w - width) / 2;
+    int start_y = screen_h / 2 - height / 2;
+    int spacing = 20;
+    
+    buttons->newgame = createButton(
+        loadImageMenu(renderer, "newgame.png"),
+        loadImageMenu(renderer, "newgame_clicked.png"),
+        loadImageMenu(renderer, "newgame_hover.png"),
+        center_x, start_y, width, height
+    );
+    
+    buttons->continue_game = createButton(
+        loadImageMenu(renderer, "continue.png"),
+        loadImageMenu(renderer, "continue_clicked.png"),
+        loadImageMenu(renderer, "continue_hover.png"),
+        center_x, start_y + (height + spacing), width, height
+    );
+    
+    buttons->settings = createButton(
+        loadImageMenu(renderer, "settings.png"),
+        loadImageMenu(renderer, "settings_clicked.png"),
+        loadImageMenu(renderer, "settings_hover.png"),
+        center_x, start_y + 2 * (height + spacing), width, height
+    );
+    
+    buttons->exit = createButton(
+        loadImageMenu(renderer, "exit_button.png"),
+        loadImageMenu(renderer, "exit_button_clicked.png"),
+        loadImageMenu(renderer, "exit_button_hover.png"),
+        center_x, start_y + 3 * (height + spacing), width, height
+    );
+    
+    return buttons;
+}
