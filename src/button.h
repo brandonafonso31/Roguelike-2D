@@ -12,9 +12,12 @@ typedef struct {
     SDL_Rect rect;
     Image* normal_image;
     Image* click_image;
+    Image* hover_image;
     char* text;
 } Button;
 
-Button* createButton(Image* normal_image, Image* click_image, char* text, int x, int y, int w, int h);
+Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hover_image, char* text, int x, int y, int w, int h);
+Button* createButton(Image* normal_image, Image* click_image, Image* hover_image, int x, int y, int w, int h);
+void destroyButton(Button* button);
 
 #endif
