@@ -14,7 +14,7 @@ typedef struct {
     Image* click_image;
     Image* hover_image;
     char* text;
-    int selected;
+    int is_hovered;
 } Button;
 
 Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hover_image, char* text, int x, int y, int w, int h);
