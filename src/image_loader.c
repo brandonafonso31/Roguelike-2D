@@ -47,15 +47,15 @@ Image* loadImageSystemRatio(SDL_Renderer* renderer, const char* path, double rat
 }
 
 Image* loadImage(SDL_Renderer* renderer, const char* path){
-    loadImageRatio(renderer, path, 1);
+    return loadImageRatio(renderer, path, 1);
 }
 
 Image* loadImageMenu(SDL_Renderer* renderer, const char* path){
-    loadImageMenuRatio(renderer, path, 1);
+    return loadImageMenuRatio(renderer, path, 1);
 }
 
 Image* loadImageSystem(SDL_Renderer* renderer, const char* path){
-    loadImageSystemRatio(renderer, path, 1);
+    return loadImageSystemRatio(renderer, path, 1);
 }
 
 void destroyImage(Image* image) {

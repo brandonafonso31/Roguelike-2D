@@ -2,10 +2,10 @@
 
 #define nb_options 4
 
-const char* txt_main_menu[nb_options] = {"New Game",
+/*const char* txt_main_menu[nb_options] = {"New Game",
                             "Load Game",
                             "Options",
-                            "Quit"};
+                            "Quit"};*/
 
 static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double dt) {
     char fps_text[50];
@@ -32,14 +32,14 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
         drawTextWhite(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
     }*/
 
-    int ratio = 3;
-    drawButton(renderer,menu->buttons->newgame,ratio);
-    drawButton(renderer,menu->buttons->continue_game,ratio);
-    drawButton(renderer,menu->buttons->settings,ratio);
-    drawButton(renderer,menu->buttons->exit,ratio);
+    drawButton(renderer,menu->buttons->newgame);
+    drawButton(renderer,menu->buttons->continue_game);
+    drawButton(renderer,menu->buttons->settings);
+    drawButton(renderer,menu->buttons->exit);
 
     if (index != -1)
-        renderImage(renderer,menu->cursor, (width-210), height-50*(nb_options-index));
+        renderImage(renderer,menu->cursor, (width - menu->buttons->newgame->normal_image->width - 50) - 10, 
+                                            (height - (3-index) * (10 + menu->buttons->newgame->normal_image->height) - 20) - 50);
     changeButtonFromIndex(menu, index);
 
     SDL_RenderPresent(renderer);

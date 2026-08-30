@@ -4,40 +4,42 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
     MainMenuButtons* buttons = (MainMenuButtons*)malloc(sizeof(MainMenuButtons));
     if (!buttons) return NULL;
         
-    Image* image_newgame = loadImageMenu(renderer, "newgame.png");
-    int width = image_newgame->width/image_newgame->ratio, height = image_newgame->height/image_newgame->ratio;
+    int ratio = 3;
+
+    Image* image_newgame = loadImageMenuRatio(renderer, "newgame.png", ratio);
+    int width = image_newgame->width, height = image_newgame->height;
     int screen_w = settings->width;
     int screen_h = settings->height;
-    int center_x = screen_w - width - 10;
-    int start_y = screen_h / 2;
-    int spacing = height + 5;
-
+    int start_x = screen_w - width - 10;
+    int spacing = 10;
+    int start_y = screen_h - 4 * (spacing + height) - 20;
+    
     buttons->newgame = createButton(
         image_newgame,
-        loadImageMenu(renderer, "newgame_clicked.png"),
-        loadImageMenu(renderer, "newgame_hover.png"),
-        center_x, start_y, width, height
+        loadImageMenuRatio(renderer, "newgame_clicked.png", ratio),
+        loadImageMenuRatio(renderer, "newgame_hover.png", ratio),
+        start_x, start_y, width, height
     );
     
     buttons->continue_game = createButton(
-        loadImageMenu(renderer, "continue.png"),
-        loadImageMenu(renderer, "continue_clicked.png"),
-        loadImageMenu(renderer, "continue_hover.png"),
-        center_x, start_y + spacing, width, height
+        loadImageMenuRatio(renderer, "continue.png", ratio),
+        loadImageMenuRatio(renderer, "continue_clicked.png", ratio),
+        loadImageMenuRatio(renderer, "continue_hover.png", ratio),
+        start_x, start_y + (spacing + height), width, height
     );
     
     buttons->settings = createButton(
-        loadImageMenu(renderer, "settings.png"),
-        loadImageMenu(renderer, "settings_clicked.png"),
-        loadImageMenu(renderer, "settings_hover.png"),
-        center_x, start_y + 2 * spacing, width, height
+        loadImageMenuRatio(renderer, "settings.png", ratio),
+        loadImageMenuRatio(renderer, "settings_clicked.png", ratio),
+        loadImageMenuRatio(renderer, "settings_hover.png", ratio),
+        start_x, start_y + 2 * (spacing + height), width, height
     );
     
     buttons->exit = createButton(
-        loadImageMenu(renderer, "exit.png"),
-        loadImageMenu(renderer, "exit_clicked.png"),
-        loadImageMenu(renderer, "exit_hover.png"),
-        center_x, start_y + 3 * spacing, width, height
+        loadImageMenuRatio(renderer, "exit.png", ratio),
+        loadImageMenuRatio(renderer, "exit_clicked.png", ratio),
+        loadImageMenuRatio(renderer, "exit_hover.png", ratio),
+        start_x, start_y + 3 * (spacing + height), width, height
     );
     
     return buttons;
