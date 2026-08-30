@@ -22,7 +22,7 @@ Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hov
 }
 
 Button* createButton(Image* normal_image, Image* click_image, Image* hover_image, int x, int y, int w, int h){
-    return createButtonWithText(normal_image, click_image, hover_image, NULL, x, y, w, h);
+    return createButtonWithText(normal_image, click_image, hover_image, "", x, y, w, h);
 }
 
 void destroyButton(Button* button) {
