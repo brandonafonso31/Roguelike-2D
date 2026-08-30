@@ -31,3 +31,8 @@ void destroyButton(Button* button) {
     destroyImage(button->click_image);
     free(button);
 }
+
+void drawButton(SDL_Renderer* renderer, Button button, int scale){
+    Image* button_image = (button.selected) ? button.hover_image : button.normal_image;
+    renderScaledIntImage(renderer, button_image, button.rect.x, button.rect.y, scale);
+}

@@ -9,6 +9,7 @@
 #include "fps_utils.h"
 #include "image_loader.h"
 #include "menu.h"
+#include "button.h"
 
 extern const char* txt_main_menu[];
 

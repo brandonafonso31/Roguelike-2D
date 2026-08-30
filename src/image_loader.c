@@ -79,6 +79,10 @@ void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h)
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
 }
 
+void renderScaledIntImage(SDL_Renderer* renderer, Image* image, int x, int y, int ratio) {
+    renderScaledImage(renderer, image, x, y, image->height/ratio, image->width/ratio);
+}
+
 void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w) {
     if (!image || !image->texture) return;
     

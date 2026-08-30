@@ -23,6 +23,7 @@ void renderImage(SDL_Renderer* renderer, Image* image, int x, int y);
 void renderImageOrigin(SDL_Renderer* renderer, Image* image);
 void renderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w, int h);
 void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h);
+void renderScaledIntImage(SDL_Renderer* renderer, Image* image, int x, int y, int ratio);
 
 void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w);
 void renderScaledHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, int h);
