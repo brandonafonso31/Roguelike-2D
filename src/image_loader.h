@@ -12,9 +12,13 @@ typedef struct {
     SDL_Texture* texture;
     int width;
     int height;
+    double ratio;
 } Image;
 
 // Charger une image depuis le dossier assets/images/
+Image* loadImageRatio(SDL_Renderer* renderer, const char* path, double ratio);
+Image* loadImageMenuRatio(SDL_Renderer* renderer, const char* path, double ratio);
+Image* loadImageSystemRatio(SDL_Renderer* renderer, const char* path, double ratio);
 Image* loadImage(SDL_Renderer* renderer, const char* path);
 Image* loadImageMenu(SDL_Renderer* renderer, const char* path);
 Image* loadImageSystem(SDL_Renderer* renderer, const char* path);
