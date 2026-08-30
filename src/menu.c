@@ -5,7 +5,7 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
     if (!buttons) return NULL;
         
     Image* image_newgame = loadImageMenu(renderer, "newgame.png");
-    int width = image_newgame->width, height = image_newgame->height;
+    int width = image_newgame->width/3, height = image_newgame->height/3;
     int screen_w = settings->width;
     int screen_h = settings->height;
     int center_x = screen_w - width - 10;

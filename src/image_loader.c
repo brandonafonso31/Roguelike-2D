@@ -70,8 +70,6 @@ void renderScaledImage(SDL_Renderer* renderer, Image* image, int x, int y, int w
     
     SDL_Rect dest = {x, y, w, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
-    image->width = w;
-    image->height = h;
 }
 
 void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h) {
@@ -79,9 +77,8 @@ void renderScaledImageOrigin(SDL_Renderer* renderer, Image* image, int w, int h)
 }
 
 void renderScaledRatioImage(SDL_Renderer* renderer, Image* image, int x, int y, double ratio) {
-    renderScaledImage(renderer, image, x, y, image->width/ratio, image->height/ratio);
-    image->width = image->width/ratio;
-    image->height = image->height/ratio;
+    int new_w = image->width/ratio, new_h = image->height/ratio;
+    renderScaledImage(renderer, image, x, y, new_w, new_h);
 }
 
 void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, int w) {
@@ -89,7 +86,6 @@ void renderScaledWidthImage(SDL_Renderer* renderer, Image* image, int x, int y, 
     
     SDL_Rect dest = {x, y, w, w * image->height / image->width};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
-    image->width = w;
 }
 
 void renderScaledWidthImageOrigin(SDL_Renderer* renderer, Image* image,  int w) {
@@ -101,7 +97,6 @@ void renderScaleHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, 
 
     SDL_Rect dest = {x, y, h * image->width / image->height, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
-    image->height = h;
 }
 
 void renderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h) {
