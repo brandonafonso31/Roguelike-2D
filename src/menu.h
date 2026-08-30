@@ -16,15 +16,19 @@ typedef enum {
 } MainMenuAction;
 
 typedef struct {
+    Button* newgame;
+    Button* continue_game;
+    Button* settings;
+    Button* exit;
+} MainMenuButtons;
+
+MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings);
+
+typedef struct {
     Image* background;
     Image* cursor;
-    /*Image* title;
-    Image* play_button;
-    Image* settings_button;
-    Image* quit_button;
-    Image* play_button_hover;
-    Image* settings_button_hover;
-    Image* quit_button_hover;*/
+
+    MainMenuButtons* buttons;
 
     int selected_index;
     int button_count;
@@ -33,6 +37,7 @@ typedef struct {
 MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyMenu(MainMenu* menu);
 MainMenuAction getSelectedActionMenu(MainMenu* menu);
+void changeButtonFromIndex(MainMenu* menu, int index);
 
 typedef enum {
     SHOP,
@@ -64,14 +69,5 @@ typedef struct {
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyInGameMenu(InGameMenu* menu);
 InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu);
-
-typedef struct {
-    Button* newgame;
-    Button* continue_game;
-    Button* settings;
-    Button* exit;
-} MainMenuButtons;
-
-MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings);
 
 #endif

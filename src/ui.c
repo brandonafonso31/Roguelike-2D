@@ -21,18 +21,26 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     
     int height = settings->height;
     int width = settings->width;
+    int index = menu->selected_index;
 
     renderScaledImageOrigin(renderer, menu->background, width, height);
 
     renderFps(fps_counter, renderer, font, settings, dt);
 
-    int i = 0;
+    /*int i = 0;
     while(i++, i <= nb_options){
         drawTextWhite(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
-    }  
+    }*/
 
-    if (menu->selected_index != -1)
-        renderImage(renderer,menu->cursor, (width-210), height-50*(nb_options-menu->selected_index));
+    int ratio = 3;
+    drawButton(renderer,menu->buttons->newgame,ratio);
+    drawButton(renderer,menu->buttons->continue_game,ratio);
+    drawButton(renderer,menu->buttons->settings,ratio);
+    drawButton(renderer,menu->buttons->exit,ratio);
+
+    if (index != -1)
+        renderImage(renderer,menu->cursor, (width-210), height-50*(nb_options-index));
+    changeButtonFromIndex(menu, index);
 
     SDL_RenderPresent(renderer);
 }

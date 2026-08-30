@@ -1,5 +1,48 @@
 #include "menu.h"
 
+MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings) {
+    MainMenuButtons* buttons = (MainMenuButtons*)malloc(sizeof(MainMenuButtons));
+    if (!buttons) return NULL;
+        
+    Image* image_newgame = loadImageMenu(renderer, "newgame.png");
+    int width = image_newgame->width, height = image_newgame->height;
+    int screen_w = settings->width;
+    int screen_h = settings->height;
+    int center_x = screen_w - width - 10;
+    int start_y = screen_h / 2;
+    int spacing = height + 5;
+
+    buttons->newgame = createButton(
+        image_newgame,
+        loadImageMenu(renderer, "newgame_clicked.png"),
+        loadImageMenu(renderer, "newgame_hover.png"),
+        center_x, start_y, width, height
+    );
+    
+    buttons->continue_game = createButton(
+        loadImageMenu(renderer, "continue.png"),
+        loadImageMenu(renderer, "continue_clicked.png"),
+        loadImageMenu(renderer, "continue_hover.png"),
+        center_x, start_y + spacing, width, height
+    );
+    
+    buttons->settings = createButton(
+        loadImageMenu(renderer, "settings.png"),
+        loadImageMenu(renderer, "settings_clicked.png"),
+        loadImageMenu(renderer, "settings_hover.png"),
+        center_x, start_y + 2 * spacing, width, height
+    );
+    
+    buttons->exit = createButton(
+        loadImageMenu(renderer, "exit.png"),
+        loadImageMenu(renderer, "exit_clicked.png"),
+        loadImageMenu(renderer, "exit_hover.png"),
+        center_x, start_y + 3 * spacing, width, height
+    );
+    
+    return buttons;
+}
+
 MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     MainMenu* menu = (MainMenu*)malloc(sizeof(MainMenu));
     if (!menu) return NULL;
@@ -7,10 +50,38 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     menu->background = loadImageMenu(renderer, "background.jpg");
     menu->cursor = loadImageSystem(renderer, "cursor.png");
     
+    menu->buttons = initMainMenuButtons(renderer, settings);
     menu->selected_index = 0;
     menu->button_count = MAX_BUTTONS;
     
     return menu;
+}
+
+void changeButtonFromIndex(MainMenu* menu, int index) {
+    if (!menu || !menu->buttons) return;
+
+    MainMenuButtons* buttons = menu->buttons;
+    buttons->newgame->is_hovered = 0;
+    buttons->continue_game->is_hovered = 0;
+    buttons->settings->is_hovered = 0;
+    buttons->exit->is_hovered = 0;
+    
+    switch (index) {
+        case 0:
+            buttons->newgame->is_hovered = 1;
+            break;
+        case 1:
+            buttons->continue_game->is_hovered = 1;
+            break;
+        case 2:
+            buttons->settings->is_hovered = 1;
+            break;
+        case 3:
+            buttons->exit->is_hovered = 1;
+            break;
+        default:
+            break;
+    }
 }
 
 void destroyMenu(MainMenu* menu) {
@@ -80,46 +151,4 @@ InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
         case 7: return INGAME_QUIT;
         default: return WORLD;
     }
-}
-
-MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings) {
-    MainMenuButtons* buttons = (MainMenuButtons*)malloc(sizeof(MainMenuButtons));
-    if (!buttons) return NULL;
-    
-    int width = 370, height = 200;
-    int screen_w = settings->width;
-    int screen_h = settings->height;
-    int center_x = (screen_w - width) / 2;
-    int start_y = screen_h / 2 - height / 2;
-    int spacing = 20;
-    
-    buttons->newgame = createButton(
-        loadImageMenu(renderer, "newgame.png"),
-        loadImageMenu(renderer, "newgame_clicked.png"),
-        loadImageMenu(renderer, "newgame_hover.png"),
-        center_x, start_y, width, height
-    );
-    
-    buttons->continue_game = createButton(
-        loadImageMenu(renderer, "continue.png"),
-        loadImageMenu(renderer, "continue_clicked.png"),
-        loadImageMenu(renderer, "continue_hover.png"),
-        center_x, start_y + (height + spacing), width, height
-    );
-    
-    buttons->settings = createButton(
-        loadImageMenu(renderer, "settings.png"),
-        loadImageMenu(renderer, "settings_clicked.png"),
-        loadImageMenu(renderer, "settings_hover.png"),
-        center_x, start_y + 2 * (height + spacing), width, height
-    );
-    
-    buttons->exit = createButton(
-        loadImageMenu(renderer, "exit_button.png"),
-        loadImageMenu(renderer, "exit_button_clicked.png"),
-        loadImageMenu(renderer, "exit_button_hover.png"),
-        center_x, start_y + 3 * (height + spacing), width, height
-    );
-    
-    return buttons;
 }
