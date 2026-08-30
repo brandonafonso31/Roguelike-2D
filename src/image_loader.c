@@ -101,7 +101,7 @@ void renderScaleHeightImage(SDL_Renderer* renderer, Image* image, int x, int y, 
 
     SDL_Rect dest = {x, y, h * image->width / image->height, h};
     SDL_RenderCopy(renderer, image->texture, NULL, &dest);
-    image->height = h
+    image->height = h;
 }
 
 void renderScaledHeightImageOrigin(SDL_Renderer* renderer, Image* image,  int h) {
