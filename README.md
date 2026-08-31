@@ -5,11 +5,11 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
 ## 📸 Aperçu
 
-| Menu Principal | Gameplay | Combat | Inventaire |
+| New Game | Continue | Settings | Exit |
 |:---:|:---:|:---:|:---:|
 | ![](assets/images/system/screenshot_0.PNG) | ![](assets/images/system/screenshot_1.PNG) | ![](assets/images/system/screenshot_2.PNG) | ![](assets/images/system/screenshot_3.PNG) |
 
-| Menu In-Game |
+| test Menu In-Game |
 |:---:|
 | ![](assets/images/system/screenshot_ingame_menu.PNG) |
 
