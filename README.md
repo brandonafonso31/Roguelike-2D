@@ -5,7 +5,10 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
 ## 📸 Aperçu
 
-![Gameplay Screenshot](screenshot.PNG)
+![Gameplay Screenshot](screenshot_0.PNG)
+![Gameplay Screenshot](screenshot_1.PNG)
+![Gameplay Screenshot](screenshot_2.PNG)
+![Gameplay Screenshot](screenshot_3.PNG)
 ![Gameplay Screenshot](screenshot_ingame_menu.PNG)
 
 ## ✨ Fonctionnalités
