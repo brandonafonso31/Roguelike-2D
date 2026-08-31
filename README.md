@@ -5,11 +5,16 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
 ## 📸 Aperçu
 
-![Gameplay Screenshot](assets/images/system/screenshot_0.PNG)
-![Gameplay Screenshot](assets/images/system/screenshot_1.PNG)
-![Gameplay Screenshot](assets/images/system/screenshot_2.PNG)
-![Gameplay Screenshot](assets/images/system/screenshot_3.PNG)
-![Gameplay Screenshot](assets/images/system/screenshot_ingame_menu.PNG)
+## 📸 Aperçu
+
+| | |
+|:---:|:---:|
+| ![](assets/images/system/screenshot_0.PNG) | ![](assets/images/system/screenshot_1.PNG) |
+| ![](assets/images/system/screenshot_2.PNG) | ![](assets/images/system/screenshot_3.PNG) |
+
+| Menu In-Game |
+|:---:|
+| ![](assets/images/system/screenshot_ingame_menu.PNG) |
 
 ## ✨ Fonctionnalités
 
