@@ -18,6 +18,8 @@ Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hov
 
     button->text = text;
     button->is_hovered = 0;
+    button->is_clicked = 0;
+    
     return button;
 }
 
