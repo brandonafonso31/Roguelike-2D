@@ -9,18 +9,18 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
     int width = image_newgame->width, height = image_newgame->height;
     int screen_w = settings->width;
     int screen_h = settings->height;
-    int spacing = 10;
+    int spacing = settings->spacing;
     int start_x = screen_w - width - spacing;
     int start_y = screen_h - NUMBER_OF_MAINMENU_BUTTONS * (spacing + height) - 2*spacing;
         
     const char* button_names[] = { 
-        #define X(name) #name,
+        #define X(name,action) #name,
         MAIN_MENU_BUTTONS
         #undef X 
     };
 
     Button** buttons_ptrs[] = { 
-        #define X(name) &buttons->name, 
+        #define X(name,action) &buttons->name, 
         MAIN_MENU_BUTTONS 
         #undef X 
     };
@@ -100,14 +100,20 @@ void destroyMenu(MainMenu* menu) {
 
 MainMenuAction getSelectedActionMenu(MainMenu* menu) {
     if (!menu) return MENU_QUIT;
-        
-    switch(menu->selected_index) {
-        case 0: return MENU_NEW_GAME;
-        case 1: return MENU_LOAD_GAME;
-        case 2: return MENU_SETTINGS;
-        case 3: return MENU_QUIT;
-        default: return MENU_LOAD_GAME; //if save else MENU_NEW_GAME;
+
+    MainMenuAction actions[] = {
+        #define X(name, action) action,
+        MAIN_MENU_BUTTONS
+        #undef X
+    };
+    
+    int count = NUMBER_OF_MAINMENU_BUTTONS;
+    
+    if (menu->selected_index >= 0 && menu->selected_index < count) {
+        return actions[menu->selected_index];
     }
+    
+    return MENU_QUIT;
 }
 
 InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings) {
