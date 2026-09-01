@@ -23,5 +23,7 @@ void destroyButton(Button* button);
 void drawButtonRatio(SDL_Renderer* renderer, Button* button, double ratio);
 void drawButton(SDL_Renderer* renderer, Button* button);
 double getButtonHeight(Button* button);
+double getButtonWidth(Button* button);
+
 
 #endif

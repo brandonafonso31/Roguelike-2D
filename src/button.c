@@ -45,3 +45,6 @@ double getButtonHeight(Button* button){
     return button->is_hovered ? button->normal_image->height : button->hover_image->height;
 }
 
+double getButtonWidth(Button* button){
+    return button->is_hovered ? button->normal_image->width : button->hover_image->width;
+}
