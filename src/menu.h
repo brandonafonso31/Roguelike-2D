@@ -81,6 +81,7 @@ typedef struct {
     Image* background;
 
     int selected_tab;
+    int last_tab_id;
     int nb_tabs;
 } SettingsMenu;
 
