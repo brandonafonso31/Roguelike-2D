@@ -19,7 +19,7 @@ Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hov
     button->text = text;
     button->is_hovered = 0;
     button->is_clicked = 0;
-    
+
     return button;
 }
 
@@ -44,9 +44,9 @@ void drawButton(SDL_Renderer* renderer, Button* button){
 }
 
 double getButtonHeight(Button* button){
-    return button->is_hovered ? button->normal_image->height : button->hover_image->height;
+    return button->is_clicked ? button->click_image->height : (button->is_hovered ? button->normal_image->height : button->hover_image->height);
 }
 
 double getButtonWidth(Button* button){
-    return button->is_hovered ? button->normal_image->width : button->hover_image->width;
+    return button->is_clicked ? button->click_image->width : (button->is_hovered ? button->normal_image->width : button->hover_image->width);
 }
