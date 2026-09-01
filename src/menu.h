@@ -18,7 +18,7 @@ typedef enum {
     X(continue_game, MENU_LOAD_GAME) \
     X(settings, MENU_SETTINGS) \
     X(quit, MENU_QUIT) \
-    X(test_button, MENU_QUIT)
+    //X(test_button, MENU_QUIT)
 
 typedef struct {
     #define X(name, action) Button* name;
