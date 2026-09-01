@@ -131,3 +131,73 @@ int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, GameState* state) {
     }    
     return running;
 }
+
+int pollEventsSettingsMenu(SettingsMenu* menu, SDL_Event* event, GameState* state) {
+
+    int* selected = &menu->selected_tab;
+    int* last = &menu->last_tab_id;
+    int nb = menu->nb_tabs;
+    
+    const int TAB_RETURN = nb;    // Bouton RETOUR au menu principal (4ieme bouton donc id=3)
+    
+    int running = 1;
+    int is_on_special = (*selected == TAB_RETURN);
+    while (SDL_PollEvent(event)) {
+        if (event->type == SDL_QUIT) {
+            running = 0;
+            *state = STATE_QUIT;
+        }
+        
+        if (event->type == SDL_KEYDOWN) {
+            switch(event->key.keysym.sym) {
+                case SDLK_RETURN:
+                    if (*selected == TAB_RETURN) {
+                        running = 0;
+                        *state = STATE_MAIN_MENU;  
+                        printf("Retour au menu principal\n");
+                    }
+                    break;
+                    
+                case SDLK_ESCAPE:
+                    running = 0;
+                    *state = STATE_MAIN_MENU;
+                    break;
+                    
+                case SDLK_LEFT:
+                    *last = *selected;
+                    if (is_on_special) {
+                        *selected = 0;
+                    } else {
+                        *selected = (*selected - 1 + nb) % nb;
+                    }
+                    printf("Onglet: %d\n", *selected);
+                    break;
+                    
+                case SDLK_RIGHT:
+                    *last = *selected;
+                    if (is_on_special) {
+                        *selected = nb - 1;
+                    } else {
+                        *selected = (*selected + 1) % nb;
+                    }
+                    printf("Onglet: %d\n", *selected);
+                    break;
+
+                case SDLK_DOWN:
+                    if (!is_on_special){
+                        *last = *selected;
+                        *selected = TAB_RETURN;
+                        printf("Onglet: %d\n", *selected);
+                        break;
+                    } else break;
+                case SDLK_UP:
+                    if (is_on_special){
+                        *selected = *last;
+                        printf("Onglet: %d\n", *selected);
+                        break;
+                    } else break;
+            }
+        }
+    }    
+    return running;
+}

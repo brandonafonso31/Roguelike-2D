@@ -7,5 +7,6 @@
 
 int pollEventsMenu(MainMenu* menu,SDL_Event* event, GameState* state);
 int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, GameState* state);
+int pollEventsSettingsMenu(SettingsMenu* menu, SDL_Event* event, GameState* state);
 
 #endif
