@@ -176,6 +176,9 @@ SettingsMenu* settingsMenuCreate(SDL_Renderer* renderer, GameSettings* settings)
     SettingsMenu* menu = (SettingsMenu*)malloc(sizeof(SettingsMenu));
     if (!menu) return NULL;
     menu->background = loadImageMenu(renderer, "world1.png");
+    menu->selected_tab = 1;
+    menu->nb_tabs = 3;
+
     return menu;
 }
 

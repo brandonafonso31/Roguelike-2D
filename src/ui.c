@@ -57,9 +57,22 @@ void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Fo
 
 void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     int width = settings->width;
-
+    int height = settings->height;
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
+
+    switch(menu->selected_tab) {
+        case 0:
+            //renderGlobalSettingsTab(renderer, font, width, height, dt);
+            break;
+        case 1:
+            //renderGraphicTab(renderer, font, width, height, dt);
+            break;
+        case 2:
+            //renderSoundTab(renderer, font, width, height, dt);
+            break;
+    }
+    
     renderFps(fps_counter, renderer, font, settings, dt);
     drawTextWhite(renderer, font, "Settings", width/2 - 100, 150);
     SDL_RenderPresent(renderer);
@@ -69,29 +82,26 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int width = settings->width;
     int height = settings->height;
     
-    // Fond
     renderScaledImageOrigin(renderer, menu->background, width, height);
     
-    // Inside Tab ===
     switch(menu->selected_tab) {
-        case 0: // Shop
+        case 0:
             renderShopTab(renderer, font, width, height, dt);
             break;
-        case 1: // Inventaire
+        case 1:
             renderInventoryTab(renderer, font, width, height, dt);
             break;
-        case 2: // Monde
+        case 2:
             renderWorldTab(renderer, font, width, height, dt);
             break;
-        case 3: // Upgrades
+        case 3:
             renderUpgradesTab(renderer, font, width, height, dt);
             break;
-        case 4: // En travaux
+        case 4:
             renderWipTab(renderer, font, width, height, dt);
             break;
     }
     
-    // TAB : Shop, Inventaire, Monde, Upgrades, En travaux
     const char* tabs[] = {"Shop", "Inventaire", "Monde", "Upgrades", "En travaux"};
     int tab_count = 5;
     int tab_height = 50;

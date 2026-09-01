@@ -79,6 +79,9 @@ typedef struct {
     //Image* cursor; (not sure if using it or not)
     //todo : scroll bar to change volume
     Image* background;
+
+    int selected_tab;
+    int nb_tabs;
 } SettingsMenu;
 
 SettingsMenu* settingsMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
