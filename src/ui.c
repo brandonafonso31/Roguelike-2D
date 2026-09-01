@@ -55,29 +55,6 @@ void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Fo
     SDL_RenderPresent(renderer);
 }
 
-void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
-    int width = settings->width;
-    int height = settings->height;
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-
-    switch(menu->selected_tab) {
-        case 0:
-            //renderGlobalSettingsTab(renderer, font, width, height, dt);
-            break;
-        case 1:
-            //renderGraphicTab(renderer, font, width, height, dt);
-            break;
-        case 2:
-            //renderSoundTab(renderer, font, width, height, dt);
-            break;
-    }
-    
-    renderFps(fps_counter, renderer, font, settings, dt);
-    drawTextWhite(renderer, font, "Settings", width/2 - 100, 150);
-    SDL_RenderPresent(renderer);
-}
-
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     int width = settings->width;
     int height = settings->height;
@@ -199,4 +176,39 @@ void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int he
 
 void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
     drawTextWhite(renderer, font, "EN TRAVAUX", width/2 - 100, 150);
+}
+
+void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+    int width = settings->width;
+    int height = settings->height;
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    switch(menu->selected_tab) {
+        case 0:
+            renderGlobalSettingsTab(renderer, font, width, height, dt);
+            break;
+        case 1:
+            renderGraphicTab(renderer, font, width, height, dt);
+            break;
+        case 2:
+            renderSoundTab(renderer, font, width, height, dt);
+            break;
+    }
+    
+    renderFps(fps_counter, renderer, font, settings, dt);
+    drawTextWhite(renderer, font, "Settings", width/2 - 100, 150);
+    SDL_RenderPresent(renderer);
+}
+
+void renderGlobalSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "Global", width/2 - 100, 150);
+}
+
+void renderGraphicTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "Graphic", width/2 - 100, 150);
+}
+
+void renderSoundTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "Sound", width/2 - 100, 150);
 }
