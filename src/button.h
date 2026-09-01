@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "paths.h"
-#include "image_loader.h"
+#include "image.h"
 
 typedef struct {
     SDL_Rect rect;

@@ -25,7 +25,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/main_menu.c\
 	  $(SRC_DIR)/poll_events.c\
 	  $(SRC_DIR)/ui.c \
-	  $(SRC_DIR)/image_loader.c \
+	  $(SRC_DIR)/image.c \
 	  $(SRC_DIR)/menu.c \
 	  $(SRC_DIR)/ingame_menu.c \
 	  $(SRC_DIR)/button.c

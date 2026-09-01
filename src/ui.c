@@ -15,6 +15,17 @@ static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font*
     drawTextWhite(renderer, font, fps_text, 10, 10);
 }
 
+void renderMainMenuButtons(MainMenu* menu, SDL_Renderer* renderer) {
+    if (!menu || !menu->buttons) return;
+    
+    int count = sizeof(MainMenuButtons) / sizeof(Button*);
+    Button** current = (Button**)menu->buttons;
+    for (int i = 0; i < count; i++) {
+        Button* button = current[i];
+        if (button) drawButton(renderer, button);
+    }
+}
+
 void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
@@ -32,14 +43,13 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
         drawTextWhite(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
     }*/
 
-    drawButton(renderer,menu->buttons->newgame);
-    drawButton(renderer,menu->buttons->continue_game);
-    drawButton(renderer,menu->buttons->settings);
-    drawButton(renderer,menu->buttons->exit);
+    Button* newgame = menu->buttons->newgame;
+
+    renderMainMenuButtons(menu, renderer);
 
     if (index != -1)
-        renderImage(renderer,menu->cursor, (width - menu->buttons->newgame->normal_image->width - 50) - 10, 
-                                            (height - (3-index) * (10 + menu->buttons->newgame->normal_image->height) - 20) - 50);
+        renderImage(renderer,menu->cursor, (width - getButtonWidth(newgame) - 50) - 10, 
+                                            (height - (3-index) * (10 + getButtonHeight(newgame)) - 20) - 50);
     changeButtonFromIndex(menu, index);
 
     SDL_RenderPresent(renderer);

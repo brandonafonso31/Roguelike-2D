@@ -1,4 +1,4 @@
-#include "image_loader.h"
+#include "image.h"
 
 Image* loadImageRatio(SDL_Renderer* renderer, const char* path, double ratio) {
     if (!renderer) {
