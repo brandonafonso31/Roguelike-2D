@@ -8,6 +8,8 @@ static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font*
     drawTextWhite(renderer, font, fps_text, 10, 10);
 }
 
+// MainMenu
+
 void renderMainMenuButtons(MainMenu* menu, SDL_Renderer* renderer) {
     if (!menu || !menu->buttons) return;
     Button** current = (Button**)menu->buttons;
@@ -42,18 +44,7 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     SDL_RenderPresent(renderer);
 }
 
-void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-    
-    // Afficher les FPS
-    renderFps(fps_counter, renderer, font, settings, dt);
-    //render_hp
-    //render_mana
-    //render_inventorys
-    // Presenter le rendu
-    SDL_RenderPresent(renderer);
-}
+// InGameMenu
 
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     int width = settings->width;
@@ -177,6 +168,24 @@ void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height,
     drawTextWhite(renderer, font, "EN TRAVAUX", width/2 - 100, 150);
 }
 
+// SettingsMenu
+
+void switchSettings(int id, SettingsMenu* menu, SDL_Renderer* renderer, double dt, TTF_Font* font, int width, int height, int content_x, int content_y, int line_spacing, int label_width, int value_x){
+    switch(id) {
+        case 0:
+            renderMainSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
+            break;
+        case 1:
+            renderGraphicSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
+            break;
+        case 2:
+            renderSoundSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
+            break;
+        case 3:
+            switchSettings(menu->last_tab_id, menu, renderer, dt, font, width, height, content_x, content_y, line_spacing, label_width, value_x);
+    }
+}
+
 void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     int width = settings->width;
     int height = settings->height;
@@ -224,17 +233,7 @@ void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int label_width = 150;
     int value_x = content_x + label_width + 20;
     
-    switch(menu->selected_tab) {
-        case 0:
-            renderMainSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
-            break;
-        case 1:
-            renderGraphicSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
-            break;
-        case 2:
-            renderSoundSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
-            break;
-    }
+    switchSettings(menu->selected_tab, menu, renderer, dt, font, width, height, content_x, content_y, line_spacing, label_width, value_x);
     
     int btn_w = 100;
     int btn_h = 35;
