@@ -5,7 +5,7 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, GameState* state){
     while (SDL_PollEvent(event)) {
         if (event->type == SDL_QUIT) {
             running = 0;  
-            *state = 3;
+            *state = MENU_QUIT;
         }
 
         if (event->type == SDL_KEYDOWN){
@@ -25,7 +25,8 @@ int pollEventsMenu(MainMenu* menu, SDL_Event* event, GameState* state){
                             break;
                         case MENU_SETTINGS:
                             printf("Ouverture des settings\n");
-                            // openSettingsEdit()
+                            running = 0;
+                            *state = STATE_SETTINGS;
                             break;
                         case MENU_QUIT:
                             printf("Fermeture du jeu !\n");
