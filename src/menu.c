@@ -54,7 +54,7 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     
     menu->buttons = initMainMenuButtons(renderer, settings);
     menu->selected_index = 0;
-    menu->button_count = MAX_BUTTONS;
+    menu->button_count = sizeof(MainMenuButtons) / sizeof(Button*);;
     
     return menu;
 }

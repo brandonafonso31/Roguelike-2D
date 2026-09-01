@@ -3,10 +3,8 @@
 
 #include <SDL2/SDL.h>
 #include "settings.h"
-#include "image_loader.h"
+#include "image.h"
 #include "button.h"
-
-#define MAX_BUTTONS 4
 
 typedef enum {
     MENU_NEW_GAME,
