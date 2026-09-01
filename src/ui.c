@@ -55,6 +55,16 @@ void renderUI(FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Fo
     SDL_RenderPresent(renderer);
 }
 
+void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+    int width = settings->width;
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    renderFps(fps_counter, renderer, font, settings, dt);
+    drawTextWhite(renderer, font, "Settings", width/2 - 100, 150);
+    SDL_RenderPresent(renderer);
+}
+
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
     int width = settings->width;
     int height = settings->height;
