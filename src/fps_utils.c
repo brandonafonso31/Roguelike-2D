@@ -13,10 +13,9 @@ double fpsCounterGetDeltaTime(FPSCounter* counter) {
     double dt;
     
     if (counter->last_frame_time == 0) {
-        dt = counter->target_frame_time; // Premier frame
+        dt = counter->target_frame_time;
     } else {
         dt = (double)(currentTime - counter->last_frame_time) / SDL_GetPerformanceFrequency();
-        // Limiter le deltaTime pour éviter les sauts trop grands (ex: après une pause)
         if (dt > 0.1) dt = counter->target_frame_time;
     }
     
@@ -45,7 +44,7 @@ void fpsCounterWaitForNextFrame(FPSCounter* counter) {
     if (elapsed < counter->target_frame_time) {
         Uint32 wait_ms = (Uint32)((counter->target_frame_time - elapsed) * 1000);
         if (wait_ms > 1) {
-            SDL_Delay(wait_ms - 1); // -1 pour éviter de dépasser
+            SDL_Delay(wait_ms - 1);
         }
         
         while (elapsed < counter->target_frame_time) {
@@ -60,13 +59,13 @@ int getMonitorRefreshRate() {
     if (SDL_GetCurrentDisplayMode(0, &mode) == 0) {
         return mode.refresh_rate;
     }
-    return -1; // Valeur par défaut si on ne peut pas récupérer
+    return -1;
 }
 
 void waitOrNot(FPSCounter* fps_counter, GameSettings* settings){
     if (!settings->vsync) {
         fpsCounterWaitForNextFrame(fps_counter);
     } else {
-        SDL_Delay(1); // Petit délai pour éviter de surcharger le CPU
+        SDL_Delay(1);
     }
 }

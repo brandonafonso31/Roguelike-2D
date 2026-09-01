@@ -1,12 +1,5 @@
 #include "ui.h"
 
-#define nb_options 4
-
-/*const char* txt_main_menu[nb_options] = {"New Game",
-                            "Load Game",
-                            "Options",
-                            "Quit"};*/
-
 static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font* font, GameSettings* settings, double dt) {
     char fps_text[50];
     int average_fps = fpsCounterUpdate(fps_counter, dt);
@@ -37,11 +30,6 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     renderScaledImageOrigin(renderer, menu->background, width, height);
 
     renderFps(fps_counter, renderer, font, settings, dt);
-
-    /*int i = 0;
-    while(i++, i <= nb_options){
-        drawTextWhite(renderer, font, txt_main_menu[i-1], (width-150), height-50*(nb_options+1-i));
-    }*/
 
     Button* newgame = menu->buttons->newgame;
 
