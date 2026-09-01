@@ -81,13 +81,8 @@ int main(int argc, char* argv[]) {
                 current_state = inGameMenu(window, renderer, &settings);
                 break;
                 
-            case STATE_GAME_PLAY:
-                //current_state = gamePlay(window, renderer, &settings);
-                current_state = STATE_MAIN_MENU;
-                break;
-                
             case STATE_SETTINGS:
-                //current_state = settingsMenu(window, renderer, &settings);
+                current_state = settingsMenu(window, renderer, &settings);
                 break;
                 
             case STATE_QUIT:
