@@ -93,6 +93,15 @@ void destroyMenu(MainMenu* menu) {
     
     destroyImage(menu->background);
     destroyImage(menu->cursor);
+    
+    #define X(name, action) \
+        if (menu->buttons.name) { \
+            destroyButton(menu->buttons.name); \
+            menu->buttons.name = NULL; \
+        } \
+    MAIN_MENU_BUTTONS
+    #undef X
+    
     menu->selected_index = -1;
     
     free(menu);
@@ -161,4 +170,19 @@ InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu) {
         case 7: return INGAME_QUIT;
         default: return WORLD;
     }
+}
+
+SettingsMenu* settingsMenuCreate(SDL_Renderer* renderer, GameSettings* settings){
+    SettingsMenu* menu = (SettingsMenu*)malloc(sizeof(SettingsMenu));
+    if (!menu) return NULL;
+    menu->background = loadImageMenu(renderer, "world1.png");
+    return menu;
+}
+
+void destroySettingsMenu(SettingsMenu* menu) {
+    if (!menu) return;
+    
+    destroyImage(menu->background);
+    
+    free(menu);
 }
