@@ -36,7 +36,6 @@ GameState settingsMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings*
                     case SDLK_ESCAPE:
                         running = 0;
                         state = STATE_MAIN_MENU;
-                        printf("⬅️ Retour au menu principal\n");
                         break;
                 }
             }
