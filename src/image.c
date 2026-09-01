@@ -1,6 +1,6 @@
 #include "image.h"
 
-Image* loadImageRatio(SDL_Renderer* renderer, const char* path, double ratio) {
+Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     if (!renderer) {
         printf("Erreur: renderer NULL\n");
         return NULL;
@@ -34,28 +34,28 @@ Image* loadImageRatio(SDL_Renderer* renderer, const char* path, double ratio) {
     return image;
 }
 
-Image* loadImageMenuRatio(SDL_Renderer* renderer, const char* path, double ratio) {
+Image* loadImageMenuScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     char full_path[1024];
     snprintf(full_path, 1024, "menu/%s", path);
-    return loadImageRatio(renderer, full_path, ratio);
+    return loadImageScaled(renderer, full_path, ratio);
 }
 
-Image* loadImageSystemRatio(SDL_Renderer* renderer, const char* path, double ratio) {
+Image* loadImageSystemScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     char full_path[1024];
     snprintf(full_path, 1024, "system/%s", path);
-    return loadImageRatio(renderer, full_path, ratio);
+    return loadImageScaled(renderer, full_path, ratio);
 }
 
 Image* loadImage(SDL_Renderer* renderer, const char* path){
-    return loadImageRatio(renderer, path, 1);
+    return loadImageScaled(renderer, path, 1);
 }
 
 Image* loadImageMenu(SDL_Renderer* renderer, const char* path){
-    return loadImageMenuRatio(renderer, path, 1);
+    return loadImageMenuScaled(renderer, path, 1);
 }
 
 Image* loadImageSystem(SDL_Renderer* renderer, const char* path){
-    return loadImageSystemRatio(renderer, path, 1);
+    return loadImageSystemScaled(renderer, path, 1);
 }
 
 void destroyImage(Image* image) {

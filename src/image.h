@@ -16,9 +16,9 @@ typedef struct {
 } Image;
 
 // Charger une image depuis le dossier assets/images/
-Image* loadImageRatio(SDL_Renderer* renderer, const char* path, double ratio);
-Image* loadImageMenuRatio(SDL_Renderer* renderer, const char* path, double ratio);
-Image* loadImageSystemRatio(SDL_Renderer* renderer, const char* path, double ratio);
+Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio);
+Image* loadImageMenuScaled(SDL_Renderer* renderer, const char* path, double ratio);
+Image* loadImageSystemScaled(SDL_Renderer* renderer, const char* path, double ratio);
 Image* loadImage(SDL_Renderer* renderer, const char* path);
 Image* loadImageMenu(SDL_Renderer* renderer, const char* path);
 Image* loadImageSystem(SDL_Renderer* renderer, const char* path);

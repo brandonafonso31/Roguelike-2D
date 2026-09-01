@@ -6,7 +6,7 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
         
     int ratio = 3;
 
-    Image* image_newgame = loadImageMenuRatio(renderer, "newgame.png", ratio);
+    Image* image_newgame = loadImageMenuScaled(renderer, "newgame.png", ratio);
     int width = image_newgame->width, height = image_newgame->height;
     int screen_w = settings->width;
     int screen_h = settings->height;
@@ -16,29 +16,29 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
     
     buttons->newgame = createButton(
         image_newgame,
-        loadImageMenuRatio(renderer, "newgame_clicked.png", ratio),
-        loadImageMenuRatio(renderer, "newgame_hover.png", ratio),
+        loadImageMenuScaled(renderer, "newgame_clicked.png", ratio),
+        loadImageMenuScaled(renderer, "newgame_hover.png", ratio),
         start_x, start_y, width, height
     );
     
     buttons->continue_game = createButton(
-        loadImageMenuRatio(renderer, "continue.png", ratio),
-        loadImageMenuRatio(renderer, "continue_clicked.png", ratio),
-        loadImageMenuRatio(renderer, "continue_hover.png", ratio),
+        loadImageMenuScaled(renderer, "continue.png", ratio),
+        loadImageMenuScaled(renderer, "continue_clicked.png", ratio),
+        loadImageMenuScaled(renderer, "continue_hover.png", ratio),
         start_x, start_y + (spacing + height), width, height
     );
     
     buttons->settings = createButton(
-        loadImageMenuRatio(renderer, "settings.png", ratio),
-        loadImageMenuRatio(renderer, "settings_clicked.png", ratio),
-        loadImageMenuRatio(renderer, "settings_hover.png", ratio),
+        loadImageMenuScaled(renderer, "settings.png", ratio),
+        loadImageMenuScaled(renderer, "settings_clicked.png", ratio),
+        loadImageMenuScaled(renderer, "settings_hover.png", ratio),
         start_x, start_y + 2 * (spacing + height), width, height
     );
     
     buttons->exit = createButton(
-        loadImageMenuRatio(renderer, "exit.png", ratio),
-        loadImageMenuRatio(renderer, "exit_clicked.png", ratio),
-        loadImageMenuRatio(renderer, "exit_hover.png", ratio),
+        loadImageMenuScaled(renderer, "exit.png", ratio),
+        loadImageMenuScaled(renderer, "exit_clicked.png", ratio),
+        loadImageMenuScaled(renderer, "exit_hover.png", ratio),
         start_x, start_y + 3 * (spacing + height), width, height
     );
     
