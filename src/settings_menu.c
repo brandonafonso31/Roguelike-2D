@@ -25,21 +25,7 @@ GameState settingsMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings*
     GameState state = STATE_SETTINGS;
     while (running) {
         // === INPUT ===
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                running = 0;
-                state = STATE_QUIT;
-            }
-            
-            if (event.type == SDL_KEYDOWN) {
-                switch(event.key.keysym.sym) {
-                    case SDLK_ESCAPE:
-                        running = 0;
-                        state = STATE_MAIN_MENU;
-                        break;
-                }
-            }
-        }
+        running = pollEventsSettingsMenu(menu, &event, &state);
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
