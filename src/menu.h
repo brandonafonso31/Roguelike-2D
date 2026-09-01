@@ -75,4 +75,13 @@ InGameMenu* inGameMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
 void destroyInGameMenu(InGameMenu* menu);
 InGameMenuAction getSelectedActionInGameMenu(InGameMenu* menu);
 
+typedef struct {
+    //Image* cursor; (not sure if using it or not)
+    //todo : scroll bar to change volume
+    Image* background;
+} SettingsMenu;
+
+SettingsMenu* settingsMenuCreate(SDL_Renderer* renderer, GameSettings* settings);
+void destroySettingsMenu(SettingsMenu* menu);
+
 #endif
