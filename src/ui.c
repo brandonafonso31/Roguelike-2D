@@ -10,10 +10,8 @@ static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font*
 
 void renderMainMenuButtons(MainMenu* menu, SDL_Renderer* renderer) {
     if (!menu || !menu->buttons) return;
-    
-    int count = sizeof(MainMenuButtons) / sizeof(Button*);
     Button** current = (Button**)menu->buttons;
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < NUMBER_OF_MAINMENU_BUTTONS; i++) {
         Button* button = current[i];
         if (button) drawButton(renderer, button);
     }
