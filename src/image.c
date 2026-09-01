@@ -1,9 +1,47 @@
 #include "image.h"
 
+Image* createEmptyImage(SDL_Renderer* renderer) {
+    if (!renderer) return NULL;
+    
+    int width = 200; int height = 75;
+    SDL_Surface* surface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
+    if (!surface) return NULL;
+    
+    int tile = 8;
+    Uint32 purple = SDL_MapRGBA(surface->format, 200, 0, 255, 255);
+    Uint32 black = SDL_MapRGBA(surface->format, 0, 0, 0, 255);
+    
+    for (int y = 0; y < height; y += tile) {
+        for (int x = 0; x < width; x += tile) {
+            SDL_Rect rect = {x, y, tile, tile};
+            Uint32 color = ((x/tile) + (y/tile)) % 2 ? purple : black;
+            SDL_FillRect(surface, &rect, color);
+        }
+    }
+    
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+    
+    if (!texture) return NULL;
+    
+    Image* image = malloc(sizeof(Image));
+    if (!image) {
+        SDL_DestroyTexture(texture);
+        return NULL;
+    }
+    
+    image->texture = texture;
+    image->width = width;
+    image->height = height;
+    image->ratio = 1.0;
+    
+    return image;
+}
+
 Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     if (!renderer) {
         printf("Erreur: renderer NULL\n");
-        return NULL;
+        return createEmptyImage(renderer);
     }
     
     char full_path[2048];
@@ -12,14 +50,14 @@ Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     SDL_Surface* surface = IMG_Load(full_path);
     if (!surface) {
         printf("Erreur chargement %s: %s\n", full_path, IMG_GetError());
-        return NULL;
+        return createEmptyImage(renderer);
     }
     
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     if (!texture) {
         printf("Erreur création texture: %s\n", SDL_GetError());
         SDL_FreeSurface(surface);
-        return NULL;
+        return createEmptyImage(renderer);
     }
     
     Image* image = (Image*)malloc(sizeof(Image));
