@@ -5,43 +5,45 @@ MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* setti
     if (!buttons) return NULL;
         
     int ratio = 3;
-
     Image* image_newgame = loadImageMenuScaled(renderer, "newgame.png", ratio);
     int width = image_newgame->width, height = image_newgame->height;
     int screen_w = settings->width;
     int screen_h = settings->height;
-    int start_x = screen_w - width - 10;
     int spacing = 10;
-    int start_y = screen_h - 4 * (spacing + height) - 20;
-    
-    buttons->newgame = createButton(
-        image_newgame,
-        loadImageMenuScaled(renderer, "newgame_clicked.png", ratio),
-        loadImageMenuScaled(renderer, "newgame_hover.png", ratio),
-        start_x, start_y, width, height
-    );
-    
-    buttons->continue_game = createButton(
-        loadImageMenuScaled(renderer, "continue.png", ratio),
-        loadImageMenuScaled(renderer, "continue_clicked.png", ratio),
-        loadImageMenuScaled(renderer, "continue_hover.png", ratio),
-        start_x, start_y + (spacing + height), width, height
-    );
-    
-    buttons->settings = createButton(
-        loadImageMenuScaled(renderer, "settings.png", ratio),
-        loadImageMenuScaled(renderer, "settings_clicked.png", ratio),
-        loadImageMenuScaled(renderer, "settings_hover.png", ratio),
-        start_x, start_y + 2 * (spacing + height), width, height
-    );
-    
-    buttons->exit = createButton(
-        loadImageMenuScaled(renderer, "exit.png", ratio),
-        loadImageMenuScaled(renderer, "exit_clicked.png", ratio),
-        loadImageMenuScaled(renderer, "exit_hover.png", ratio),
-        start_x, start_y + 3 * (spacing + height), width, height
-    );
-    
+    int start_x = screen_w - width - spacing;
+    int start_y = screen_h - NUMBER_OF_MAINMENU_BUTTONS * (spacing + height) - 2*spacing;
+        
+    const char* button_names[] = { 
+        #define X(name) #name,
+        MAIN_MENU_BUTTONS
+        #undef X 
+    };
+
+    Button** buttons_ptrs[] = { 
+        #define X(name) &buttons->name, 
+        MAIN_MENU_BUTTONS 
+        #undef X 
+    };
+
+    for (int i = 0; i < NUMBER_OF_MAINMENU_BUTTONS; i++) {
+        char path[256];
+        Image* normal = NULL;
+        Image* clicked = NULL;
+        Image* hover = NULL;
+        
+        snprintf(path, sizeof(path), "%s.png", button_names[i]);
+        normal = loadImageMenuScaled(renderer, path, ratio);
+        
+        snprintf(path, sizeof(path), "%s_clicked.png", button_names[i]);
+        clicked = loadImageMenuScaled(renderer, path, ratio);
+        
+        snprintf(path, sizeof(path), "%s_hover.png", button_names[i]);
+        hover = loadImageMenuScaled(renderer, path, ratio);
+
+        *buttons_ptrs[i] = createButton(normal, clicked, hover, start_x, \
+                                        start_y + i * (spacing + height), width, height);
+    }
+
     return buttons;
 }
 
@@ -54,7 +56,7 @@ MainMenu* menuCreate(SDL_Renderer* renderer, GameSettings* settings) {
     
     menu->buttons = initMainMenuButtons(renderer, settings);
     menu->selected_index = 0;
-    menu->button_count = sizeof(MainMenuButtons) / sizeof(Button*);;
+    menu->button_count = NUMBER_OF_MAINMENU_BUTTONS;
     
     return menu;
 }
@@ -66,7 +68,7 @@ void changeButtonFromIndex(MainMenu* menu, int index) {
     buttons->newgame->is_hovered = 0;
     buttons->continue_game->is_hovered = 0;
     buttons->settings->is_hovered = 0;
-    buttons->exit->is_hovered = 0;
+    buttons->quit->is_hovered = 0;
     
     switch (index) {
         case 0:
@@ -79,7 +81,7 @@ void changeButtonFromIndex(MainMenu* menu, int index) {
             buttons->settings->is_hovered = 1;
             break;
         case 3:
-            buttons->exit->is_hovered = 1;
+            buttons->quit->is_hovered = 1;
             break;
         default:
             break;

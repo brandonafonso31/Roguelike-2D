@@ -13,13 +13,19 @@ typedef enum {
     MENU_QUIT
 } MainMenuAction;
 
+#define MAIN_MENU_BUTTONS \
+    X(newgame) \
+    X(continue_game) \
+    X(settings) \
+    X(quit)
+
 typedef struct {
-    Button* newgame;
-    Button* continue_game;
-    Button* settings;
-    Button* exit;
+    #define X(name) Button* name;
+    MAIN_MENU_BUTTONS
+    #undef X
 } MainMenuButtons;
 
+#define NUMBER_OF_MAINMENU_BUTTONS (int)(sizeof(MainMenuButtons) / sizeof(Button*))
 MainMenuButtons* initMainMenuButtons(SDL_Renderer* renderer, GameSettings* settings);
 
 typedef struct {
