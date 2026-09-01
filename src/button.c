@@ -40,3 +40,8 @@ void drawButtonRatio(SDL_Renderer* renderer, Button* button, double ratio){
 void drawButton(SDL_Renderer* renderer, Button* button){
     drawButtonRatio(renderer, button, 1);
 }
+
+double getButtonHeight(Button* button){
+    return button->is_hovered ? button->normal_image->height : button->hover_image->height;
+}
+

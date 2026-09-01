@@ -22,5 +22,6 @@ Button* createButton(Image* normal_image, Image* click_image, Image* hover_image
 void destroyButton(Button* button);
 void drawButtonRatio(SDL_Renderer* renderer, Button* button, double ratio);
 void drawButton(SDL_Renderer* renderer, Button* button);
+double getButtonHeight(Button* button);
 
 #endif
