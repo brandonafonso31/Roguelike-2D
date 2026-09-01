@@ -15,6 +15,7 @@ typedef struct{
     int fullscreen;
     char font[1024];
 
+    int spacing;
 } GameSettings;
 
 void loadSettings(GameSettings* settings);

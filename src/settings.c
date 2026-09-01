@@ -15,6 +15,7 @@ void loadSettings(GameSettings* settings) {
         settings->vsync = 0;
         settings->volume = 80;
         settings->fullscreen = 0;
+        settings->spacing = 10;
         strcpy(settings->font, "pokemon_BW2.otf");
         return;
     }
@@ -40,6 +41,8 @@ void loadSettings(GameSettings* settings) {
             if (sscanf(line, "FONT=%s", temp) == 1) {
                 strcpy(settings->font, temp);
             }
+        } else if (strstr(line, "SPACING=")) {
+            sscanf(line, "SPACING=%d", &settings->spacing);
         }
     }
     
@@ -54,4 +57,5 @@ void loadSettings(GameSettings* settings) {
     printf("  FULLSCREEN = %d\n", settings->fullscreen);
     printf("  FONT = %s\n", settings->font);
 
+    printf("  SPACING (button in menu) = %d\n", settings->spacing);
 }
