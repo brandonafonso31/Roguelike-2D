@@ -24,6 +24,7 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     int height = settings->height;
     int width = settings->width;
     int index = menu->selected_index;
+    int spacing = settings->spacing;
 
     renderScaledImageOrigin(renderer, menu->background, width, height);
 
@@ -34,8 +35,8 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     renderMainMenuButtons(menu, renderer);
 
     if (index != -1)
-        renderImage(renderer,menu->cursor, (width - getButtonWidth(newgame) - 50) - 10, 
-                                            (height - (3-index) * (10 + getButtonHeight(newgame)) - 20) - 50);
+        renderImage(renderer,menu->cursor, width - getButtonWidth(newgame) - 6*spacing, 
+                                            height - (NUMBER_OF_MAINMENU_BUTTONS-1-index) * (spacing + getButtonHeight(newgame)) - 7*spacing);
     changeButtonFromIndex(menu, index);
 
     SDL_RenderPresent(renderer);
