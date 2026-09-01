@@ -14,13 +14,14 @@ typedef enum {
 } MainMenuAction;
 
 #define MAIN_MENU_BUTTONS \
-    X(newgame) \
-    X(continue_game) \
-    X(settings) \
-    X(quit)
+    X(newgame, MENU_NEW_GAME) \
+    X(continue_game, MENU_LOAD_GAME) \
+    X(settings, MENU_SETTINGS) \
+    X(quit, MENU_QUIT) \
+    X(test_button, MENU_QUIT)
 
 typedef struct {
-    #define X(name) Button* name;
+    #define X(name, action) Button* name;
     MAIN_MENU_BUTTONS
     #undef X
 } MainMenuButtons;
