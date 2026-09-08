@@ -85,13 +85,17 @@ int main(int argc, char* argv[]) {
                 current_state = settingsMenu(window, renderer, &settings);
                 break;
                 
+            case STATE_GAME_PLAY:
+                current_state = STATE_MAIN_MENU; //gameplay(window, renderer, &settings);
+                break;
+
             case STATE_QUIT:
                 printf("Fermeture du jeu !\n");
                 running = 0;    
                 break;
                 
             default:    
-                printf("État inconnu !\n");
+                printf("Etat inconnu !\n");
                 running = 0;
                 break;
         }
