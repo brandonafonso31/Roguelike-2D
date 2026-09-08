@@ -55,7 +55,7 @@ Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     if (!texture) {
-        printf("Erreur création texture: %s\n", SDL_GetError());
+        printf("Erreur creation texture: %s\n", SDL_GetError());
         SDL_FreeSurface(surface);
         return createEmptyImage(renderer);
     }
@@ -68,7 +68,7 @@ Image* loadImageScaled(SDL_Renderer* renderer, const char* path, double ratio) {
     
     SDL_FreeSurface(surface);
     
-    printf("Image chargée: %s (%dx%d)\n", full_path, image->width, image->height);
+    printf("Image chargee: %s (%dx%d)\n", full_path, image->width, image->height);
     return image;
 }
 
