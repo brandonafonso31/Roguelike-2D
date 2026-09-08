@@ -1,6 +1,8 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <stdio.h>
+
 typedef struct {
     int hp;
     int atk;
@@ -10,5 +12,6 @@ typedef struct {
 } Statistics;
 
 Statistics* setBasicStats();
+void destroyStatistics(Statistics* stats);
 
 #endif
