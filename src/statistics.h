@@ -9,4 +9,6 @@ typedef struct {
     int atk_speed;
 } Statistics;
 
+Statistics* setBasicStats();
+
 #endif
