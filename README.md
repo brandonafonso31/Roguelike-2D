@@ -3,14 +3,12 @@
 Un jeu roguelike en 2D développé en C avec SDL2. Plongez dans des donjons générés procéduralement, affrontez des monstres et collectez des trésors !
 A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 
-## 📸 Aperçu
+## 📸 Aperçu des Menus
 
 | New Game | Continue | Settings | Exit |
 |:---:|:---:|:---:|:---:|
 | ![](assets/images/system/screenshot_0.PNG) | ![](assets/images/system/screenshot_1.PNG) | ![](assets/images/system/screenshot_2.PNG) | ![](assets/images/system/screenshot_3.PNG) |
 
-| test Settings Menu |
-|:---:|
 | Main (Global settings) | Graphic | Sound |
 |:---:|:---:|:---:|
 | ![](assets/images/system/settings_screenshot_0.PNG) | ![](assets/images/system/settings_screenshot_1.PNG) | ![](assets/images/system/settings_screenshot_2.PNG) |
