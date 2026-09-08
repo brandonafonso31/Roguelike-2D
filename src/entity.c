@@ -17,3 +17,13 @@ Entity* initEntity(const char* name, Statistics* stats){
 
     return entity;
 }
+
+void destroyEntity(Entity* entity) {
+    if (!entity) return;
+
+    if (entity->stats) {
+        destroyStatistics(entity->stats);
+    }
+    
+    free(entity);
+}

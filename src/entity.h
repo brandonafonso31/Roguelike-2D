@@ -13,5 +13,6 @@ typedef struct {
 } Entity;
 
 Entity* initEntity(const char* name, Statistics* stats);
+void destroyEntity(Entity* entity);
 
 #endif
