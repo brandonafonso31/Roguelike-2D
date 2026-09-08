@@ -10,6 +10,7 @@ A chaque nouvel essai, vous devenez plus puissants et progressez plus loin !
 | ![](assets/images/system/screenshot_0.PNG) | ![](assets/images/system/screenshot_1.PNG) | ![](assets/images/system/screenshot_2.PNG) | ![](assets/images/system/screenshot_3.PNG) |
 
 | test Settings Menu |
+|:---:|
 | Main (Global settings) | Graphic | Sound |
 |:---:|:---:|:---:|
 | ![](assets/images/system/settings_screenshot_0.PNG) | ![](assets/images/system/settings_screenshot_1.PNG) | ![](assets/images/system/settings_screenshot_2.PNG) |
