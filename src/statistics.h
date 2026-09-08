@@ -7,6 +7,6 @@ typedef struct {
     int def;
     int speed;
     int atk_speed;
-} Stats;
+} Statistics;
 
 #endif
