@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
     int hp;
