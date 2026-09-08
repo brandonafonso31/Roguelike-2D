@@ -82,8 +82,8 @@ make run
 ✅ Chargement des configurations  
 ✅ Main Menu  
 🔄 Menu in Game (avant de rentrer dans les donjons)  
-⬜ Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
-⬜ MC, Armes, Ennemis, Loot    
+🔄 MC, Armes, Ennemis, Loot  
+🔄 Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
 ⬜ Système de combat  
 ⬜ Effets graphiques  
 ⬜ Effets sonores  
