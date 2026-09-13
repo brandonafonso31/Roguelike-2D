@@ -1,5 +1,0 @@
-id,type,name,description,value,rarity,damage,defense,heal_hp,range
-0,weapon,Épée en acier,Une épée bien aiguisée,100,1,15,0,0,1
-1,healing,Petite potion,Restaure 30 PV,20,0,0,0,30,0
-2,armor,Bouclier en bois,Un bouclier simple,30,0,0,5,0,0
-3,weapon,Dague,Rapide et légère,50,0,8,0,0,1
