@@ -6,6 +6,7 @@ Statistics* setBasicStats(){
         printf("Erreur allocation des statistiques\n");
         return NULL;
     }
+    stats->max_hp = 1;
     stats->hp = 1;
     stats->atk = 1;
     stats->def = 1;

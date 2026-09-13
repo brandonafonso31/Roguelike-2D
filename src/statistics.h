@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 typedef struct {
+    int max_hp;
     int hp;
     int atk;
     int def;
