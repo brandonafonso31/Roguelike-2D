@@ -1,6 +1,6 @@
 #include "entity.h"
 
-Entity* initEntity(const char* name, Statistics* stats){
+Entity* initEntity(const char* name, Statistics* stats, int x, int y){
     Entity* entity = (Entity*)malloc(sizeof(Entity));
 
     if (!name){
@@ -14,6 +14,8 @@ Entity* initEntity(const char* name, Statistics* stats){
         stats = setBasicStats();
     } else entity->stats = stats;
 
+    entity->pos_x = x; entity->pos_y = y;
+    entity->is_alive = 1;
 
     return entity;
 }

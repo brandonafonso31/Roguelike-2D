@@ -10,9 +10,11 @@
 typedef struct {
     char name[MAX_NAME_LENGTH];
     Statistics* stats;
+    int pos_x, pos_y;
+    int is_alive;
 } Entity;
 
-Entity* initEntity(const char* name, Statistics* stats);
+Entity* initEntity(const char* name, Statistics* stats, int x, int y);
 void destroyEntity(Entity* entity);
 
 #endif
