@@ -29,3 +29,15 @@ void destroyEntity(Entity* entity) {
     
     free(entity);
 }
+
+void updateHP(Entity* entity, double damage) {
+    if (!entity || !entity->stats) return;
+    
+    int* hp = &entity->stats->hp;
+    int max_hp = entity->stats->max_hp;
+    
+    *hp = *hp - (int)damage;
+    
+    if (*hp > max_hp) *hp = max_hp;
+    else if (*hp < 0) *hp = 0;
+}
