@@ -1,5 +1,5 @@
-#ifndef Entity_H
-#define Entity_H
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <stdlib.h>
 #include <string.h>

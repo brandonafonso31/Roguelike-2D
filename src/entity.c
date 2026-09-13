@@ -1,6 +1,6 @@
 #include "entity.h"
 
-Entity* initEntity(const char* name, Statistics* stats, int x, int y){
+Entity* initEntity(const char* name, Statistics* stats, int x, int y) {
     Entity* entity = (Entity*)malloc(sizeof(Entity));
 
     if (!name){
