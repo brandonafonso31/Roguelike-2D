@@ -1,6 +1,7 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include <stdlib.h>
 #define MAX_NAME_LENGTH 32
 
 typedef enum {
@@ -42,5 +43,7 @@ typedef struct {
     Item base;
     // add a way to describe an imporant event or something ...
 }KeyItem;
+
+Item* createItem(ItemType type, char* name, char* desc, int value, int rarity);
 
 #endif
