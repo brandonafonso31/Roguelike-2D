@@ -31,7 +31,8 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/button.c \
 	  $(SRC_DIR)/settings_menu.c \
 	  $(SRC_DIR)/entity.c \
-	  $(SRC_DIR)/statistics.c
+	  $(SRC_DIR)/statistics.c \
+	  $(SRC_DIR)/equipement.c
 
 # Fichiers objets (dans le dossier build)
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRC))
