@@ -7,7 +7,6 @@ int main(int argc, char* argv[]) {
     char json_entities_path[2048];
     snprintf(json_entities_path, sizeof(json_entities_path), "%s/%s", getDataPath(), "entities.json");
     EntityDatabase* db_entities = loadEntitiesFromJson(json_entities_path);
-
     GameSettings settings;
     loadSettings(&settings);        
 
@@ -81,7 +80,7 @@ int main(int argc, char* argv[]) {
                 break;
                 
             case STATE_INGAME_MENU:
-                current_state = inGameMenu(window, renderer, &settings);
+                current_state = inGameMenu(window, renderer, &settings, db_entities);
                 break;
                 
             case STATE_SETTINGS:
@@ -89,7 +88,7 @@ int main(int argc, char* argv[]) {
                 break;
                 
             case STATE_GAME_PLAY:
-                current_state = STATE_MAIN_MENU; //gameplay(window, renderer, &settings);
+                current_state = STATE_MAIN_MENU; //gameplay(window, renderer, &settings, db_entities);
                 break;
 
             case STATE_QUIT:
