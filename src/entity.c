@@ -33,7 +33,7 @@ void destroyEntity(Entity* entity) {
 void updateHP(Entity* entity, double damage) {
     if (!entity || !entity->stats) return;
     
-    int* hp = &entity->stats->hp;
+    int* hp = &entity->hp;
     int max_hp = entity->stats->max_hp;
     
     *hp = *hp - (int)damage;
