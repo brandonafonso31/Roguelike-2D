@@ -5,7 +5,7 @@ TARGET = roguelike
 CC = gcc
 
 # Options de compilation
-CFLAGS = -Wall -O2 -Iinclude
+CFLAGS = -Wall -O2 -Iinclude -Ilibs
 
 
 # Librairies à lier
@@ -15,6 +15,7 @@ LIBS = -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image
 SRC_DIR = src
 BUILD_DIR = build
 BIN_DIR = .
+LIBS_DIR = libs
 
 # Executables à compiler
 SRC = $(SRC_DIR)/main.c \
@@ -32,7 +33,8 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/settings_menu.c \
 	  $(SRC_DIR)/entity.c \
 	  $(SRC_DIR)/statistics.c \
-	  $(SRC_DIR)/item.c
+	  $(SRC_DIR)/item.c \
+	  $(LIBS_DIR)/cJSON.c
 
 # Fichiers objets (dans le dossier build)
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRC))
