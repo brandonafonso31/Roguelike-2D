@@ -17,6 +17,8 @@ const char* getConfigPath(void);
 const char* getFontsPath(void);
 const char* getImagesPath(void);
 const char* getSoundsPath(void);
+const char* getDataPath(void);
+
 const char* getMenuPath(void);
 const char* getSystemPath(void);
 
