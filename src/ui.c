@@ -10,7 +10,7 @@ static void renderFps(FPSCounter* fps_counter, SDL_Renderer* renderer, TTF_Font*
 
 // MainMenu
 
-void renderMainMenuButtons(MainMenu* menu, SDL_Renderer* renderer) {
+static void renderMainMenuButtons(MainMenu* menu, SDL_Renderer* renderer) {
     if (!menu || !menu->buttons) return;
     Button** current = (Button**)menu->buttons;
     for (int i = 0; i < NUMBER_OF_MAINMENU_BUTTONS; i++) {
@@ -46,7 +46,31 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
 
 // InGameMenu
 
-void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings) {
+static void renderWorldTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "MONDE", 50, 80);
+    drawTextBlack(renderer, font, "Explorez le monde et partez à l'aventure !", 50, 120);
+}
+
+static void renderInventoryTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "INVENTAIRE", 50, 80);
+    drawTextBlack(renderer, font, "Vos objets et equipements", 50, 120);
+}
+
+static void renderShopTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "SHOP", 50, 80);
+    drawTextBlack(renderer, font, "Achetez des objets pour vos aventures !", 50, 120);
+}
+
+static void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "UPGRADES", 50, 80);
+    drawTextBlack(renderer, font, "Ameliorez votre personnage !", 50, 120);
+}
+
+static void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+    drawTextWhite(renderer, font, "EN TRAVAUX", width/2 - 100, 150);
+}
+
+void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities) {
     int width = settings->width;
     int height = settings->height;
     
@@ -144,33 +168,106 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     SDL_RenderPresent(renderer);
 }
 
-void renderWorldTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "MONDE", 50, 80);
-    drawTextBlack(renderer, font, "Explorez le monde et partez à l'aventure !", 50, 120);
-}
-
-void renderInventoryTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "INVENTAIRE", 50, 80);
-    drawTextBlack(renderer, font, "Vos objets et equipements", 50, 120);
-}
-
-void renderShopTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "SHOP", 50, 80);
-    drawTextBlack(renderer, font, "Achetez des objets pour vos aventures !", 50, 120);
-}
-
-void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "UPGRADES", 50, 80);
-    drawTextBlack(renderer, font, "Ameliorez votre personnage !", 50, 120);
-}
-
-void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "EN TRAVAUX", width/2 - 100, 150);
-}
-
 // SettingsMenu
 
-void switchSettings(int id, SettingsMenu* menu, SDL_Renderer* renderer, double dt, TTF_Font* font, int width, int height, int content_x, int content_y, int line_spacing, int label_width, int value_x){
+static void renderMainSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
+    drawTextWhite(renderer, font, "MAIN SETTINGS", x, y);
+    y += spacing + 10;
+    
+    drawTextGray(renderer, font, "Difficulty :", x, y);
+    drawTextWhite(renderer, font, "ADVENTURE", val_x, y);
+    drawTextGray(renderer, font, "EASY", val_x + 110, y);
+    drawTextGray(renderer, font, "HARD", val_x + 180, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Cheats :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Infinite Gold :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Debug :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing + 10;
+    
+    drawTextGray(renderer, font, "Contrôles :", x, y);
+    drawTextWhite(renderer, font, "AZERTY", val_x, y);
+    drawTextGray(renderer, font, "QWERTY", val_x + 80, y);
+    drawTextGray(renderer, font, "ARROW", val_x + 170, y);
+    y += spacing + 10;
+}
+
+static void renderGraphicSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
+    drawTextWhite(renderer, font, "GRAPHIC SETTINGS", x, y);
+    y += spacing + 10;
+    
+    drawTextGray(renderer, font, "Gamma :", x, y);
+    float gamma = 0.5 + 0.4 * sin(dt * 0.5);
+    SDL_SetRenderDrawColor(renderer, 40, 40, 60, 200);
+    SDL_Rect bar_bg = {val_x, y + 5, 150, 20};
+    SDL_RenderFillRect(renderer, &bar_bg);
+    SDL_SetRenderDrawColor(renderer, 100, 150, 255, 200);
+    SDL_Rect bar_fg = {val_x, y + 5, (int)(150 * gamma), 20};
+    SDL_RenderFillRect(renderer, &bar_fg);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Lock FPS :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Fullscreen :", x, y);
+    drawTextGray(renderer, font, "ON", val_x, y);
+    drawTextWhite(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "VSYNC :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Cinematic Filter:", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing + 10;
+}
+
+static void renderSoundSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
+    drawTextWhite(renderer, font, "SOUND SETTINGS", x, y);
+    y += spacing + 10;
+    
+    drawTextGray(renderer, font, "Volume :", x, y);
+    float volume = 0.7 + 0.2 * sin(dt * 0.3);
+    SDL_SetRenderDrawColor(renderer, 40, 40, 60, 200);
+    SDL_Rect bar_bg = {val_x, y + 5, 150, 20};
+    SDL_RenderFillRect(renderer, &bar_bg);
+    SDL_SetRenderDrawColor(renderer, 100, 200, 150, 200);
+    SDL_Rect bar_fg = {val_x, y + 5, (int)(150 * volume), 20};
+    SDL_RenderFillRect(renderer, &bar_fg);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Musique :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "Sounds Effect :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+    
+    drawTextGray(renderer, font, "UI Sounds :", x, y);
+    drawTextWhite(renderer, font, "ON", val_x, y);
+    drawTextGray(renderer, font, "OFF", val_x + 60, y);
+    y += spacing;
+}
+
+static void switchSettings(int id, SettingsMenu* menu, SDL_Renderer* renderer, double dt, TTF_Font* font, int width, int height, int content_x, int content_y, int line_spacing, int label_width, int value_x){
     switch(id) {
         case 0:
             renderMainSettingsTab(renderer, font, width, height, dt, content_x, content_y, line_spacing, label_width, value_x);
@@ -249,101 +346,4 @@ void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
     
     SDL_RenderPresent(renderer);
-}
-
-void renderMainSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
-    drawTextWhite(renderer, font, "MAIN SETTINGS", x, y);
-    y += spacing + 10;
-    
-    drawTextGray(renderer, font, "Difficulty :", x, y);
-    drawTextWhite(renderer, font, "ADVENTURE", val_x, y);
-    drawTextGray(renderer, font, "EASY", val_x + 110, y);
-    drawTextGray(renderer, font, "HARD", val_x + 180, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Cheats :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Infinite Gold :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Debug :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing + 10;
-    
-    drawTextGray(renderer, font, "Contrôles :", x, y);
-    drawTextWhite(renderer, font, "AZERTY", val_x, y);
-    drawTextGray(renderer, font, "QWERTY", val_x + 80, y);
-    drawTextGray(renderer, font, "ARROW", val_x + 170, y);
-    y += spacing + 10;
-}
-
-void renderGraphicSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
-    drawTextWhite(renderer, font, "GRAPHIC SETTINGS", x, y);
-    y += spacing + 10;
-    
-    drawTextGray(renderer, font, "Gamma :", x, y);
-    float gamma = 0.5 + 0.4 * sin(dt * 0.5);
-    SDL_SetRenderDrawColor(renderer, 40, 40, 60, 200);
-    SDL_Rect bar_bg = {val_x, y + 5, 150, 20};
-    SDL_RenderFillRect(renderer, &bar_bg);
-    SDL_SetRenderDrawColor(renderer, 100, 150, 255, 200);
-    SDL_Rect bar_fg = {val_x, y + 5, (int)(150 * gamma), 20};
-    SDL_RenderFillRect(renderer, &bar_fg);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Lock FPS :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Fullscreen :", x, y);
-    drawTextGray(renderer, font, "ON", val_x, y);
-    drawTextWhite(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "VSYNC :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Cinematic Filter:", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing + 10;
-}
-
-void renderSoundSettingsTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, int x, int y, int spacing, int label_w, int val_x) {
-    drawTextWhite(renderer, font, "SOUND SETTINGS", x, y);
-    y += spacing + 10;
-    
-    drawTextGray(renderer, font, "Volume :", x, y);
-    float volume = 0.7 + 0.2 * sin(dt * 0.3);
-    SDL_SetRenderDrawColor(renderer, 40, 40, 60, 200);
-    SDL_Rect bar_bg = {val_x, y + 5, 150, 20};
-    SDL_RenderFillRect(renderer, &bar_bg);
-    SDL_SetRenderDrawColor(renderer, 100, 200, 150, 200);
-    SDL_Rect bar_fg = {val_x, y + 5, (int)(150 * volume), 20};
-    SDL_RenderFillRect(renderer, &bar_fg);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Musique :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "Sounds Effect :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
-    
-    drawTextGray(renderer, font, "UI Sounds :", x, y);
-    drawTextWhite(renderer, font, "ON", val_x, y);
-    drawTextGray(renderer, font, "OFF", val_x + 60, y);
-    y += spacing;
 }
