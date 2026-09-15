@@ -82,12 +82,12 @@ make run
 ✅ Chargement des configurations  
 ✅ Main Menu  
 ✅ Load les datas depuis un json  
-🔄 **Menu in Game** (avant de rentrer dans les donjons)  
-    --> ⬜ SHOP  
-    --> ⬜ INVENTAIRE  
-    --> ⬜ MONDE  
-    --> 🔄 UPGRADES  
-    --> ⬜ EN TRAVAUX  
+- 🔄 **Menu in Game** (avant de rentrer dans les donjons)  
+    - ⬜ SHOP  
+    - ⬜ INVENTAIRE  
+    - ⬜ MONDE  
+    - 🔄 UPGRADES  
+    - ⬜ EN TRAVAUX  
 🔄 MC, Armes, Ennemis, Loot  
 🔄 Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
 ⬜ Système de combat  
