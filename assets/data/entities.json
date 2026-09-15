@@ -11,7 +11,7 @@
                     "atk_speed":10
                 }
         },
-        
+
     "entities":[
         {
             "name":"monster1",
@@ -26,15 +26,14 @@
         }, 
         {
             "name":"monster2",
-            "stats":[
+            "stats":
                 {
                     "max_hp":20,
                     "atk":20,
                     "def":20,
                     "speed":20,
                     "atk_speed":20
-                }
-            ]            
+                }          
         }
     ]
 }
