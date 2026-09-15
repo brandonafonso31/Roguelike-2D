@@ -34,6 +34,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/entity.c \
 	  $(SRC_DIR)/statistics.c \
 	  $(SRC_DIR)/item.c \
+	  $(SRC_DIR)/json_loader.c \
 	  $(LIBS_DIR)/cJSON.c
 
 # Fichiers objets (dans le dossier build)
