@@ -107,7 +107,7 @@ int pollEventsInGameMenu(InGameMenu* menu, SDL_Event* event, GameState* state) {
                     break;
 
                 case SDLK_UP:
-                    if (!is_on_special) {
+                    if (!is_on_special && menu->selected_tab != 3) {
                         *last = *selected;
                         *selected = TAB_PLAY;
                     } else if (*selected == TAB_PLAY) {

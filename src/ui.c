@@ -61,9 +61,35 @@ static void renderShopTab(SDL_Renderer* renderer, TTF_Font* font, int width, int
     drawTextBlack(renderer, font, "Achetez des objets pour vos aventures !", 50, 120);
 }
 
-static void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
+static void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, EntityDatabase* db_entities) {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180);
+    SDL_RenderClear(renderer);
     drawTextWhite(renderer, font, "UPGRADES", 50, 80);
-    drawTextBlack(renderer, font, "Ameliorez votre personnage !", 50, 120);
+    if (!db_entities || !db_entities->player || !db_entities->player->stats) {
+        drawTextBlack(renderer, font, "Aucun personnage chargé", 50, 120);
+        return;
+    }
+
+    Entity* player = db_entities->player;
+    Statistics* s = player->stats;
+
+    char buffer[128];
+    snprintf(buffer, sizeof(buffer), "Personnage : %s", player->name);
+    drawTextBlack(renderer, font, buffer, 50, 120);
+
+    int x = width/3;
+    int y = height/3;
+    int spacing = 35;
+
+    snprintf(buffer, sizeof(buffer), "HP      : %d / %d", player->hp, s->max_hp);
+    drawTextWhite(renderer, font, buffer, x, y); y += spacing;
+
+    snprintf(buffer, sizeof(buffer), "Attack: %d     Defense: %d", s->atk, s->def);
+    drawTextWhite(renderer, font, buffer, x, y); y += spacing;
+
+    snprintf(buffer, sizeof(buffer), "Speed: %d      Atk Speed : %d",s->speed, s->atk_speed);
+    drawTextWhite(renderer, font, buffer, x, y); y += spacing;
+
 }
 
 static void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
@@ -87,7 +113,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
             renderWorldTab(renderer, font, width, height, dt);
             break;
         case 3:
-            renderUpgradesTab(renderer, font, width, height, dt);
+            renderUpgradesTab(renderer, font, width, height, dt, db_entities);
             break;
         case 4:
             renderWipTab(renderer, font, width, height, dt);
@@ -135,36 +161,38 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     
     renderFps(fps_counter, renderer, font, settings, dt);
     
-    // Play
-    int btn_w = 100;
-    int btn_h = 35;
-    int btn_x = width/2 - btn_w/2;
-    int btn_y = height/2 - btn_h/2;
-    float pulse = 0.9 + 0.1 * sin(dt * 1.5);
-    SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
-    SDL_Rect btn_rect = {btn_x, btn_y, btn_w, btn_h};
-    SDL_RenderFillRect(renderer, &btn_rect);
-    SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
-    SDL_RenderDrawRect(renderer, &btn_rect);
-    if (menu->selected_tab == menu->nb_tabs)
-        drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
-    drawTextWhite(renderer, font, "Play", btn_x + 15, btn_y + 8);
+    // Play et retour
+    if (menu->selected_tab != 3) {
+        // Play
+        int btn_w = 100;
+        int btn_h = 35;
+        int btn_x = width/2 - btn_w/2;
+        int btn_y = height/2 - btn_h/2;
+        float pulse = 0.9 + 0.1 * sin(dt * 1.5);
+        SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
+        SDL_Rect btn_rect = {btn_x, btn_y, btn_w, btn_h};
+        SDL_RenderFillRect(renderer, &btn_rect);
+        SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
+        SDL_RenderDrawRect(renderer, &btn_rect);
+        if (menu->selected_tab == menu->nb_tabs)
+            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+        drawTextWhite(renderer, font, "Play", btn_x + 15, btn_y + 8);
 
-    // Retour
-    btn_w = 100;
-    btn_h = 35;
-    btn_x = width - btn_w - 20;
-    btn_y = 20;    
-    pulse = 0.9 + 0.1 * sin(dt * 1.5);
-    SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
-    btn_rect = (SDL_Rect){btn_x, btn_y, btn_w, btn_h};
-    SDL_RenderFillRect(renderer, &btn_rect);
-    SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
-    SDL_RenderDrawRect(renderer, &btn_rect);
-    if (menu->selected_tab == menu->nb_tabs+1)
-        drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
-    drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
-    
+        // Retour
+        btn_w = 100;
+        btn_h = 35;
+        btn_x = width - btn_w - 20;
+        btn_y = 20;    
+        pulse = 0.9 + 0.1 * sin(dt * 1.5);
+        SDL_SetRenderDrawColor(renderer, 60 * pulse, 50 * pulse, 50 * pulse, 255);
+        btn_rect = (SDL_Rect){btn_x, btn_y, btn_w, btn_h};
+        SDL_RenderFillRect(renderer, &btn_rect);
+        SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
+        SDL_RenderDrawRect(renderer, &btn_rect);
+        if (menu->selected_tab == menu->nb_tabs+1)
+            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+        drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
+    }
     SDL_RenderPresent(renderer);
 }
 
