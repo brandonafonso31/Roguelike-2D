@@ -6,6 +6,8 @@ static char config_path[MAX_PATH_LENGTH] = {0};
 static char sounds_path[MAX_PATH_LENGTH] = {0};
 static char images_path[MAX_PATH_LENGTH] = {0};
 static char fonts_path[MAX_PATH_LENGTH] = {0};
+static char data_path[MAX_PATH_LENGTH] = {0};
+
 static char menu_path[MAX_PATH_LENGTH] = {0};
 static char system_path[MAX_PATH_LENGTH] = {0};
 static int initialized = 0;
@@ -19,7 +21,8 @@ const char* list_subsubfolders[] = {
     "/config",
     "/sounds", 
     "/images",
-    "/fonts"
+    "/fonts",
+    "/data"
 };
 
 const int listSubfoldersCount = sizeof(list_subfolders) / sizeof(list_subfolders[0]);
@@ -41,6 +44,8 @@ void InitPaths(void) {
     snprintf(sounds_path, sizeof(sounds_path), "%s%s", assets_path, list_subsubfolders[1]);
     snprintf(images_path, sizeof(images_path), "%s%s", assets_path, list_subsubfolders[2]);
     snprintf(fonts_path, sizeof(fonts_path), "%s%s", assets_path, list_subsubfolders[3]);
+    snprintf(data_path, sizeof(data_path), "%s%s", assets_path, list_subsubfolders[4]);
+
     snprintf(menu_path, sizeof(menu_path)+sizeof("/menu"), "%s%s", images_path, "/menu");
     snprintf(system_path, sizeof(system_path)+sizeof("/system"), "%s%s", images_path, "/system");
 
@@ -52,6 +57,7 @@ void InitPaths(void) {
     printf("Sounds path: %s\n", sounds_path);
     printf("Images path: %s\n", images_path);
     printf("Font path: %s\n", fonts_path);
+    printf("Data path: %s\n", data_path);
 
     printf("Menu path: %s\n", menu_path);
     printf("System path: %s\n", system_path);
@@ -86,6 +92,11 @@ const char* getImagesPath(void) {
 const char* getSoundsPath(void) {
     if (!initialized) InitPaths();
     return sounds_path;
+}
+
+const char* getDataPath(void) {
+    if (!initialized) InitPaths();
+    return data_path;
 }
 
 const char* getMenuPath(void) {
