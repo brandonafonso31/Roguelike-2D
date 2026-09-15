@@ -22,8 +22,8 @@ SRC = $(SRC_DIR)/main.c \
       $(SRC_DIR)/settings.c \
       $(SRC_DIR)/fps_utils.c \
       $(SRC_DIR)/paths.c \
-	  $(SRC_DIR)/main_menu.c\
-	  $(SRC_DIR)/poll_events.c\
+	  $(SRC_DIR)/main_menu.c \
+	  $(SRC_DIR)/poll_events.c \
 	  $(SRC_DIR)/ui.c \
 	  $(SRC_DIR)/image.c \
 	  $(SRC_DIR)/menu.c \
@@ -70,8 +70,7 @@ show:
 	@echo "Objets: $(OBJ)"
 
 
-test:
-	make clean run
+test: rebuild run
 
 # Pour Windows
 run-win: $(BIN_DIR)/$(TARGET).exe
