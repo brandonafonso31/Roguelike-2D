@@ -83,11 +83,11 @@ make run
 ✅ Main Menu  
 ✅ Load les datas depuis un json  
 🔄 Menu in Game (avant de rentrer dans les donjons)  
-&nbsp;&nbsp;&nbsp;&nbsp;&hookrightarrow; ⬜ SHOP  
-&nbsp;&nbsp;&nbsp;&nbsp;&hookrightarrow; ⬜ INVENTAIRE  
-&nbsp;&nbsp;&nbsp;&nbsp;&hookrightarrow; ⬜ MONDE  
-&nbsp;&nbsp;&nbsp;&nbsp;&hookrightarrow; 🔄 UPGRADES  
-&nbsp;&nbsp;&nbsp;&nbsp;&hookrightarrow; ⬜ EN TRAVAUX  
+&nbsp;&nbsp;&nbsp;&nbsp;➤ ⬜ SHOP  
+&nbsp;&nbsp;&nbsp;&nbsp;➤ ⬜ INVENTAIRE  
+&nbsp;&nbsp;&nbsp;&nbsp;➤ ⬜ MONDE  
+&nbsp;&nbsp;&nbsp;&nbsp;➤ 🔄 UPGRADES  
+&nbsp;&nbsp;&nbsp;&nbsp;➤ ⬜ EN TRAVAUX  
 🔄 MC, Armes, Ennemis, Loot  
 🔄 Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
 ⬜ Système de combat  
