@@ -77,22 +77,22 @@ make run
 
 ## 📝 Roadmap
 
-- ✅ Structure de base  
-- ✅ Gestion des FPS  
-- ✅ Chargement des configurations  
-- ✅ Main Menu  
-- ✅ Load les datas depuis un json  
-- 🔄 Menu in Game (avant de rentrer dans les donjons)  
-    - ⬜ SHOP  
-    - ⬜ INVENTAIRE  
-    - ⬜ MONDE  
-    - 🔄 UPGRADES  
-    - ⬜ EN TRAVAUX  
-- 🔄 MC, Armes, Ennemis, Loot  
-- 🔄 Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
-- ⬜ Système de combat  
-- ⬜ Effets graphiques  
-- ⬜ Effets sonores  
-- ⬜ Génération de donjons  
-- ⬜ Inventaire  
-- ⬜ Sauvegarde  
+✅ Structure de base  
+✅ Gestion des FPS  
+✅ Chargement des configurations  
+✅ Main Menu  
+✅ Load les datas depuis un json  
+🔄 Menu in Game (avant de rentrer dans les donjons)  
+&nbsp&nbsp⬜ SHOP  
+&nbsp&nbsp⬜ INVENTAIRE  
+&nbsp&nbsp⬜ MONDE  
+&nbsp&nbsp🔄 UPGRADES  
+&nbsp&nbsp⬜ EN TRAVAUX  
+🔄 MC, Armes, Ennemis, Loot  
+🔄 Utiliser la structure Button au lieu de hard coder les boutons (rajouter les clics souris ...)  
+⬜ Système de combat  
+⬜ Effets graphiques  
+⬜ Effets sonores  
+⬜ Génération de donjons  
+⬜ Inventaire  
+⬜ Sauvegarde  
