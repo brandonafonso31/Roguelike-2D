@@ -4,6 +4,9 @@
 int main(int argc, char* argv[]) {
 
     InitPaths();
+    char json_entities_path[2048];
+    snprintf(json_entities_path, sizeof(json_entities_path), "%s/%s", getDataPath(), "entities.json");
+    EntityDatabase* db_entities = loadEntitiesFromJson(json_entities_path);
 
     GameSettings settings;
     loadSettings(&settings);        
