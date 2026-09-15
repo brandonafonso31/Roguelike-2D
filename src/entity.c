@@ -11,12 +11,12 @@ Entity* initEntity(const char* name, Statistics* stats) {
     }
 
     if (!stats){
-        stats = setBasicStats();
+        stats = InitBasicStats();
     } else entity->stats = stats;
 
     entity->pos_x = 0; entity->pos_y = 0;
     entity->is_alive = 1;
-
+    entity->hp = stats->max_hp;
     return entity;
 }
 

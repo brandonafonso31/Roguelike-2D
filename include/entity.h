@@ -12,6 +12,7 @@ typedef struct {
     Statistics* stats;
     int pos_x, pos_y;
     int is_alive;
+    int hp;
 } Entity;
 
 Entity* initEntity(const char* name, Statistics* stats);
