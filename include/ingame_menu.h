@@ -10,7 +10,8 @@
 #include "ui.h"
 #include "menu.h"
 #include "game_state.h"
+#include "json_loader.h"
 
-GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings);
+GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, EntityDatabase* db_entities);
 
 #endif

@@ -1,6 +1,6 @@
 #include "ingame_menu.h"
 
-GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings) {
+GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, EntityDatabase* db_entities) {
 
     SDL_Event event;
     char font_full_path[2048];
@@ -29,7 +29,7 @@ GameState inGameMenu(SDL_Window* window, SDL_Renderer* renderer, GameSettings* s
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
-        renderInGameMenuUI(menu, &fps_counter, renderer, dt, font, settings);
+        renderInGameMenuUI(menu, &fps_counter, renderer, dt, font, settings, db_entities);
         //---------------- FPS LIMIT ----------------//
         waitOrNot(&fps_counter, settings);
     }
