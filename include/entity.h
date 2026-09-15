@@ -14,7 +14,7 @@ typedef struct {
     int is_alive;
 } Entity;
 
-Entity* initEntity(const char* name, Statistics* stats, int x, int y);
+Entity* initEntity(const char* name, Statistics* stats);
 void destroyEntity(Entity* entity);
 void updateHP(Entity* entity, double damage);
 
