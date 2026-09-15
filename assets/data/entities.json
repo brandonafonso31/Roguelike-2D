@@ -1,8 +1,8 @@
 {
-    "player":[
+    "player":
         {
             "name":"username",
-            "stats":[
+            "stats":
                 {
                     "max_hp":10,
                     "atk":10,
@@ -10,13 +10,12 @@
                     "speed":10,
                     "atk_speed":10
                 }
-            ]
-        }
-    ],
+        },
+        
     "entities":[
         {
             "name":"monster1",
-            "stats":[
+            "stats":
                 {
                     "max_hp":10,
                     "atk":10,
@@ -24,7 +23,6 @@
                     "speed":10,
                     "atk_speed":10
                 }
-            ]
         }, 
         {
             "name":"monster2",
