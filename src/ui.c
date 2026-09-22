@@ -125,7 +125,13 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int tab_height = 50;
     int tab_width = width / tab_count;
     int y_offset = height - tab_height;
-    
+
+    int nb = menu->nb_tabs;
+    const int TAB_PLAY = nb;
+    const int TAB_RETURN = nb + 1;
+    int* selected = &menu->selected_tab;
+    int is_on_special = (*selected == TAB_PLAY || *selected == TAB_RETURN);
+
     for (int i = 0; i < tab_count; i++) {
         int x = i * tab_width;
         SDL_Rect tab_rect = {x, y_offset, tab_width, tab_height};
@@ -162,7 +168,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     renderFps(fps_counter, renderer, font, settings, dt);
     
     // Play et retour
-    if (menu->selected_tab != 3) {
+    if (menu->selected_tab == 2 || is_on_special) {
         // Play
         int btn_w = 100;
         int btn_h = 35;
