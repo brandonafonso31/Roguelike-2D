@@ -101,8 +101,9 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int width = settings->width;
     int height = settings->height;
     
+    renderScaledImageOrigin(renderer, menu->background, width, height);
     
-    
+    // render tabs
     switch(menu->selected_tab) {
         case 0:
             renderShopTab(renderer, font, width, height, dt);
@@ -111,7 +112,6 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
             renderInventoryTab(renderer, font, width, height, dt);
             break;
         case 2:
-            renderScaledImageOrigin(renderer, menu->background, width, height);
             renderWorldTab(renderer, font, width, height, dt);
             break;
         case 3:
@@ -134,6 +134,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     int* selected = &menu->selected_tab;
     int is_on_special = (*selected == TAB_PLAY || *selected == TAB_RETURN);
 
+    // button and triangle
     for (int i = 0; i < tab_count; i++) {
         int x = i * tab_width;
         SDL_Rect tab_rect = {x, y_offset, tab_width, tab_height};
@@ -153,7 +154,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         SDL_RenderDrawRect(renderer, &tab_rect);
         
         if (i == menu->selected_tab) {
-            drawColoredTriangle(x,y_offset,renderer,tab_width,"BLACK");
+            drawColoredTriangle(x,y_offset,renderer,tab_width,"GREEN");
         }
         
         int text_w = strlen(tabs[i]) * 12;
@@ -182,8 +183,8 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         SDL_RenderFillRect(renderer, &btn_rect);
         SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
         SDL_RenderDrawRect(renderer, &btn_rect);
-        if (menu->selected_tab == menu->nb_tabs)
-            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+        if (menu->selected_tab == TAB_PLAY)
+            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"GREEN");
         drawTextWhite(renderer, font, "Play", btn_x + 15, btn_y + 8);
 
         // Retour
@@ -197,8 +198,8 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
         SDL_RenderFillRect(renderer, &btn_rect);
         SDL_SetRenderDrawColor(renderer, 150, 80, 80, 255);
         SDL_RenderDrawRect(renderer, &btn_rect);
-        if (menu->selected_tab == menu->nb_tabs+1)
-            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"BLACK");
+        if (menu->selected_tab == TAB_RETURN)
+            drawColoredTriangle(btn_x,btn_y,renderer,btn_w,"GREEN");
         drawTextWhite(renderer, font, "Retour", btn_x + 15, btn_y + 8);
     }
     SDL_RenderPresent(renderer);
