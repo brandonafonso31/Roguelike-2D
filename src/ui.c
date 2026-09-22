@@ -29,7 +29,6 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
     int spacing = settings->spacing;
 
     renderScaledImageOrigin(renderer, menu->background, width, height);
-
     renderFps(fps_counter, renderer, font, settings, dt);
 
     Button* newgame = menu->buttons->newgame;
@@ -46,25 +45,27 @@ void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* ren
 
 // InGameMenu
 
+static void renderBlackBackground(SDL_Renderer* renderer, TTF_Font* font, const char* txt){
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    drawTextWhite(renderer, font, txt, 50, 80);
+}
+
 static void renderWorldTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
     drawTextWhite(renderer, font, "MONDE", 50, 80);
     drawTextBlack(renderer, font, "Explorez le monde et partez à l'aventure !", 50, 120);
 }
 
 static void renderInventoryTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "INVENTAIRE", 50, 80);
-    drawTextBlack(renderer, font, "Vos objets et equipements", 50, 120);
+    renderBlackBackground(renderer, font, "INVENTORY");
 }
 
 static void renderShopTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "SHOP", 50, 80);
-    drawTextBlack(renderer, font, "Achetez des objets pour vos aventures !", 50, 120);
+    renderBlackBackground(renderer, font, "SHOP");
 }
 
 static void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt, EntityDatabase* db_entities) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180);
-    SDL_RenderClear(renderer);
-    drawTextWhite(renderer, font, "UPGRADES", 50, 80);
+    renderBlackBackground(renderer, font, "UPGRADES");
     if (!db_entities || !db_entities->player || !db_entities->player->stats) {
         drawTextBlack(renderer, font, "Aucun personnage chargé", 50, 120);
         return;
@@ -93,14 +94,14 @@ static void renderUpgradesTab(SDL_Renderer* renderer, TTF_Font* font, int width,
 }
 
 static void renderWipTab(SDL_Renderer* renderer, TTF_Font* font, int width, int height, double dt) {
-    drawTextWhite(renderer, font, "EN TRAVAUX", width/2 - 100, 150);
+    renderBlackBackground(renderer, font, "WORK IN PROGRESS");
 }
 
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities) {
     int width = settings->width;
     int height = settings->height;
     
-    renderScaledImageOrigin(renderer, menu->background, width, height);
+    
     
     switch(menu->selected_tab) {
         case 0:
@@ -110,6 +111,7 @@ void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
             renderInventoryTab(renderer, font, width, height, dt);
             break;
         case 2:
+            renderScaledImageOrigin(renderer, menu->background, width, height);
             renderWorldTab(renderer, font, width, height, dt);
             break;
         case 3:
