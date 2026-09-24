@@ -81,8 +81,8 @@ void renderPlayer(SDL_Renderer* renderer, Entity* player) {
     
     double PI = 3.14159;
 
-    int cx = 20;
-    int cy = 20;
+    int cx = player->pos_x;
+    int cy = player->pos_y;
     int radius = 8;
     
     for (int r = radius; r > 0; r--) {
