@@ -69,7 +69,7 @@ int main(int argc, char* argv[]) {
         SDL_FreeSurface(icon);
     }
 
-
+    Entity* player = db_entities->player;
     GameState current_state = STATE_MAIN_MENU;
     int running = 1;
     
@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
                 break;
                 
             case STATE_GAME_PLAY:
-                current_state = gameplay(window, renderer, &settings, db_entities);
+                current_state = gameplay(window, renderer, &settings, player, db_entities);
                 break;
 
             case STATE_QUIT:

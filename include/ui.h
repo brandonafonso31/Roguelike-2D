@@ -11,6 +11,7 @@
 #include "menu.h"
 #include "button.h"
 #include "json_loader.h"
+#include "ingame_interface.h"
 
 extern const char* txt_main_menu[];
 
