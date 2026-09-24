@@ -1,6 +1,6 @@
 #include "render_function.h"
 
-void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y, SDL_Color color) {
+void renderText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y, SDL_Color color) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_Rect dst_rect = {x, y, surface->w, surface->h};
@@ -9,19 +9,19 @@ void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, i
     SDL_DestroyTexture(texture);
 }
 
-void drawTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+void renderTextWhite(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
     SDL_Color color = readColor("WHITE");
-    drawText(renderer, font, text, x, y, color);
+    renderText(renderer, font, text, x, y, color);
 }
 
-void drawTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+void renderTextGray(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
     SDL_Color color = readColor("GRAY");
-    drawText(renderer, font, text, x, y, color);
+    renderText(renderer, font, text, x, y, color);
 }
 
-void drawTextBlack(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
+void renderTextBlack(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y) {
     SDL_Color color = readColor("BLACK");
-    drawText(renderer, font, text, x, y, color);
+    renderText(renderer, font, text, x, y, color);
 }
 
 SDL_Color readColor(const char* color_name) {
@@ -54,7 +54,7 @@ SDL_Color readColor(const char* color_name) {
     return default_color;
 }
 
-void drawTriangle(int x, int y, SDL_Renderer* renderer, int width) {
+void renderTriangle(int x, int y, SDL_Renderer* renderer, int width) {
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     int tri_x = x + width / 2;
@@ -65,7 +65,7 @@ void drawTriangle(int x, int y, SDL_Renderer* renderer, int width) {
     }
 }
 
-void drawColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, const char* color_name) {
+void renderColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, const char* color_name) {
     SDL_Color color = readColor(color_name);
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
     int tri_x = x + width / 2;
