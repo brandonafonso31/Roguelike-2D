@@ -5,7 +5,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "settings.h"
 #include "fps_utils.h"
-#include "drawing_function.h"
+#include "render_function.h"
 #include "fps_utils.h"
 #include "image.h"
 #include "menu.h"

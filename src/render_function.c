@@ -1,4 +1,4 @@
-#include "drawing_function.h"
+#include "render_function.h"
 
 void drawText(SDL_Renderer* renderer, TTF_Font* font, const char* text, int x, int y, SDL_Color color) {
     SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
