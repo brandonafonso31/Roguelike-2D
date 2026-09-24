@@ -76,6 +76,20 @@ void renderColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, cons
     }
 }
 
-void renderPlayer(Entity* player){
-    &player;
+void renderPlayer(SDL_Renderer* renderer, Entity* player) {
+    SDL_SetRenderDrawColor(renderer, 0, 200, 255, 255);
+    
+    double PI = 3.14159;
+
+    int cx = 20;
+    int cy = 20;
+    int radius = 8;
+    
+    for (int r = radius; r > 0; r--) {
+        for (int angle = 0; angle < 360; angle++) {
+            int x = cx + (int)(r * cos(angle * PI / 180.0));
+            int y = cy + (int)(r * sin(angle * PI / 180.0));
+            SDL_RenderDrawPoint(renderer, x, y);
+        }
+    }
 }
