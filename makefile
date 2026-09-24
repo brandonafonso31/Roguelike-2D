@@ -36,6 +36,7 @@ SRC = $(SRC_DIR)/main.c \
 	  $(SRC_DIR)/item.c \
 	  $(SRC_DIR)/json_loader.c \
 	  $(SRC_DIR)/gameplay.c \
+	  $(SRC_DIR)/ingame_interface.c \
 	  $(LIBS_DIR)/cJSON.c 
 
 # Fichiers objets (dans le dossier build)
