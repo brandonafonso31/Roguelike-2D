@@ -384,3 +384,5 @@ void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer*
     
     SDL_RenderPresent(renderer);
 }
+
+//void renderInterfaceInGame(Interface interface, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities){}
