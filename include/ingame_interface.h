@@ -10,10 +10,10 @@
 typedef struct {
     Entity* player;
     Image* background;
-    // Camera ?
-    // hp bar
-    // mini map ?
-
+    int move_up;
+    int move_down;
+    int move_left;
+    int move_right;
 } Interface;
 
 Interface* interfaceInit(SDL_Renderer* renderer, Entity* player); //need to add csv with dungeon information (entity, background path ...)
