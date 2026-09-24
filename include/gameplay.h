@@ -8,10 +8,10 @@
 #include "paths.h"
 #include "poll_events.h"
 #include "ui.h"
-#include "menu.h"
 #include "game_state.h"
 #include "json_loader.h"
+#include "ingame_interface.h"
 
-GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, EntityDatabase* db_entities);
+GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, Entity* player, EntityDatabase* db_entities);
 
 #endif
