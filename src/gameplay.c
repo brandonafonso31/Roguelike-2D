@@ -25,11 +25,11 @@ GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* set
     GameState state = STATE_GAME_PLAY;
     while (running) {
         //---------------- INPUT ----------------//
-        //running = pollEventsGameplay(menu, &event, &state); 
+        running = pollEventsGameplay(interface, &event, &state); 
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
-        //renderInterfaceInGame(menu, &fps_counter, renderer, dt, font, settings, db_entities);
+        renderInterfaceInGame(interface, &fps_counter, renderer, dt, font, settings, db_entities);
         //---------------- FPS LIMIT ----------------//
         waitOrNot(&fps_counter, settings);
     }
