@@ -202,4 +202,38 @@ int pollEventsSettingsMenu(SettingsMenu* menu, SDL_Event* event, GameState* stat
     return running;
 }
 
-//int pollEventsGameplay( Interface* interface, SDL_Event* event, GameState* state){}
+int pollEventsGameplay(Interface* interface, SDL_Event* event, GameState* state) {
+    int running = 1;
+    
+    while (SDL_PollEvent(event)) {
+        if (event->type == SDL_QUIT) {
+            running = 0;
+            *state = STATE_QUIT;
+        }
+        
+        if (event->type == SDL_KEYDOWN) {
+            switch (event->key.keysym.sym) {
+                case SDLK_ESCAPE:
+                    running = 0;
+                    *state = STATE_MAIN_MENU;
+                    break;
+                    
+                case SDLK_UP:    interface->move_up    = 1; break;
+                case SDLK_DOWN:  interface->move_down  = 1; break;
+                case SDLK_LEFT:  interface->move_left  = 1; break;
+                case SDLK_RIGHT: interface->move_right = 1; break;
+            }
+        }
+        
+        if (event->type == SDL_KEYUP) {
+            switch (event->key.keysym.sym) {
+                case SDLK_UP:    interface->move_up    = 0; break;
+                case SDLK_DOWN:  interface->move_down  = 0; break;
+                case SDLK_LEFT:  interface->move_left  = 0; break;
+                case SDLK_RIGHT: interface->move_right = 0; break;
+            }
+        }
+    }
+    
+    return running;
+}
