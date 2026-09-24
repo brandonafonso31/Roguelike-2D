@@ -1,5 +1,28 @@
 #include "gameplay.h"
 
+static void updateGameplay(Interface* interface, double dt) {
+    Entity* player = interface->player;
+    float speed = 200.0f;  // 200 pixels par seconde
+    
+    int dx = 0;
+    int dy = 0;
+    
+    if (interface->move_left)  dx -= 1;
+    if (interface->move_right) dx += 1;
+    if (interface->move_up)    dy -= 1;
+    if (interface->move_down)  dy += 1;
+    
+    // Normaliser en diagonale (optionnel mais plus propre)
+    if (dx != 0 && dy != 0) {
+        float norm = 0.7071f;  // 1/sqrt(2)
+        player->pos_x += (int)(dx * speed * dt * norm);
+        player->pos_y += (int)(dy * speed * dt * norm);
+    } else {
+        player->pos_x += (int)(dx * speed * dt);
+        player->pos_y += (int)(dy * speed * dt);
+    }
+}
+
 GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, Entity* player, EntityDatabase* db_entities){
 
     SDL_Event event;
@@ -29,6 +52,7 @@ GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* set
         //---------------- Delta ----------------//
         dt = fpsCounterGetDeltaTime(&fps_counter);
         //---------------- RENDER ---------------//
+        updateGameplay(interface, dt);
         renderInterfaceInGame(interface, &fps_counter, renderer, dt, font, settings, db_entities);
         //---------------- FPS LIMIT ----------------//
         waitOrNot(&fps_counter, settings);
