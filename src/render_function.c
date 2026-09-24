@@ -75,3 +75,7 @@ void renderColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, cons
         SDL_RenderDrawPoint(renderer, tri_x + j, tri_y - j);
     }
 }
+
+void renderPlayer(Entity* player){
+    &player;
+}

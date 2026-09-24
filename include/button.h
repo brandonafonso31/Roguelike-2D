@@ -21,8 +21,8 @@ typedef struct {
 Button* createButtonWithText(Image* normal_image, Image* click_image, Image* hover_image, char* text, int x, int y, int w, int h);
 Button* createButton(Image* normal_image, Image* click_image, Image* hover_image, int x, int y, int w, int h);
 void destroyButton(Button* button);
-void drawButtonScaled(SDL_Renderer* renderer, Button* button, double ratio);
-void drawButton(SDL_Renderer* renderer, Button* button);
+void renderButtonScaled(SDL_Renderer* renderer, Button* button, double ratio);
+void renderButton(SDL_Renderer* renderer, Button* button);
 double getButtonHeight(Button* button);
 double getButtonWidth(Button* button);
 

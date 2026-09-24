@@ -34,13 +34,13 @@ void destroyButton(Button* button) {
     free(button);
 }
 
-void drawButtonScaled(SDL_Renderer* renderer, Button* button, double ratio){
+void renderButtonScaled(SDL_Renderer* renderer, Button* button, double ratio){
     Image* button_image = (button->is_hovered) ? button->hover_image : button->normal_image;
     renderScaledRatioImage(renderer, button_image, button->rect.x, button->rect.y, ratio);
 }
 
-void drawButton(SDL_Renderer* renderer, Button* button){
-    drawButtonScaled(renderer, button, 1);
+void renderButton(SDL_Renderer* renderer, Button* button){
+    renderButtonScaled(renderer, button, 1);
 }
 
 double getButtonHeight(Button* button){
