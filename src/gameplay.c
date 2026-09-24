@@ -1,6 +1,6 @@
 #include "gameplay.h"
 
-GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, EntityDatabase* db_entities){
+GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* settings, Entity* player, EntityDatabase* db_entities){
 
     SDL_Event event;
     char font_full_path[2048];
@@ -11,9 +11,9 @@ GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* set
         return MENU_QUIT;
     }
     
-    InGameMenu* menu = inGameMenuCreate(renderer, settings);
-    if (!menu) {
-        printf("Erreur création du menu\n");
+    Interface* interface = interfaceInit(renderer, player);
+    if (!interface) {
+        printf("Erreur création interface\n");
         return MENU_QUIT;
     }
 
@@ -35,6 +35,6 @@ GameState gameplay(SDL_Window* window, SDL_Renderer* renderer, GameSettings* set
     }
 
     TTF_CloseFont(font);
-    destroyInGameMenu(menu);
+    destroyInterface(interface);
     return state;
 }
