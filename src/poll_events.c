@@ -201,3 +201,5 @@ int pollEventsSettingsMenu(SettingsMenu* menu, SDL_Event* event, GameState* stat
     }    
     return running;
 }
+
+//int pollEventsGameplay( Interface* interface, SDL_Event* event, GameState* state){}
