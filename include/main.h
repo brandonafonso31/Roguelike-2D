@@ -12,6 +12,7 @@
 #include "ingame_menu.h"
 #include "settings_menu.h"
 #include "json_loader.h"
+#include "gameplay.h"
 
 int main(int argc, char *argv[]);
 
