@@ -13,6 +13,6 @@ void renderTextBlack(SDL_Renderer* renderer, TTF_Font* font, const char* text, i
 SDL_Color readColor(const char* color_name);
 void renderTriangle(int x, int y, SDL_Renderer* renderer, int width);
 void renderColoredTriangle(int x, int y, SDL_Renderer* renderer, int width, const char* color_name);
-void renderPlayer(Entity* player);
+void renderPlayer(SDL_Renderer* renderer, Entity* player);
 
 #endif
