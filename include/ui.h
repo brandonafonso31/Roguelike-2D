@@ -18,6 +18,6 @@ extern const char* txt_main_menu[];
 void renderMainMenuUI(MainMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
 void renderInGameMenuUI(InGameMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities);
 void renderSettingsUI(SettingsMenu* menu, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings);
-//void renderInterfaceInGame(Interface interface, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities);
+void renderInterfaceInGame(Interface* interface, FPSCounter* fps_counter, SDL_Renderer* renderer, double dt, TTF_Font* font, GameSettings* settings, EntityDatabase* db_entities);
 
 #endif

@@ -393,6 +393,9 @@ void renderInterfaceInGame(Interface* interface, FPSCounter* fps_counter, SDL_Re
     
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 180);
     SDL_RenderClear(renderer);
+    
     renderPlayer(renderer,interface->player);
+
+    renderFps(fps_counter, renderer, font, settings, dt);
     SDL_RenderPresent(renderer);
 }
